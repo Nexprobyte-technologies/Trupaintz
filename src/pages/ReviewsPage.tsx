@@ -14,13 +14,13 @@ import {
 
 export const ReviewsPage: React.FC = () => {
   const { reviews, addMilestoneReview, averageRating, totalReviews } = useReviews();
-  const [selectedFilter, setSelectedFilter] = useState<'all' | 'stucco' | 'prep' | 'ceiling' | 'kitchen'>('all');
+  const [selectedFilter, setSelectedFilter] = useState<'all' | 'stucco' | 'prep' | 'ceiling' | 'windows'>('all');
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   // New review form
   const [clientName, setClientName] = useState('');
   const [projectName, setProjectName] = useState('');
-  const [milestone, setMilestone] = useState('Italian Stucco Living Elevation');
+  const [milestone, setMilestone] = useState('UPVC Windows & Netlon Door Installation');
   const [rating, setRating] = useState(5);
   const [title, setTitle] = useState('');
   const [comment, setComment] = useState('');
@@ -32,7 +32,7 @@ export const ReviewsPage: React.FC = () => {
     if (selectedFilter === 'stucco') return lower.includes('stucco') || lower.includes('lime') || lower.includes('plaster');
     if (selectedFilter === 'prep') return lower.includes('prep') || lower.includes('sanding') || lower.includes('dust');
     if (selectedFilter === 'ceiling') return lower.includes('ceiling') || lower.includes('track') || lower.includes('cove');
-    if (selectedFilter === 'kitchen') return lower.includes('kitchen') || lower.includes('modular') || lower.includes('cabinet');
+    if (selectedFilter === 'windows') return lower.includes('upvc') || lower.includes('window') || lower.includes('netlon') || lower.includes('door');
     return true;
   });
 
@@ -102,7 +102,7 @@ export const ReviewsPage: React.FC = () => {
             { id: 'stucco', label: 'Italian Stucco' },
             { id: 'prep', label: 'Dustless Prep' },
             { id: 'ceiling', label: 'False Ceiling & Cove' },
-            { id: 'kitchen', label: 'Modular Kitchens' },
+            { id: 'windows', label: 'UPVC & Windows' },
           ].map((f) => (
             <button
               key={f.id}
@@ -267,8 +267,8 @@ export const ReviewsPage: React.FC = () => {
                   className="w-full rounded-xl border border-neutral-300 bg-white px-3 py-2 text-xs text-neutral-900 focus:border-amber-500 focus:outline-none"
                 >
                   <option value="Italian Stucco Living Elevation">Italian Stucco Living Elevation</option>
-                  <option value="Substrate Prep & Dustless Sanding">Substrate Prep &amp; Dustless Sanding</option>
-                  <option value="Modular Kitchen & Joinery Handover">Modular Kitchen &amp; Joinery Handover</option>
+                  <option value="UPVC Windows & Netlon Door Installation">UPVC Windows &amp; Netlon Door Installation</option>
+                  <option value="Action Tesa Wooden Flooring & Blinds">Action Tesa Wooden Flooring &amp; Blinds</option>
                   <option value="False Ceiling Framing & Magnetic Tracks">False Ceiling Framing &amp; Magnetic Tracks</option>
                 </select>
               </div>

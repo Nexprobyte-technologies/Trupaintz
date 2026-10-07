@@ -1,4 +1,4 @@
-export type ProjectCategory = 'all' | 'living' | 'kitchen' | 'texture' | 'bedroom';
+export type ProjectCategory = 'all' | 'windows' | 'painting' | 'flooring' | 'louvers' | 'curtains';
 
 export interface Project {
   id: string;
@@ -23,6 +23,32 @@ export interface Project {
   palette: string[];
 }
 
+export interface UpvcBrandPricing {
+  brand: string;
+  thickness: string;
+  openPrice: number;
+  slidingPrice: number;
+  fixedPrice: number;
+}
+
+export interface NetlonDoorOption {
+  type: string;
+  price: string;
+  unit: string;
+  desc?: string;
+}
+
+export interface UpvcProductDetails {
+  brands: UpvcBrandPricing[];
+  glass: string;
+  colorPriceRange: string;
+  colors: string[];
+  windowTypes: string[];
+  warranty: string;
+  manufacturing: string[];
+  netlonDoorPricing?: NetlonDoorOption[];
+}
+
 export interface ServiceItem {
   id: string;
   num?: string;
@@ -33,20 +59,22 @@ export interface ServiceItem {
   priceRange: string;
   image: string;
   highlightTag: string;
+  upvcDetails?: UpvcProductDetails;
+  netlonDetails?: NetlonDoorOption[];
 }
 
 export type GalleryCategory = 
   | 'All'
-  | 'Furniture'
-  | 'Headboards'
-  | 'Mattress'
-  | 'Flooring'
-  | 'Rugs'
+  | 'UPVC Windows & Doors'
+  | 'Painting'
+  | 'Curtains'
   | 'Blinds'
   | 'Wallpapers'
-  | 'Curtains'
-  | 'Interior Design'
-  | 'Architecture';
+  | 'Wooden Flooring'
+  | 'False Ceiling'
+  | 'Mosquito Net'
+  | 'Louvers'
+  | 'Artificial Grass';
 
 export interface GalleryItem {
   id: string;

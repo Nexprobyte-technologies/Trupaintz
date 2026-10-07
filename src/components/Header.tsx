@@ -51,13 +51,13 @@ export const Header: React.FC = () => {
     {
       to: '/services',
       label: 'Our Services',
-      desc: 'Flooring, curtains, furniture & complete interior solutions',
+      desc: 'UPVC windows, Saint-Gobain nets, flooring & interiors',
       icon: Layers,
     },
     {
       to: '/gallery',
       label: 'Gallery',
-      desc: 'All categories: Furniture, headboards, mattress & more',
+      desc: 'All categories: UPVC, mosquito net, flooring & decor',
       icon: GalleryIcon,
     },
     {

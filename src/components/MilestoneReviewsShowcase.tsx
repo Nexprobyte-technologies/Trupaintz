@@ -9,7 +9,7 @@ interface MilestoneReviewsShowcaseProps {
 
 export const MilestoneReviewsShowcase: React.FC<MilestoneReviewsShowcaseProps> = ({ onOpenFeedback }) => {
   const { reviews, averageRating, totalReviews } = useReviews();
-  const [selectedFilter, setSelectedFilter] = useState<'all' | 'stucco' | 'prep' | 'ceiling' | 'kitchen'>('all');
+  const [selectedFilter, setSelectedFilter] = useState<'all' | 'stucco' | 'prep' | 'ceiling' | 'windows'>('all');
 
   const filteredReviews = reviews.filter(r => {
     if (selectedFilter === 'all') return true;
@@ -17,7 +17,7 @@ export const MilestoneReviewsShowcase: React.FC<MilestoneReviewsShowcaseProps> =
     if (selectedFilter === 'stucco') return lower.includes('stucco') || lower.includes('lime') || lower.includes('plaster');
     if (selectedFilter === 'prep') return lower.includes('prep') || lower.includes('sanding') || lower.includes('dust');
     if (selectedFilter === 'ceiling') return lower.includes('ceiling') || lower.includes('track') || lower.includes('cove');
-    if (selectedFilter === 'kitchen') return lower.includes('kitchen') || lower.includes('modular') || lower.includes('cabinet');
+    if (selectedFilter === 'windows') return lower.includes('upvc') || lower.includes('window') || lower.includes('netlon') || lower.includes('door');
     return true;
   });
 
@@ -64,7 +64,7 @@ export const MilestoneReviewsShowcase: React.FC<MilestoneReviewsShowcaseProps> =
               { id: 'stucco', label: 'Italian Stucco' },
               { id: 'prep', label: 'Dustless Prep' },
               { id: 'ceiling', label: 'False Ceilings' },
-              { id: 'kitchen', label: 'Modular Kitchens' },
+              { id: 'windows', label: 'UPVC & Windows' },
             ].map(tab => (
               <button
                 key={tab.id}

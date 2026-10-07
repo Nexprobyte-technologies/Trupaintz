@@ -52,11 +52,11 @@ export const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ onSelectProjec
           <div className="flex flex-nowrap sm:flex-wrap items-center gap-1.5 p-1 bg-white/70 dark:bg-neutral-900/70 rounded-xl border border-neutral-200/80 dark:border-neutral-800 overflow-x-auto max-w-full">
             {[
               { id: 'all', label: 'All Works' },
-              { id: 'living', label: 'Luxury Living' },
-              { id: 'kitchen', label: 'Modular Kitchens' },
-              { id: 'texture', label: 'Italian Texture' },
-              { id: 'bedroom', label: 'Master Suites' },
-              { id: 'commercial', label: 'Commercial' },
+              { id: 'windows', label: 'UPVC & Netlon' },
+              { id: 'painting', label: 'Painting & Ceilings' },
+              { id: 'flooring', label: 'Flooring & Blinds' },
+              { id: 'louvers', label: 'Louvers & Wallpapers' },
+              { id: 'curtains', label: 'Grass & Curtains' },
             ].map(cat => (
               <button
                 key={cat.id}

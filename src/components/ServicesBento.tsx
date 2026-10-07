@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { SERVICES_DATA } from '../data/mockData';
 import { ServiceItem } from '../types';
 import { ArrowRight, ShieldCheck, Check, X } from 'lucide-react';
@@ -22,7 +23,7 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ onSelectService })
             </h2>
           </div>
           <p className="max-w-md text-sm text-neutral-600 dark:text-neutral-400">
-            From mechanized dustless painting to high-precision CNC modular cabinetry and architectural drywall illumination.
+            From heavy-gauge UPVC windows and dustless home painting to designer curtains, blinds, wooden flooring, false ceilings, mosquito nets, louvers, and artificial grass.
           </p>
         </div>
 
@@ -73,7 +74,7 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ onSelectService })
             </div>
           </div>
 
-          {/* Card 2: Modular Kitchens & Joinery (Col-Span 4) */}
+          {/* Card 2: Dustless Home Painting (Col-Span 4) */}
           <div className="stagger-item card-hover-lift md:col-span-4 rounded-3xl border border-neutral-200/80 bg-white p-6 shadow-sm dark:border-neutral-800/80 dark:bg-neutral-900 flex flex-col justify-between group">
             <div>
               <div className="flex items-center justify-between text-xs text-neutral-500 dark:text-neutral-400">
@@ -193,11 +194,30 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ onSelectService })
                 onClick={() => onSelectService(SERVICES_DATA[4].title)}
                 className="text-xs font-semibold text-amber-600 dark:text-amber-400 hover:underline"
               >
-                Scan Walls
+                Explore Wallpapers
               </button>
             </div>
           </div>
 
+        </div>
+
+        {/* Banner linking to full 10 services */}
+        <div className="mt-8 rounded-2xl border border-amber-900/15 bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="text-center sm:text-left">
+            <h4 className="font-display text-base font-bold text-neutral-950 dark:text-white">
+              Looking for Wooden Flooring, False Ceilings, Mosquito Nets, Louvers or Artificial Grass?
+            </h4>
+            <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-0.5">
+              Explore our full 10-category catalogue with verified specifications, warranty details, and transparent sq.ft pricing.
+            </p>
+          </div>
+          <Link
+            to="/services"
+            className="btn-premium rounded-xl bg-amber-600 px-5 py-2.5 text-xs font-semibold text-white shadow-sm hover:bg-amber-500 transition-all shrink-0 flex items-center gap-1.5"
+          >
+            <span>View All 10 Services</span>
+            <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
         </div>
 
       </div>

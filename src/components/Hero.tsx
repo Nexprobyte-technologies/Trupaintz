@@ -72,7 +72,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreProjects, onOpenBooking, on
             <span>{BRAND_INFO.instagramHandle}</span>
           </a>
           <span aria-hidden="true" className="hidden sm:inline text-neutral-400">·</span>
-          <span className="text-[11px] sm:text-xs">Bespoke Interior Architecture &amp; Luxury Painting</span>
+          <span className="text-[11px] sm:text-xs">UPVC Windows, Home Painting &amp; Complete Interior Solutions</span>
         </div>
 
         {/* Main Grid: Split Hero */}
@@ -81,11 +81,11 @@ export const Hero: React.FC<HeroProps> = ({ onExploreProjects, onOpenBooking, on
           {/* Left Column */}
           <div className="lg:col-span-6 reveal-left is-revealed">
             <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-950 dark:text-white leading-[1.14] break-words">
-              Master painting craftsmanship meets <span className="gold-gradient-text">bespoke interior architecture</span>.
+              Master painting craftsmanship meets <span className="gold-gradient-text">bespoke interior solutions</span>.
             </h1>
 
             <p className="mt-5 text-sm sm:text-lg leading-relaxed text-neutral-600 dark:text-neutral-300 max-w-2xl">
-              From hand-troweled Italian Venetian stucco and breathable mineral limewashes to turnkey modular kitchens and architectural cove ceilings. We engineer living spaces with heirloom precision.
+              From heavy-gauge UPVC windows, mosquito net doors, and dustless painting to designer curtains, blinds, AC-rated wooden floors, false ceilings, wallpapers, louvers, and artificial grass.
             </p>
 
             {/* CTAs */}

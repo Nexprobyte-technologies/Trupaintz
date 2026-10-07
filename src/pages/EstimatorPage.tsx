@@ -51,8 +51,22 @@ export const EstimatorPage: React.FC = () => {
     if (querySqft) setSqft(Number(querySqft));
   }, [searchParams]);
 
-  // Cost calculation formula
+  // Cost calculation formula based on official pricing
   const getRatePerSqFt = () => {
+    if (serviceScope.includes('UPVC')) {
+      // EITI 2.5mm / BADYEE 2mm pricing:
+      // Fixed: 290-310, Sliding: 340-360, Open: 440-460, Woodgrain Colours: 800-1200
+      if (tier === 'heritage') return 850; // Woodgrain finish (Golden Oak / Dark Oak)
+      if (tier === 'ultra') return 450;    // Open Casement (EITI ₹460 / BADYEE ₹440)
+      return 350;                         // Sliding (EITI ₹360 / BADYEE ₹340)
+    }
+    if (serviceScope.includes('Mosquito') || serviceScope.includes('Netlon')) {
+      // Saint-Gobain Netlon rates: Magnet: 300, Normal lock: 250, Pleated: 300, Velcro: 60
+      if (tier === 'heritage') return 300; // Pleated / Magnetic Door
+      if (tier === 'ultra') return 250;    // Normal lock hinged aluminium frame
+      return 60;                          // Velcro stapler stitch
+    }
+
     let base = 35;
     if (serviceScope.includes('Stucco') || serviceScope.includes('Italian')) base += 45;
     if (serviceScope.includes('Modular') || serviceScope.includes('Kitchen')) base += 60;
@@ -211,11 +225,16 @@ export const EstimatorPage: React.FC = () => {
               onChange={(e) => setServiceScope(e.target.value)}
               className="w-full rounded-xl border border-neutral-300 bg-white px-3.5 py-2.5 text-xs text-neutral-900 focus:border-amber-500 focus:outline-none"
             >
-              <option value="Italian Stucco + Premium Painting">Italian Stucco + Premium Painting</option>
-              <option value="Full Turnkey Luxury Painting">Full Turnkey Luxury Painting (Dustless)</option>
-              <option value="Modular Kitchen & Cabinetry">Modular Kitchen &amp; Bespoke Joinery</option>
-              <option value="False Ceiling & Architectural Lighting">False Ceiling &amp; Cove Lighting</option>
-              <option value="Thermal Waterproofing & Prep">Moisture Diagnostics &amp; Waterproofing</option>
+              <option value="UPVC Windows & Doors">UPVC Windows &amp; Doors (EITI 2.5mm / BADYEE 2mm)</option>
+              <option value="Painting">Dustless Home Painting (Interior &amp; Exterior)</option>
+              <option value="Curtains">Curtains &amp; Designer Drapery</option>
+              <option value="Blinds">Window Blinds (Roller, Zebra, Bamboo, Venetian)</option>
+              <option value="Wallpapers">Designer Wallpapers (57 sq.ft / Roll)</option>
+              <option value="Wooden Flooring">Wooden Flooring (Action Tesa &amp; Surya)</option>
+              <option value="False Ceiling">False Ceiling (Saint-Gobain Gyproc &amp; USG Boral)</option>
+              <option value="Netlon / Mosquito Nets">Netlon / Mosquito Nets (Saint-Gobain Mesh)</option>
+              <option value="Louvers">Architectural Louvers (Shore &amp; Charcoal Fluted)</option>
+              <option value="Artificial Grass">Artificial Grass (25mm–50mm Landscape Turf)</option>
             </select>
           </div>
 

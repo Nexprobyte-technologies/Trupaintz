@@ -61,21 +61,24 @@ export const LiveChatConcierge: React.FC = () => {
       let action: ChatMessage['action'] | undefined = undefined;
       const lower = text.toLowerCase();
 
-      if (lower.includes('stucco') || lower.includes('texture') || lower.includes('venetian') || lower.includes('cost')) {
-        replyText = `Our Italian Stucco finishes (Marmorino, Travertino, Metallic Mica) range from ₹65 to ₹110 per sq.ft. including hand-trowel application by certified artisans and a 10-year adhesion guarantee.`;
-        action = { label: 'Explore in 3D Studio', targetPath: '/visualizer' };
+      if (lower.includes('upvc') || lower.includes('window') || lower.includes('door') || lower.includes('sliding') || lower.includes('eiti') || lower.includes('badyee')) {
+        replyText = `Our certified UPVC profiles (EITI 2.5mm & BADYEE 2mm) come with 4mm glass, machine welding, EPDM gaskets, and 15–20 years warranty. Open from ₹440–460/sq.ft, Sliding from ₹340–360/sq.ft.`;
+        action = { label: 'View UPVC Catalogue', targetPath: '/services' };
+      } else if (lower.includes('paint') || lower.includes('painting') || lower.includes('stucco') || lower.includes('asian') || lower.includes('birla')) {
+        replyText = `We specialize in dustless interior & exterior home painting with Asian Paints & Birla Paints. Interior: ₹22 (3-yr), ₹28 (7-yr), ₹32 (10-yr). Exterior: ₹25 (3-yr), ₹32 (7-yr), ₹38 (10-yr).`;
+        action = { label: 'Explore Painting Rates', targetPath: '/services' };
+      } else if (lower.includes('netlon') || lower.includes('mosquito') || lower.includes('mesh') || lower.includes('saint')) {
+        replyText = `We provide Saint-Gobain mosquito nets and Netlon doors: Magnet Type (₹300), Pleated (₹300), Normal Lock (₹250), Velcro (₹45), and Saint-Gobain mesh (₹55–62/sq.ft).`;
+        action = { label: 'Explore Mosquito Nets', targetPath: '/services' };
+      } else if (lower.includes('floor') || lower.includes('action tesa') || lower.includes('surya') || lower.includes('wooden')) {
+        replyText = `We install Action Tesa AC3 (₹140), AC4 (₹150), AC5 (₹160) and Surya AC3 (₹150), AC4 (₹160) with 10–20 years warranty, skirting, and laying.`;
+        action = { label: 'View Flooring Details', targetPath: '/services' };
       } else if (lower.includes('visit') || lower.includes('book') || lower.includes('quote') || lower.includes('estimate') || lower.includes('price')) {
-        replyText = `We provide on-site digital moisture audits and bring real physical stucco swatches to your residence. Would you like to check the estimator?`;
+        replyText = `You can calculate a transparent estimate across our 10 specialized services or schedule a site inspection with physical swatch verification.`;
         action = { label: 'Go to Cost Estimator', targetPath: '/estimator' };
-      } else if (lower.includes('kitchen') || lower.includes('modular')) {
-        replyText = `Our turnkey modular kitchens feature German Blum servo-drives, anti-fingerprint acrylic shutters, and quartz countertops with a guaranteed 45-day handover.`;
-        action = { label: 'View Portfolio', targetPath: '/projects' };
-      } else if (lower.includes('dust') || lower.includes('clean') || lower.includes('residential')) {
-        replyText = `We use 100% dustless HEPA vacuum sanders and digital moisture meters, so you don't have to vacate or cover every inch of your furniture yourself.`;
-        action = { label: 'Read Our Story', targetPath: '/about' };
       } else {
-        replyText = `Thank you for reaching out! You can explore our signature portfolio, or our Senior Project Architect can inspect your site and provide an itemized quote.`;
-        action = { label: 'Schedule Consultation', targetPath: '/contact' };
+        replyText = `Welcome to TruPaintz & Interiors! We offer 10 specialized architectural services: UPVC Windows, Painting, Curtains, Blinds, Wallpapers, Wooden Flooring, False Ceilings, Mosquito Nets, Louvers, and Artificial Grass.`;
+        action = { label: 'View Our Services', targetPath: '/services' };
       }
 
       const botMsg: ChatMessage = {
@@ -186,9 +189,10 @@ export const LiveChatConcierge: React.FC = () => {
           {/* Quick Prompts Bar */}
           <div className="px-3 py-2 border-t border-neutral-100 bg-white flex gap-1.5 overflow-x-auto">
             {[
-              'Italian Stucco cost?',
-              'Dustless painting info',
-              'Modular Kitchen specs',
+              'UPVC Windows pricing?',
+              'Painting warranty rates',
+              'Mosquito Nets & Netlon?',
+              'Action Tesa Flooring?',
             ].map((prompt, i) => (
               <button
                 key={i}

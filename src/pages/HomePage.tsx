@@ -42,13 +42,13 @@ const HERO_SLIDES: HeroSlide[] = [
   {
     id: 0,
     number: '01',
-    category: 'Artisanal Italian Finishes & Living Spaces',
-    title: 'Artisanal Italian Finishes & ',
-    highlightText: 'Turnkey Luxury Interiors',
-    description: 'We combine hand-troweled Venetian stuccos and mechanized dustless painting with bespoke modular joinery. Engineered for homeowners who value enduring architectural distinction.',
+    category: 'Dustless Painting & Home Solutions',
+    title: 'Precision Painting & ',
+    highlightText: 'Complete Interior Solutions',
+    description: 'We combine dustless Asian Paints & Birla Paints systems with certified UPVC windows, wooden flooring, false ceilings, and bespoke drapery. Engineered with heirloom quality.',
     image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1920&q=85',
     locationBadge: 'The Solarium Penthouse · Indiranagar',
-    finishType: 'Italian Roman Stucco',
+    finishType: 'Dustless Asian Paints & Cove Ceilings',
     primaryCtaText: 'Calculate Instant Estimate',
     primaryCtaLink: '/estimator',
     secondaryCtaText: 'Explore Portfolio',
@@ -57,13 +57,13 @@ const HERO_SLIDES: HeroSlide[] = [
   {
     id: 1,
     number: '02',
-    category: 'Creative Architecture & Spatial Design',
-    title: 'Discover the Beauty of ',
-    highlightText: 'Modern Architecture',
-    description: 'From 2D spatial floorplans to photorealistic 3D schematics and structural executions, our architects shape harmonic environments that blend light, geometry, and enduring luxury.',
+    category: 'Architectural Louvers, Ceilings & Turf',
+    title: 'Transform Spaces with ',
+    highlightText: 'Louvers, Ceilings & Grass',
+    description: 'Shore and Charcoal fluted louvers on 16mm commercial plywood, Saint-Gobain false ceilings, and 25mm–50mm UV-resistant artificial turf for all-weather luxury.',
     image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=85',
     locationBadge: 'The Glass Pavilion · Sadashivanagar',
-    finishType: 'Turnkey Architectural Remodeling',
+    finishType: '16mm Louvers, VOX Ceilings & 40mm Turf',
     primaryCtaText: 'Explore All 10 Services',
     primaryCtaLink: '/services',
     secondaryCtaText: 'View Design Gallery',
@@ -72,28 +72,28 @@ const HERO_SLIDES: HeroSlide[] = [
   {
     id: 2,
     number: '03',
-    category: 'Master Bedroom Sanctuaries & Headboards',
-    title: 'Bespoke Headboards, Sleep & ',
-    highlightText: 'Designer Wallpapers',
-    description: 'Wall-to-wall acoustic velvet elevations, 100% natural organic latex mattresses, and hand-selected European textured wallcoverings created for restorative rest and tactile warmth.',
-    image: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1920&q=85',
-    locationBadge: 'Japandi Sanctuary · Lavelle Road',
-    finishType: 'Custom Fluted Headboards & Wallcoverings',
-    primaryCtaText: 'Browse Headboards & Beds',
-    primaryCtaLink: '/gallery',
-    secondaryCtaText: 'Cost Breakdown',
+    category: 'Heavy-Gauge UPVC Windows & Doors',
+    title: 'Precision UPVC Profiles & ',
+    highlightText: 'Saint-Gobain Mosquito Net',
+    description: 'Certified EITI 2.5mm and BADYEE 2mm profiles, automated machine welding, EPDM soundproof gaskets, and genuine Saint-Gobain Netlon mesh backed by 15–20 year warranty.',
+    image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1920&q=85',
+    locationBadge: 'Eco Living · Coimbatore & Karamadai',
+    finishType: 'EITI 2.5MM, BADYEE 2MM & Saint-Gobain Mesh',
+    primaryCtaText: 'View UPVC Price Sheet',
+    primaryCtaLink: '/services',
+    secondaryCtaText: 'Instant Estimate',
     secondaryCtaLink: '/estimator',
   },
   {
     id: 3,
     number: '04',
-    category: 'Curtains, Motorized Blinds & Wool Rug Couture',
+    category: 'Curtains, Motorized Blinds & Hardwood Flooring',
     title: 'Bespoke Drapery, Smart Blinds & ',
-    highlightText: 'Artisan Wool Rugs',
-    description: 'Motorized whisper-quiet Zebra blinds, Belgian washed linen drapery, and hand-tufted New Zealand wool rugs woven to your exact architectural room dimensions.',
+    highlightText: 'Luxury Flooring',
+    description: 'Motorized whisper-quiet Zebra blinds, Curtains Avenue wave-fold sheer drapery, and Action Tesa AC4 wooden flooring installed with micron-level precision.',
     image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1920&q=85',
     locationBadge: 'Aura Residence · Chinnamathampalayam',
-    finishType: 'Smart Blinds, Belgian Linens & Custom Rugs',
+    finishType: 'Smart Blinds, Curtains Avenue & Action Tesa',
     primaryCtaText: 'Launch 3D Studio',
     primaryCtaLink: '/visualizer',
     secondaryCtaText: 'Explore All Solutions',
@@ -112,14 +112,14 @@ export const HomePage: React.FC = () => {
   // Quick Callback Form State (inspired by Global Ethos)
   const [cbName, setCbName] = useState('');
   const [cbPhone, setCbPhone] = useState('');
-  const [cbService, setCbService] = useState('Interior Design');
+  const [cbService, setCbService] = useState('UPVC Windows & Doors');
   const [cbSubmitted, setCbSubmitted] = useState(false);
 
   // Quick Estimator State on Home Page
   const [homeSqft, setHomeSqft] = useState(1500);
-  const [homeService, setHomeService] = useState('Italian Stucco');
+  const [homeService, setHomeService] = useState('Home Painting');
 
-  const estimatedMin = Math.round(homeSqft * (homeService === 'Italian Stucco' ? 75 : homeService === 'Modular Kitchen' ? 95 : 45));
+  const estimatedMin = Math.round(homeSqft * (homeService === 'Home Painting' ? 28 : homeService === 'Wooden Flooring' ? 150 : 360));
   const estimatedMax = Math.round(estimatedMin * 1.25);
 
   // 5-Second Auto Timer
@@ -397,17 +397,16 @@ export const HomePage: React.FC = () => {
                       onChange={(e) => setCbService(e.target.value)}
                       className="w-full rounded-xl border border-neutral-300 bg-white px-3 py-2.5 text-xs text-neutral-900 focus:border-amber-600 focus:outline-none shadow-xs"
                     >
-                      <option value="Interior Design">Interior Design (2D/3D)</option>
-                      <option value="Flooring">Flooring & Marble</option>
-                      <option value="Curtains">Curtains & Sheers</option>
-                      <option value="Blinds">Motorized Blinds</option>
-                      <option value="Wallpapers">European Wallpapers</option>
-                      <option value="Rugs">Hand-Tufted Rugs</option>
-                      <option value="Mattress">Orthopedic Mattress</option>
-                      <option value="Headboards">Custom Headboards</option>
-                      <option value="Furnitures">Bespoke Furniture</option>
-                      <option value="Architecture">Creative Architecture</option>
-                      <option value="Italian Stucco">Italian Stucco Finishes</option>
+                      <option value="UPVC Windows & Doors">UPVC Windows &amp; Doors (EITI &amp; BADYEE)</option>
+                      <option value="Painting">Dustless Painting (Asian &amp; Birla Paints)</option>
+                      <option value="Curtains">Curtains (Curtains Avenue &amp; MBF)</option>
+                      <option value="Blinds">Blinds (Roller, Zebra, Bamboo, Venetian)</option>
+                      <option value="Wallpapers">Wallpapers (European Textured Vinyl)</option>
+                      <option value="Wooden Flooring">Wooden Flooring (Action Tesa &amp; Surya)</option>
+                      <option value="False Ceiling">False Ceiling (Saint-Gobain &amp; USG Boral)</option>
+                      <option value="Netlon / Mosquito Nets">Netlon / Mosquito Nets (Saint-Gobain)</option>
+                      <option value="Louvers">Louvers (Shore &amp; Charcoal Fluted)</option>
+                      <option value="Artificial Grass">Artificial Grass (25mm–50mm Turf)</option>
                     </select>
                   </div>
 
@@ -896,7 +895,7 @@ export const HomePage: React.FC = () => {
                     Finish Scope:
                   </label>
                   <div className="grid grid-cols-3 gap-2">
-                    {['Premium Painting', 'Italian Stucco', 'Modular Kitchen'].map((type) => (
+                    {['Home Painting', 'UPVC Windows', 'Wooden Flooring'].map((type) => (
                       <button
                         key={type}
                         type="button"

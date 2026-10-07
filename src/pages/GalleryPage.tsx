@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { GALLERY_DATA } from '../data/mockData';
 import { GalleryCategory, GalleryItem } from '../types';
 import { 
@@ -15,21 +15,33 @@ import {
 
 const CATEGORIES: GalleryCategory[] = [
   'All',
-  'Furniture',
-  'Headboards',
-  'Mattress',
-  'Flooring',
-  'Rugs',
+  'UPVC Windows & Doors',
+  'Painting',
+  'Curtains',
   'Blinds',
   'Wallpapers',
-  'Curtains',
-  'Interior Design',
-  'Architecture',
+  'Wooden Flooring',
+  'False Ceiling',
+  'Mosquito Net',
+  'Louvers',
+  'Artificial Grass',
 ];
 
 export const GalleryPage: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState<GalleryCategory>('All');
+  const [searchParams] = useSearchParams();
+  const initialCategory = (searchParams.get('category') as GalleryCategory) || 'All';
+
+  const [selectedCategory, setSelectedCategory] = useState<GalleryCategory>(
+    CATEGORIES.includes(initialCategory) ? initialCategory : 'All'
+  );
   const [activeItem, setActiveItem] = useState<GalleryItem | null>(null);
+
+  useEffect(() => {
+    const cat = searchParams.get('category') as GalleryCategory;
+    if (cat && CATEGORIES.includes(cat)) {
+      setSelectedCategory(cat);
+    }
+  }, [searchParams]);
 
   const filteredItems = selectedCategory === 'All'
     ? GALLERY_DATA
@@ -46,10 +58,10 @@ export const GalleryPage: React.FC = () => {
             <span>Curated Design Gallery</span>
           </div>
           <h1 className="font-display text-4xl sm:text-5xl font-bold tracking-tight text-neutral-950">
-            Interior Finishes &amp; Furnishings Showcase
+            Interior &amp; Exterior Solutions Showcase
           </h1>
           <p className="text-sm sm:text-base text-neutral-600 leading-relaxed">
-            Discover our comprehensive craftsmanship catalog across furniture, custom headboards, hotel-grade mattresses, hardwood flooring, rugs, blinds, wallpapers, and turnkey architecture.
+            Discover our comprehensive craftsmanship catalog across all 10 specialized services: heavy UPVC Windows &amp; Doors, dustless home painting, luxury curtains, window blinds, wallpapers, Action Tesa wooden flooring, false ceilings, Saint-Gobain mosquito nets, architectural louvers, and artificial grass.
           </p>
         </div>
 

@@ -333,12 +333,16 @@ export const ContactPage: React.FC = () => {
                   onChange={(e) => setService(e.target.value)}
                   className="w-full rounded-xl border border-neutral-300 bg-white px-3.5 py-2.5 text-xs text-neutral-900 focus:border-amber-500 focus:outline-none"
                 >
-                  <option value="Italian Stucco & Wall Finishes">Italian Venetian Stucco &amp; Wall Plasters</option>
-                  <option value="Turnkey Luxury Painting (Dustless)">Turnkey Luxury Painting (Dustless Mechanized)</option>
-                  <option value="Modular Kitchen & Cabinetry">Modular Kitchen &amp; Wardrobes</option>
-                  <option value="Architectural False Ceiling & Lighting">Architectural False Ceiling &amp; Cove Tracks</option>
-                  <option value="Moisture Diagnosis & Waterproofing">Moisture Diagnosis &amp; Waterproofing</option>
-                  <option value="Full Residence Turnkey Renovation">Full Residence Turnkey Renovation</option>
+                  <option value="UPVC Windows & Doors">UPVC Windows &amp; Doors (EITI &amp; BADYEE)</option>
+                  <option value="Painting">Painting (Interior &amp; Exterior Dustless)</option>
+                  <option value="Curtains">Curtains &amp; Drapery</option>
+                  <option value="Blinds">Blinds (Roller, Zebra, Bamboo, Venetian)</option>
+                  <option value="Wallpapers">Wallpapers (European Textured Vinyl)</option>
+                  <option value="Wooden Flooring">Wooden Flooring (Action Tesa &amp; Surya)</option>
+                  <option value="False Ceiling">False Ceiling (Saint-Gobain &amp; USG Boral)</option>
+                  <option value="Netlon / Mosquito Nets">Netlon / Mosquito Nets (Saint-Gobain)</option>
+                  <option value="Louvers">Louvers (Shore &amp; Charcoal Fluted)</option>
+                  <option value="Artificial Grass">Artificial Grass (25mm–50mm Turf)</option>
                 </select>
               </div>
 

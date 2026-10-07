@@ -52,10 +52,11 @@ export const ProjectsPage: React.FC = () => {
         <div className="flex flex-wrap items-center gap-1.5 p-1 bg-white rounded-2xl border border-neutral-200/90 shadow-sm w-full sm:w-auto">
           {[
             { id: 'all', label: 'All Works' },
-            { id: 'living', label: 'Luxury Living' },
-            { id: 'kitchen', label: 'Modular Kitchens' },
-            { id: 'texture', label: 'Italian Texture' },
-            { id: 'bedroom', label: 'Master Suites' },
+            { id: 'windows', label: 'UPVC & Netlon' },
+            { id: 'painting', label: 'Painting & Ceilings' },
+            { id: 'flooring', label: 'Flooring & Blinds' },
+            { id: 'louvers', label: 'Louvers & Wallpapers' },
+            { id: 'curtains', label: 'Grass & Curtains' },
           ].map((cat) => (
             <button
               key={cat.id}

@@ -41,7 +41,7 @@ export const Footer: React.FC = () => (
           </Link>
 
           <p className="text-sm leading-relaxed text-neutral-500 max-w-xs">
-            {BRAND_INFO.tagline} — Elevation Design, Flooring, Curtains, UPVC Windows &amp; Doors, Painting Services.
+            {BRAND_INFO.tagline} — UPVC Windows &amp; Doors, Dustless Painting, Curtains, Blinds, Wallpapers, Wooden Flooring, False Ceiling, Mosquito Nets, Louvers &amp; Artificial Grass.
           </p>
 
           {/* Contact */}

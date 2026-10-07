@@ -227,12 +227,16 @@ export const ContactSection: React.FC = () => {
                   onChange={(e) => setService(e.target.value)}
                   className="w-full rounded-xl border border-neutral-300 bg-white px-3.5 py-2.5 text-xs text-neutral-900 focus:border-amber-500 focus:outline-none dark:border-neutral-700 dark:bg-neutral-800 dark:text-white"
                 >
-                  <option>Italian Stucco &amp; Wall Finishes</option>
-                  <option>Turnkey Modular Kitchens &amp; Joinery</option>
-                  <option>Dustless Luxury Residential Repaint</option>
-                  <option>False Ceilings &amp; Architectural Cove Lighting</option>
-                  <option>Thermal Moisture Waterproofing Barrier</option>
-                  <option>Commercial Boutique / Office Renovation</option>
+                  <option>UPVC Windows &amp; Doors (EITI &amp; BADYEE)</option>
+                  <option>Painting (Interior &amp; Exterior Dustless)</option>
+                  <option>Curtains (Curtains Avenue, MBF, BD Balaji)</option>
+                  <option>Blinds (Roller, Zebra, Bamboo, Venetian)</option>
+                  <option>Wallpapers (European Textured Vinyl)</option>
+                  <option>Wooden Flooring (Action Tesa &amp; Surya)</option>
+                  <option>False Ceiling (Saint-Gobain &amp; USG Boral)</option>
+                  <option>Netlon / Mosquito Nets (Saint-Gobain)</option>
+                  <option>Louvers (Shore &amp; Charcoal Fluted)</option>
+                  <option>Artificial Grass (25mm–50mm Turf)</option>
                 </select>
               </div>
 

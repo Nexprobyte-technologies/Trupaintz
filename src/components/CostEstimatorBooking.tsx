@@ -34,8 +34,20 @@ export const CostEstimatorBooking: React.FC<CostEstimatorBookingProps> = ({ init
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formError, setFormError] = useState('');
 
-  // Cost calculation formula
+  // Cost calculation formula based on official pricing
   const getRatePerSqFt = () => {
+    if (serviceScope.includes('UPVC')) {
+      // EITI 2.5mm / BADYEE 2mm: Fixed (290-310), Sliding (340-360), Open (440-460), Woodgrain (800-1200)
+      if (tier === 'heritage') return 850;
+      if (tier === 'luxury') return 450;
+      return 350;
+    }
+    if (serviceScope.includes('Mosquito') || serviceScope.includes('Netlon')) {
+      if (tier === 'heritage') return 300; // Pleated / Magnetic
+      if (tier === 'luxury') return 250;   // Normal lock hinged
+      return 60;                          // Velcro stapler stitch
+    }
+
     let base = 32;
     if (serviceScope.includes('Stucco') || serviceScope.includes('Italian')) base += 45;
     if (serviceScope.includes('Modular') || serviceScope.includes('Kitchen')) base += 60;
@@ -211,8 +223,10 @@ export const CostEstimatorBooking: React.FC<CostEstimatorBookingProps> = ({ init
                     </label>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {[
+                        'UPVC Windows & Doors',
+                        'Saint-Gobain Mosquito Net',
                         'Italian Stucco + Premium Painting',
-                        'Turnkey Modular Kitchen & Interiors',
+                        'Wooden Flooring & Blinds',
                         'Dustless Residential Painting Only',
                         'False Ceiling & Architectural Lighting',
                       ].map((srv) => (

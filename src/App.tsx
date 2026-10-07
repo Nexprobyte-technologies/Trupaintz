@@ -8,6 +8,7 @@ import { Footer } from './components/Footer';
 import { ScrollToTop } from './components/ScrollToTop';
 import { LiveChatConcierge } from './components/LiveChatConcierge';
 import { EmailModal } from './components/EmailModal';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
 import { HomePage } from './pages/HomePage';
 import { ServicesPage } from './pages/ServicesPage';
@@ -50,20 +51,22 @@ export default function App() {
 
               {/* Dynamic Page Router */}
               <main className="flex-1 w-full pt-16 sm:pt-20">
-                <Routes>
-                  <Route path="/" element={<HomePage />} />
-                  <Route path="/services" element={<ServicesPage />} />
-                  <Route path="/projects" element={<ProjectsPage />} />
-                  <Route path="/portfolio" element={<Navigate to="/projects" replace />} />
-                  <Route path="/gallery" element={<GalleryPage />} />
-                  <Route path="/visualizer" element={<VisualizerPage />} />
-                  <Route path="/estimator" element={<EstimatorPage />} />
-                  <Route path="/reviews" element={<ReviewsPage />} />
-                  <Route path="/about" element={<AboutPage />} />
-                  <Route path="/journal" element={<Navigate to="/about" replace />} />
-                  <Route path="/contact" element={<ContactPage />} />
-                  <Route path="*" element={<Navigate to="/" replace />} />
-                </Routes>
+                <ErrorBoundary>
+                  <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/services" element={<ServicesPage />} />
+                    <Route path="/projects" element={<ProjectsPage />} />
+                    <Route path="/portfolio" element={<Navigate to="/projects" replace />} />
+                    <Route path="/gallery" element={<GalleryPage />} />
+                    <Route path="/visualizer" element={<VisualizerPage />} />
+                    <Route path="/estimator" element={<EstimatorPage />} />
+                    <Route path="/reviews" element={<ReviewsPage />} />
+                    <Route path="/about" element={<AboutPage />} />
+                    <Route path="/journal" element={<Navigate to="/about" replace />} />
+                    <Route path="/contact" element={<ContactPage />} />
+                    <Route path="*" element={<Navigate to="/" replace />} />
+                  </Routes>
+                </ErrorBoundary>
               </main>
 
               {/* Dynamic Global Footer */}

@@ -197,7 +197,7 @@ export const AboutPage: React.FC = () => {
             Visit Our Texture &amp; Finish Gallery
           </h3>
           <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
-            Touch 50+ full-scale physical panels of Venetian plaster, Italian stucco, fluted timber dividers, and examine our Blum modular joinery in person.
+            Touch full-scale profiles of EITI/BADYEE UPVC windows, Saint-Gobain mosquito nets, Action Tesa wooden flooring swatches, wallpaper rolls, designer curtains, blinds, and architectural louvers in person.
           </p>
         </div>
 
