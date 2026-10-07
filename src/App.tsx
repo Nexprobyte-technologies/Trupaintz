@@ -19,7 +19,7 @@ import { AboutPage } from './pages/AboutPage';
 import { ContactPage } from './pages/ContactPage';
 import { GalleryPage } from './pages/GalleryPage';
 
-const WA_URL = `https://wa.me/919845271829?text=${encodeURIComponent('Hi TruPaintz & Interiors! I would like to schedule a consultation.')}`;
+const WA_URL = `https://wa.me/919677708535?text=${encodeURIComponent('Hi TruPaintz and Interiors! I would like to schedule a consultation.')}`;
 
 function WhatsAppFloat() {
   return (

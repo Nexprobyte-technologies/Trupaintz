@@ -311,7 +311,7 @@ export const Header: React.FC = () => {
               Calculate Project Estimate →
             </Link>
             <a
-              href={`https://wa.me/919845271829?text=${encodeURIComponent('Hi TruPaintz team!')}`}
+              href={`https://wa.me/919677708535?text=${encodeURIComponent('Hi TruPaintz team!')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full text-center rounded-xl border border-neutral-300 py-2.5 text-xs font-semibold text-neutral-800 bg-white"

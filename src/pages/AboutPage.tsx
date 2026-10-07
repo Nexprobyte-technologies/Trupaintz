@@ -191,7 +191,7 @@ export const AboutPage: React.FC = () => {
         <div className="space-y-2 max-w-xl">
           <div className="flex items-center gap-2 text-xs font-bold text-amber-800 uppercase tracking-wider">
             <MapPin className="h-4 w-4" />
-            <span>Koramangala Experience Studio</span>
+            <span>Our Experience Studios</span>
           </div>
           <h3 className="font-display text-2xl font-bold text-neutral-950">
             Visit Our Texture &amp; Finish Gallery

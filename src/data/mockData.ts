@@ -1,13 +1,16 @@
 import { Project, ServiceItem, BlogPost, ClientProject, GalleryItem } from '../types';
 
 export const BRAND_INFO = {
-  name: 'TruPaintz & Interiors',
+  name: 'TruPaintz and Interiors',
   instagramHandle: '@trupaintz_and_interiors25',
   instagramUrl: 'https://www.instagram.com/trupaintz_and_interiors25',
-  phone: '+91 98452 71829',
-  email: 'concierge@trupaintz.com',
-  address: 'Design Studio & Experience Centre, 4th Block, Koramangala, Bengaluru, Karnataka 560034',
-  tagline: 'Crafting Timeless Living Spaces with Artisanal Finishes and Turnkey Precision',
+  phone: '+91 96777 08535',
+  phone2: '+91 76393 47464',
+  email: 'trupaintzandinteriors07@gmail.com',
+  website: 'www.trupaintz.in',
+  address: '4/383 A, Opp to Pricol Plant-3, Chinnamathampalayam - 641 019',
+  address2: '63, SBS Complex, Kannarpalayam Road, Karamadai - 641 104',
+  tagline: 'Transforming Vision into Value',
 };
 
 export const COLOR_SWATCHES = [

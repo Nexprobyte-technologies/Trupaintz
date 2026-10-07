@@ -41,7 +41,7 @@ export const ContactSection: React.FC = () => {
         'Project City/Area': location || 'Bengaluru',
         'Service of Interest': service,
         'Client Brief': message,
-        'Design Studio': 'TruPaintz Experience Centre, Koramangala',
+        'Design Studio': 'TruPaintz Experience Centre, Chinnamathampalayam',
         'Direct Desk': BRAND_INFO.phone,
       },
       sentAt: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),

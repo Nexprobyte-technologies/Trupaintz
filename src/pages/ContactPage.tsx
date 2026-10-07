@@ -113,7 +113,7 @@ export const ContactPage: React.FC = () => {
           Schedule Consultation &amp; Studio Visit
         </h1>
         <p className="text-sm sm:text-base text-neutral-600 leading-relaxed">
-          Reach out directly to our lead design desk for project inquiries, custom swatch requests, or to schedule an in-person walkthrough at our Koramangala experience centre.
+          Reach out directly to our lead design desk for project inquiries, custom swatch requests, or to schedule an in-person walkthrough at our experience centre.
         </p>
       </div>
 
@@ -132,17 +132,21 @@ export const ContactPage: React.FC = () => {
               <div className="flex items-start gap-3">
                 <MapPin className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
                 <div>
-                  <strong className="text-neutral-900 block">Experience Centre:</strong>
-                  <span>{BRAND_INFO.address}</span>
+                  <strong className="text-neutral-900 block">Both Locations:</strong>
+                  <span className="block">{BRAND_INFO.address}</span>
+                  <span className="block mt-0.5">{BRAND_INFO.address2}</span>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
                 <Phone className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
                 <div>
-                  <strong className="text-neutral-900 block">Direct Concierge Desk:</strong>
+                  <strong className="text-neutral-900 block">Direct Desk:</strong>
                   <a href={`tel:${BRAND_INFO.phone}`} className="font-mono text-amber-700 hover:underline">
                     {BRAND_INFO.phone}
+                  </a>
+                  <a href={`tel:${BRAND_INFO.phone2}`} className="font-mono text-amber-700 hover:underline block">
+                    {BRAND_INFO.phone2}
                   </a>
                 </div>
               </div>
@@ -169,7 +173,7 @@ export const ContactPage: React.FC = () => {
             {/* Quick Action Buttons */}
             <div className="pt-4 border-t border-neutral-100 flex flex-col sm:flex-row gap-3">
               <a
-                href={`https://wa.me/919845271829?text=${encodeURIComponent('Hi TruPaintz team, I would like to inquire about finishes for my home.')}`}
+                href={`https://wa.me/919677708535?text=${encodeURIComponent('Hi TruPaintz team, I would like to inquire about finishes for my home.')}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 rounded-xl bg-emerald-600 py-2.5 px-4 text-center text-xs font-semibold text-white shadow-sm hover:bg-emerald-500 transition-colors"

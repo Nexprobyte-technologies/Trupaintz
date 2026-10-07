@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { BRAND_INFO, SERVICES_DATA } from '../data/mockData';
-import { Instagram, ShieldCheck, Phone, Mail, MapPin, Sparkles, Award, Star } from 'lucide-react';
+import { Instagram, ShieldCheck, Phone, Mail, MapPin, Sparkles, Award, Star, Globe } from 'lucide-react';
 
 const NAV_LINKS = [
   { to: '/', label: 'Home' },
@@ -41,25 +41,39 @@ export const Footer: React.FC = () => (
           </Link>
 
           <p className="text-sm leading-relaxed text-neutral-500 max-w-xs">
-            South India's premier studio for Italian stuccos, dustless mechanized painting, modular joinery &amp; turnkey interiors.
+            {BRAND_INFO.tagline} — Elevation Design, Flooring, Curtains, UPVC Windows &amp; Doors, Painting Services.
           </p>
 
           {/* Contact */}
           <div className="space-y-2.5">
             <div className="flex items-start gap-2.5">
               <MapPin className="h-4 w-4 text-amber-600/60 shrink-0 mt-0.5" />
-              <span className="text-sm text-neutral-500 leading-relaxed">{BRAND_INFO.address}</span>
+              <div className="text-sm text-neutral-500 leading-relaxed space-y-1">
+                <div>{BRAND_INFO.address}</div>
+                <div>{BRAND_INFO.address2}</div>
+              </div>
             </div>
             <div className="flex items-center gap-2.5">
               <Phone className="h-4 w-4 text-amber-600/60 shrink-0" />
-              <a href={`tel:${BRAND_INFO.phone}`} className="text-sm font-mono text-neutral-400 hover:text-amber-400 transition-colors">
-                {BRAND_INFO.phone}
-              </a>
+              <div className="flex flex-col gap-0.5">
+                <a href={`tel:${BRAND_INFO.phone}`} className="text-sm font-mono text-neutral-400 hover:text-amber-400 transition-colors">
+                  {BRAND_INFO.phone}
+                </a>
+                <a href={`tel:${BRAND_INFO.phone2}`} className="text-sm font-mono text-neutral-400 hover:text-amber-400 transition-colors">
+                  {BRAND_INFO.phone2}
+                </a>
+              </div>
             </div>
             <div className="flex items-center gap-2.5">
               <Mail className="h-4 w-4 text-amber-600/60 shrink-0" />
               <a href={`mailto:${BRAND_INFO.email}`} className="text-sm font-mono text-neutral-400 hover:text-amber-400 transition-colors">
                 {BRAND_INFO.email}
+              </a>
+            </div>
+            <div className="flex items-center gap-2.5">
+              <Globe className="h-4 w-4 text-amber-600/60 shrink-0" />
+              <a href={`https://${BRAND_INFO.website}`} target="_blank" rel="noopener noreferrer" className="text-sm font-mono text-neutral-400 hover:text-amber-400 transition-colors">
+                {BRAND_INFO.website}
               </a>
             </div>
           </div>
@@ -135,7 +149,7 @@ export const Footer: React.FC = () => (
             </span>
             <span className="inline-flex items-center gap-2 text-sm text-neutral-500">
               <Sparkles className="h-4 w-4 text-amber-500/70" />
-              Bengaluru &amp; Chennai Coverage
+              Coimbatore &amp; Surrounding Areas
             </span>
           </div>
         </div>
@@ -145,7 +159,7 @@ export const Footer: React.FC = () => (
       {/* Bottom bar */}
       <div className="mt-10 pt-6 border-t border-white/5 flex items-center justify-center">
         <p className="text-sm text-neutral-700">
-          © {new Date().getFullYear()} TruPaintz &amp; Interiors. All rights reserved.
+          © {new Date().getFullYear()} TruPaintz and Interiors. All rights reserved.
         </p>
       </div>
     </div>

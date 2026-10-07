@@ -92,7 +92,7 @@ const HERO_SLIDES: HeroSlide[] = [
     highlightText: 'Artisan Wool Rugs',
     description: 'Motorized whisper-quiet Zebra blinds, Belgian washed linen drapery, and hand-tufted New Zealand wool rugs woven to your exact architectural room dimensions.',
     image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1920&q=85',
-    locationBadge: 'Aura Residence · Koramangala',
+    locationBadge: 'Aura Residence · Chinnamathampalayam',
     finishType: 'Smart Blinds, Belgian Linens & Custom Rugs',
     primaryCtaText: 'Launch 3D Studio',
     primaryCtaLink: '/visualizer',
@@ -420,7 +420,7 @@ export const HomePage: React.FC = () => {
                       <span>Get a Call Back Now</span>
                     </button>
                     <a
-                      href={`https://wa.me/919845271829?text=${encodeURIComponent('Hi TruPaintz & Interiors team! I would like to schedule a call back for my project.')}`}
+                      href={`https://wa.me/919677708535?text=${encodeURIComponent('Hi TruPaintz and Interiors team! I would like to schedule a call back for my project.')}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-full sm:w-auto rounded-xl border border-emerald-300 bg-emerald-50 px-4 py-2.5 text-xs font-semibold text-emerald-800 hover:bg-emerald-100 transition-colors text-center"
@@ -1058,7 +1058,7 @@ export const HomePage: React.FC = () => {
               Schedule Studio Consultation
             </Link>
             <a
-              href={`https://wa.me/919845271829?text=${encodeURIComponent('Hi TruPaintz & Interiors team! I would like to schedule an architectural consultation.')}`}
+              href={`https://wa.me/919677708535?text=${encodeURIComponent('Hi TruPaintz and Interiors team! I would like to schedule an architectural consultation.')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-xl border border-white/40 bg-white/10 backdrop-blur-md px-5 py-3.5 text-xs sm:text-sm font-semibold text-white hover:bg-white/20 transition-colors"
