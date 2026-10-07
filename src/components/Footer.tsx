@@ -70,12 +70,6 @@ export const Footer: React.FC = () => (
                 {BRAND_INFO.email}
               </a>
             </div>
-            <div className="flex items-center gap-2.5">
-              <Globe className="h-4 w-4 text-amber-600/60 shrink-0" />
-              <a href={`https://${BRAND_INFO.website}`} target="_blank" rel="noopener noreferrer" className="text-sm font-mono text-neutral-400 hover:text-amber-400 transition-colors">
-                {BRAND_INFO.website}
-              </a>
-            </div>
           </div>
 
           {/* Social */}
