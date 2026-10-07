@@ -82,11 +82,15 @@ export const GalleryPage: React.FC = () => {
 
       {/* Gallery Items Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {filteredItems.map((item) => (
+        {filteredItems.map((item, index) => (
           <div
             key={item.id}
             onClick={() => setActiveItem(item)}
-            className="card-hover-lift rounded-2xl border border-neutral-200/90 bg-white overflow-hidden shadow-sm flex flex-col justify-between group cursor-pointer"
+            style={{
+              animationDelay: `${(index % 8) * 60}ms`,
+              transform: 'translateY(0)',
+            }}
+            className="bounce-card card-hover-lift rounded-2xl border border-neutral-200/90 bg-white overflow-hidden shadow-sm flex flex-col justify-between group cursor-pointer"
           >
             <div>
               {/* Image Container with overlay */}

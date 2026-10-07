@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ArrowRight, Compass, ShieldCheck, Sparkles, Check, Instagram, Download, Smartphone } from 'lucide-react';
+import { Compass, ShieldCheck, Sparkles, Instagram, Download } from 'lucide-react';
 import { BRAND_INFO } from '../data/mockData';
 import { AnimatedCounter } from './AnimatedCounter';
 
@@ -9,6 +9,8 @@ interface HeroProps {
   onOpenVisualizer: () => void;
   onOpenAppDownload?: () => void;
 }
+
+const LIGHTING_MODES: Array<'warm' | 'golden' | 'daylight'> = ['warm', 'golden', 'daylight'];
 
 export const Hero: React.FC<HeroProps> = ({ onExploreProjects, onOpenBooking, onOpenVisualizer, onOpenAppDownload }) => {
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
@@ -22,15 +24,25 @@ export const Hero: React.FC<HeroProps> = ({ onExploreProjects, onOpenBooking, on
     const y = e.clientY - rect.top;
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    // Calculate subtle 3D tilt angles
-    const rotateY = ((x - centerX) / centerX) * 7; // -7 to 7 deg
-    const rotateX = -((y - centerY) / centerY) * 7; // -7 to 7 deg
+    const rotateY = ((x - centerX) / centerX) * 7;
+    const rotateX = -((y - centerY) / centerY) * 7;
     setTilt({ x: rotateX, y: rotateY });
   };
 
   const handleMouseLeave = () => {
     setTilt({ x: 0, y: 0 });
   };
+
+  // Auto-cycle lighting every 5 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveLighting((prev) => {
+        const idx = LIGHTING_MODES.indexOf(prev);
+        return LIGHTING_MODES[(idx + 1) % LIGHTING_MODES.length];
+      });
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <section className="relative overflow-hidden pt-6 pb-12 sm:pt-12 sm:pb-20 lg:pt-20 lg:pb-28">
@@ -44,7 +56,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreProjects, onOpenBooking, on
 
       <div className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
         
-        {/* Instagram Verification Kicker - Unboxed Clean Metadata */}
+        {/* Instagram Verification Kicker */}
         <div className="mb-6 flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs text-neutral-500 dark:text-neutral-400">
           <span className="font-semibold text-amber-700 dark:text-amber-400 px-2 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 shimmer-badge">
             Official Portfolio
@@ -66,7 +78,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreProjects, onOpenBooking, on
         {/* Main Grid: Split Hero */}
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
           
-          {/* Left Column: Editorial Value Proposition with Smooth Entrance */}
+          {/* Left Column */}
           <div className="lg:col-span-6 reveal-left is-revealed">
             <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-950 dark:text-white leading-[1.14] break-words">
               Master painting craftsmanship meets <span className="gold-gradient-text">bespoke interior architecture</span>.
@@ -80,10 +92,9 @@ export const Hero: React.FC<HeroProps> = ({ onExploreProjects, onOpenBooking, on
             <div className="mt-8 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3">
               <button
                 onClick={onOpenBooking}
-                className="btn-premium group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-amber-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-amber-600/20 hover:bg-amber-500 active:scale-[0.98] whitespace-nowrap cursor-pointer"
+                className="btn-premium w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-amber-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-amber-600/20 hover:bg-amber-500 active:scale-[0.98] whitespace-nowrap cursor-pointer"
               >
                 <span>Book Site Consultation</span>
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </button>
 
               <button
@@ -94,7 +105,6 @@ export const Hero: React.FC<HeroProps> = ({ onExploreProjects, onOpenBooking, on
                 <span>Launch 3D Room Visualizer</span>
               </button>
 
-              {/* Download App Trigger Modal Button */}
               <button
                 onClick={onOpenAppDownload}
                 type="button"
@@ -109,7 +119,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreProjects, onOpenBooking, on
               </button>
             </div>
 
-            {/* Quantitative Proof Adjacency - Smooth Counter Animations */}
+            {/* Stats */}
             <div className="mt-10 sm:mt-12 border-t border-amber-900/10 dark:border-neutral-800 pt-7">
               <div className="grid grid-cols-3 gap-2 sm:gap-6 text-center sm:text-left">
                 <div>
@@ -153,13 +163,13 @@ export const Hero: React.FC<HeroProps> = ({ onExploreProjects, onOpenBooking, on
               }}
               className="relative w-full max-w-xl xl:max-w-2xl rounded-2xl border border-neutral-200/80 bg-white/70 p-3 shadow-2xl backdrop-blur-xl dark:border-neutral-800/80 dark:bg-neutral-900/80 preserve-3d"
             >
-              {/* Media Container with 16:9 ratio and fallback */}
+              {/* Media Container */}
               <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-neutral-900">
                 <img
                   src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80"
                   alt="TruPaintz Luxury Living Room with Italian Stucco and Ambient Cove Lighting"
                   referrerPolicy="no-referrer"
-                  className={`h-full w-full object-cover animate-slow-zoom ${
+                  className={`h-full w-full object-cover animate-slow-zoom transition-all duration-1000 ${
                     activeLighting === 'warm'
                       ? 'brightness-105 contrast-105 filter'
                       : activeLighting === 'golden'
@@ -167,14 +177,13 @@ export const Hero: React.FC<HeroProps> = ({ onExploreProjects, onOpenBooking, on
                       : 'brightness-100 saturate-90 hue-rotate-15'
                   }`}
                   onError={(e) => {
-                    // Fallback to solid container if image fails
                     (e.target as HTMLElement).style.display = 'none';
                   }}
                 />
 
                 {/* Ambient Lighting Scrim */}
                 <div
-                  className={`pointer-events-none absolute inset-0 transition-opacity duration-500 ${
+                  className={`pointer-events-none absolute inset-0 transition-opacity duration-1000 ${
                     activeLighting === 'golden'
                       ? 'bg-gradient-to-t from-amber-950/70 via-amber-900/20 to-transparent opacity-90'
                       : activeLighting === 'warm'
@@ -183,7 +192,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreProjects, onOpenBooking, on
                   }`}
                 />
 
-                {/* Floating 3D Overlays */}
+                {/* Floating Overlays */}
                 <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
                   <div>
                     <span className="text-[11px] font-medium tracking-wider uppercase text-amber-300">
@@ -204,44 +213,40 @@ export const Hero: React.FC<HeroProps> = ({ onExploreProjects, onOpenBooking, on
                     View Project
                   </button>
                 </div>
+
+                {/* Auto-cycle progress indicator */}
+                <div className="absolute top-3 right-3 flex items-center gap-1.5">
+                  {LIGHTING_MODES.map((mode) => (
+                    <button
+                      key={mode}
+                      onClick={() => setActiveLighting(mode)}
+                      className={`h-1.5 rounded-full transition-all duration-500 cursor-pointer ${
+                        activeLighting === mode ? 'w-6 bg-amber-400' : 'w-1.5 bg-white/40'
+                      }`}
+                    />
+                  ))}
+                </div>
               </div>
 
-              {/* Interactive Lighting Selector */}
+              {/* Lighting Mode Label */}
               <div className="mt-3 flex items-center justify-between px-1 py-1">
                 <span className="text-xs font-medium text-neutral-500 dark:text-neutral-400">
                   Architectural Lighting Mode:
                 </span>
                 <div className="flex items-center gap-1 bg-neutral-100 dark:bg-neutral-800 p-1 rounded-lg">
-                  <button
-                    onClick={() => setActiveLighting('warm')}
-                    className={`px-2.5 py-1 text-xs font-medium rounded-md transition-colors ${
-                      activeLighting === 'warm'
-                        ? 'bg-white text-neutral-900 shadow-sm dark:bg-neutral-700 dark:text-white'
-                        : 'text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white'
-                    }`}
-                  >
-                    Warm 2700K
-                  </button>
-                  <button
-                    onClick={() => setActiveLighting('golden')}
-                    className={`px-2.5 py-1 text-xs font-medium rounded-md transition-colors ${
-                      activeLighting === 'golden'
-                        ? 'bg-white text-neutral-900 shadow-sm dark:bg-neutral-700 dark:text-white'
-                        : 'text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white'
-                    }`}
-                  >
-                    Golden Hour
-                  </button>
-                  <button
-                    onClick={() => setActiveLighting('daylight')}
-                    className={`px-2.5 py-1 text-xs font-medium rounded-md transition-colors ${
-                      activeLighting === 'daylight'
-                        ? 'bg-white text-neutral-900 shadow-sm dark:bg-neutral-700 dark:text-white'
-                        : 'text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white'
-                    }`}
-                  >
-                    Daylight 5000K
-                  </button>
+                  {LIGHTING_MODES.map((mode) => (
+                    <button
+                      key={mode}
+                      onClick={() => setActiveLighting(mode)}
+                      className={`px-2.5 py-1 text-xs font-medium rounded-md transition-colors ${
+                        activeLighting === mode
+                          ? 'bg-white text-neutral-900 shadow-sm dark:bg-neutral-700 dark:text-white'
+                          : 'text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white'
+                      }`}
+                    >
+                      {mode === 'warm' ? 'Warm 2700K' : mode === 'golden' ? 'Golden Hour' : 'Daylight 5000K'}
+                    </button>
+                  ))}
                 </div>
               </div>
 

@@ -7,7 +7,6 @@ import {
   Ruler, 
   Star, 
   ChevronRight, 
-  ChevronLeft,
   Paintbrush, 
   Eye, 
   Calculator, 
@@ -15,14 +14,10 @@ import {
   Instagram,
   Compass, 
   Layers, 
-  ArrowUpRight,
   Phone,
   PhoneCall,
   Clock,
-  Award,
-  Check,
-  Pause,
-  Play
+  Award
 } from 'lucide-react';
 import { BRAND_INFO, SERVICES_DATA, PROJECTS_DATA } from '../data/mockData';
 import { useReviews } from '../context/ReviewsContext';
@@ -112,7 +107,6 @@ export const HomePage: React.FC = () => {
 
   // 5-Second Carousel State
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
   const [animProgressKey, setAnimProgressKey] = useState(0);
 
   // Quick Callback Form State (inspired by Global Ethos)
@@ -130,28 +124,15 @@ export const HomePage: React.FC = () => {
 
   // 5-Second Auto Timer
   useEffect(() => {
-    if (isPaused) return;
-
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
       setAnimProgressKey((prev) => prev + 1);
     }, 5000);
-
     return () => clearInterval(interval);
-  }, [isPaused, currentSlide]);
+  }, []);
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
-    setAnimProgressKey((prev) => prev + 1);
-  };
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-    setAnimProgressKey((prev) => prev + 1);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
     setAnimProgressKey((prev) => prev + 1);
   };
 
@@ -172,11 +153,7 @@ export const HomePage: React.FC = () => {
     <div className="space-y-16 sm:space-y-24 pb-16">
       
       {/* 1. Global Ethos Inspired 5-Second Auto-Advancing Hero Carousel */}
-      <section 
-        className="relative overflow-hidden pt-4 pb-12 sm:pt-8 sm:pb-16 lg:pb-20"
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-      >
+      <section className="relative overflow-hidden pt-4 pb-12 sm:pt-8 sm:pb-16 lg:pb-20">
         {/* Subtle Ambient Light Glow */}
         <div
           className="pointer-events-none absolute -top-32 left-1/2 -z-10 h-[500px] w-[900px] -translate-x-1/2 rounded-full opacity-20 blur-3xl"
@@ -187,46 +164,23 @@ export const HomePage: React.FC = () => {
 
         <div className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
           
-          {/* Top Verification Kicker & Live Status */}
-          <div className="mb-4 sm:mb-6 flex flex-wrap items-center justify-between gap-2 text-xs text-neutral-600">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="font-semibold text-amber-800 px-2.5 py-1 rounded-full bg-amber-500/15 border border-amber-500/30">
-                Artisanal Studio
-              </span>
-              <span aria-hidden="true" className="text-neutral-400">·</span>
-              <a
-                href={BRAND_INFO.instagramUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 font-medium text-neutral-800 hover:text-amber-700 underline-offset-4 hover:underline transition-colors"
-              >
-                <Instagram className="h-3.5 w-3.5 text-pink-600" />
-                <span>{BRAND_INFO.instagramHandle}</span>
-              </a>
-              <span aria-hidden="true" className="hidden sm:inline text-neutral-400">·</span>
-              <span className="text-neutral-500 hidden sm:inline">Bespoke Italian Plasters &amp; Turnkey Interiors</span>
-            </div>
-
-            {/* Auto slide indicator badge with live pulse */}
-            <div className="flex items-center gap-2.5 bg-white/90 border border-amber-900/15 rounded-full px-3.5 py-1.5 shadow-xs">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
-              </span>
-              <span className="text-[11px] font-mono font-bold text-amber-900">
-                Slide {activeSlideData.number} of 04 · 5s Auto-Transition
-              </span>
-              <span className="text-neutral-300">|</span>
-              <button
-                type="button"
-                onClick={() => setIsPaused(!isPaused)}
-                className="text-neutral-600 hover:text-amber-700 transition-colors flex items-center gap-1 text-[11px]"
-                title={isPaused ? "Play slide autoplay" : "Pause slide autoplay"}
-              >
-                {isPaused ? <Play className="h-3 w-3 text-amber-600" /> : <Pause className="h-3 w-3 text-neutral-400" />}
-                <span className="font-mono font-medium">{isPaused ? 'Paused' : 'Playing'}</span>
-              </button>
-            </div>
+          {/* Top Verification Kicker */}
+          <div className="mb-4 sm:mb-6 flex flex-wrap items-center gap-2 text-xs text-neutral-600">
+            <span className="font-semibold text-amber-800 px-2.5 py-1 rounded-full bg-amber-500/15 border border-amber-500/30">
+              Artisanal Studio
+            </span>
+            <span aria-hidden="true" className="text-neutral-400">·</span>
+            <a
+              href={BRAND_INFO.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 font-medium text-neutral-800 hover:text-amber-700 underline-offset-4 hover:underline transition-colors"
+            >
+              <Instagram className="h-3.5 w-3.5 text-pink-600" />
+              <span>{BRAND_INFO.instagramHandle}</span>
+            </a>
+            <span aria-hidden="true" className="hidden sm:inline text-neutral-400">·</span>
+            <span className="text-neutral-500 hidden sm:inline">Bespoke Italian Plasters &amp; Turnkey Interiors</span>
           </div>
 
           {/* Hero Main Presentation Card */}
@@ -267,25 +221,7 @@ export const HomePage: React.FC = () => {
                     <span>{activeSlideData.category}</span>
                   </div>
 
-                  {/* Desktop Prev / Next Navigation Arrows */}
-                  <div className="hidden sm:flex items-center gap-2">
-                    <button
-                      type="button"
-                      onClick={prevSlide}
-                      className="p-2.5 rounded-full bg-white/20 hover:bg-white/35 backdrop-blur-md text-white border border-white/30 transition-all hover:scale-105"
-                      aria-label="Previous Slide"
-                    >
-                      <ChevronLeft className="h-5 w-5" />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={nextSlide}
-                      className="p-2.5 rounded-full bg-white/20 hover:bg-white/35 backdrop-blur-md text-white border border-white/30 transition-all hover:scale-105"
-                      aria-label="Next Slide"
-                    >
-                      <ChevronRight className="h-5 w-5" />
-                    </button>
-                  </div>
+
                 </div>
 
                 {/* Central Typography Block (Re-keyed for fluid slide animations) */}
@@ -368,9 +304,7 @@ export const HomePage: React.FC = () => {
                           {idx === currentSlide && (
                             <div
                               key={`bar-${animProgressKey}`}
-                              className={`h-full bg-amber-400 rounded-full ${
-                                !isPaused ? 'animate-progress-5s' : 'w-full'
-                              }`}
+                              className="h-full bg-amber-400 rounded-full animate-progress-5s"
                             />
                           )}
                           {idx < currentSlide && (
@@ -389,9 +323,7 @@ export const HomePage: React.FC = () => {
               <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-white/25 z-30 overflow-hidden">
                 <div
                   key={`hero-progress-line-${currentSlide}-${animProgressKey}`}
-                  className={`h-full bg-gradient-to-r from-amber-500 via-amber-400 to-amber-300 ${
-                    !isPaused ? 'animate-progress-5s' : 'w-full'
-                  }`}
+                  className="h-full bg-gradient-to-r from-amber-500 via-amber-400 to-amber-300 animate-progress-5s"
                 />
               </div>
             </div>

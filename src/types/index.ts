@@ -1,4 +1,4 @@
-export type ProjectCategory = 'all' | 'living' | 'kitchen' | 'texture' | 'bedroom' | 'commercial';
+export type ProjectCategory = 'all' | 'living' | 'kitchen' | 'texture' | 'bedroom';
 
 export interface Project {
   id: string;

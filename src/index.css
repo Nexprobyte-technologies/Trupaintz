@@ -425,6 +425,169 @@
   border-color: rgba(217, 119, 6, 0.4);
 }
 
+/* WhatsApp float bounce */
+@keyframes waBounce {
+  0%, 100% { transform: translateY(0); }
+  20%       { transform: translateY(-10px); }
+  40%       { transform: translateY(-4px); }
+  60%       { transform: translateY(-7px); }
+  80%       { transform: translateY(-2px); }
+}
+.animate-wa-bounce {
+  animation: waBounce 3s ease-in-out infinite;
+}
+.animate-wa-bounce:hover {
+  animation: none;
+  transform: scale(1.1);
+}
+
+/* Bounce cards — ReactBits inspired */
+@keyframes bounceCardIn {
+  0%   { opacity: 0; transform: translateY(32px) scale(0.95); }
+  55%  { opacity: 1; transform: translateY(-6px) scale(1.02); }
+  75%  { transform: translateY(3px) scale(0.99); }
+  90%  { transform: translateY(-2px) scale(1.005); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+.bounce-card {
+  animation: bounceCardIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* ── Premium Animation Effects ── */
+
+/* Smooth reveal on scroll for sections */
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes revealFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.animate-reveal-up {
+  animation: revealUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.animate-reveal-fade {
+  animation: revealFade 0.8s ease both;
+}
+
+/* Staggered children delay helpers */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+/* Gold shimmer sweep on headings */
+@keyframes textShimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.text-shimmer-gold {
+  background: linear-gradient(90deg, #b45309 0%, #fbbf24 30%, #fef3c7 50%, #fbbf24 70%, #b45309 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textShimmer 5s linear infinite;
+}
+
+/* Floating glow orb behind hero/sections */
+@keyframes orbDrift {
+  0%, 100% { transform: translate(-50%, 0) scale(1); }
+  50%       { transform: translate(-50%, -18px) scale(1.06); }
+}
+.animate-orb {
+  animation: orbDrift 8s ease-in-out infinite;
+}
+
+/* Card border glow on hover */
+.card-glow {
+  transition: box-shadow 0.35s cubic-bezier(0.16,1,0.3,1), transform 0.35s cubic-bezier(0.16,1,0.3,1);
+}
+.card-glow:hover {
+  box-shadow: 0 0 0 1px rgba(217,119,6,0.35), 0 20px 40px -12px rgba(180,83,9,0.18);
+  transform: translateY(-4px);
+}
+
+/* Subtle grain texture overlay for premium feel */
+.grain-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  border-radius: inherit;
+}
+
+/* Smooth underline link animation */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0; height: 1px;
+  background: linear-gradient(90deg, #d97706, #fbbf24);
+  transition: width 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+.link-underline:hover::after { width: 100%; }
+
+/* Pulsing amber ring for CTA buttons */
+@keyframes ringPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(217,119,6,0.45); }
+  70%  { box-shadow: 0 0 0 8px rgba(217,119,6,0); }
+  100% { box-shadow: 0 0 0 0 rgba(217,119,6,0); }
+}
+.btn-ring-pulse {
+  animation: ringPulse 2.2s ease-out infinite;
+}
+
+/* Smooth number counter pop */
+@keyframes countPop {
+  0%   { transform: scale(0.85); opacity: 0; }
+  60%  { transform: scale(1.06); }
+  100% { transform: scale(1);    opacity: 1; }
+}
+.animate-count-pop {
+  animation: countPop 0.5s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+/* Footer premium utilities */
+.bg-white\/4 { background-color: rgba(255,255,255,0.04); }
+.bg-white\/8 { background-color: rgba(255,255,255,0.08); }
+.border-white\/8 { border-color: rgba(255,255,255,0.08); }
+.border-white\/5 { border-color: rgba(255,255,255,0.05); }
+.bg-amber-500\/8 { background-color: rgba(217,119,6,0.08); }
+
+/* Footer entrance animation */
+@keyframes footerSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.footer-animate-in {
+  animation: footerSlideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Gold border pulse for footer badges */
+@keyframes goldBorderPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(217,119,6,0); }
+  50% { box-shadow: 0 0 0 3px rgba(217,119,6,0.2); }
+}
+
+.gold-badge-pulse {
+  animation: goldBorderPulse 2.5s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {
     animation-duration: 0.01ms !important;

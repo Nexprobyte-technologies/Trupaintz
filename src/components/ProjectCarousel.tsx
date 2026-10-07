@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Project, ProjectCategory } from '../types';
 import { PROJECTS_DATA } from '../data/mockData';
-import { ChevronLeft, ChevronRight, Maximize2, MapPin, Clock, Ruler, ArrowRight, X, Star } from 'lucide-react';
+import { Maximize2, MapPin, Clock, ArrowRight, X, Star } from 'lucide-react';
 
 interface ProjectCarouselProps {
   onSelectProjectForConsultation: (projectTitle: string) => void;
@@ -23,13 +23,13 @@ export const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ onSelectProjec
     setCurrentIndex(0);
   }, [activeCategory]);
 
-  const handlePrev = () => {
-    setCurrentIndex((prev) => (prev === 0 ? filteredProjects.length - 1 : prev - 1));
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev === +filteredProjects.length - 1 ? 0 : prev + 1));
-  };
+  // Auto-advance every 5 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % filteredProjects.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [filteredProjects.length]);
 
   const currentProject = filteredProjects[currentIndex] || filteredProjects[0];
 
@@ -237,7 +237,7 @@ export const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ onSelectProjec
                 )}
               </div>
 
-              {/* Action Buttons & Navigation Carousel Bar */}
+              {/* Action Buttons & Dot Indicators */}
               <div className="mt-8 pt-4 border-t border-neutral-200/80 dark:border-neutral-800/80 flex items-center justify-between gap-4">
                 <button
                   onClick={() => onSelectProjectForConsultation(currentProject.title)}
@@ -247,25 +247,20 @@ export const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ onSelectProjec
                   <ArrowRight className="h-3.5 w-3.5" />
                 </button>
 
-                {/* Previous & Next Controls */}
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-mono text-neutral-500 dark:text-neutral-400 tabular-nums">
-                    {currentIndex + 1} / {filteredProjects.length}
-                  </span>
-                  <button
-                    onClick={handlePrev}
-                    className="flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-300 text-neutral-700 hover:bg-neutral-200 transition-colors dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800"
-                    aria-label="Previous project"
-                  >
-                    <ChevronLeft className="h-4 w-4" />
-                  </button>
-                  <button
-                    onClick={handleNext}
-                    className="flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-300 text-neutral-700 hover:bg-neutral-200 transition-colors dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800"
-                    aria-label="Next project"
-                  >
-                    <ChevronRight className="h-4 w-4" />
-                  </button>
+                {/* Dot Indicators */}
+                <div className="flex items-center gap-1.5">
+                  {filteredProjects.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentIndex(idx)}
+                      className={`rounded-full transition-all duration-500 cursor-pointer ${
+                        idx === currentIndex
+                          ? 'w-5 h-2 bg-amber-600'
+                          : 'w-2 h-2 bg-neutral-300 dark:bg-neutral-600 hover:bg-amber-400'
+                      }`}
+                      aria-label={`Go to project ${idx + 1}`}
+                    />
+                  ))}
                 </div>
               </div>
 
