@@ -25,6 +25,7 @@ export interface Project {
 
 export interface ServiceItem {
   id: string;
+  num?: string;
   title: string;
   shortDesc: string;
   fullDesc: string;
@@ -32,6 +33,29 @@ export interface ServiceItem {
   priceRange: string;
   image: string;
   highlightTag: string;
+}
+
+export type GalleryCategory = 
+  | 'All'
+  | 'Furniture'
+  | 'Headboards'
+  | 'Mattress'
+  | 'Flooring'
+  | 'Rugs'
+  | 'Blinds'
+  | 'Wallpapers'
+  | 'Curtains'
+  | 'Interior Design'
+  | 'Architecture';
+
+export interface GalleryItem {
+  id: string;
+  title: string;
+  category: GalleryCategory;
+  categoryLabel: string;
+  image: string;
+  description: string;
+  tags?: string[];
 }
 
 export interface BlogPost {

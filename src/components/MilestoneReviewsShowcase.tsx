@@ -4,10 +4,10 @@ import { Star, ShieldCheck, CheckCircle2, MessageSquare, ArrowRight, Sparkles } 
 import { AnimatedCounter } from './AnimatedCounter';
 
 interface MilestoneReviewsShowcaseProps {
-  onOpenClientPortal: () => void;
+  onOpenFeedback?: () => void;
 }
 
-export const MilestoneReviewsShowcase: React.FC<MilestoneReviewsShowcaseProps> = ({ onOpenClientPortal }) => {
+export const MilestoneReviewsShowcase: React.FC<MilestoneReviewsShowcaseProps> = ({ onOpenFeedback }) => {
   const { reviews, averageRating, totalReviews } = useReviews();
   const [selectedFilter, setSelectedFilter] = useState<'all' | 'stucco' | 'prep' | 'ceiling' | 'kitchen'>('all');
 
@@ -80,13 +80,15 @@ export const MilestoneReviewsShowcase: React.FC<MilestoneReviewsShowcaseProps> =
             ))}
           </div>
 
-          <button
-            onClick={onOpenClientPortal}
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-600 dark:text-amber-400 hover:underline"
-          >
-            <span>Current Client? Submit Milestone Signoff</span>
-            <ArrowRight className="h-3.5 w-3.5" />
-          </button>
+          {onOpenFeedback && (
+            <button
+              onClick={onOpenFeedback}
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-700 hover:underline"
+            >
+              <span>Submit Milestone Feedback</span>
+              <ArrowRight className="h-3.5 w-3.5" />
+            </button>
+          )}
         </div>
 
         {/* Reviews Grid */}
