@@ -7,7 +7,6 @@ import {
   ArrowRight, 
   CheckCircle2,
   Award,
-  Zap,
   Phone,
   Ruler,
   Layers,
@@ -15,17 +14,17 @@ import {
   Shield,
   Clock,
   Paintbrush,
-  Maximize2,
   Check,
-  X,
-  Wrench
+  Wrench,
+  Sun,
+  Home,
+  Sliders
 } from 'lucide-react';
 import { CATALOGUE_CATEGORIES } from '../data/catalogueData';
 import { BRAND_INFO } from '../data/mockData';
 
 export const ServicesPage: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('upvc');
-  const [quoteService, setQuoteService] = useState<string | null>(null);
 
   const scrollToSection = (id: string) => {
     setActiveCategory(id);
@@ -37,10 +36,14 @@ export const ServicesPage: React.FC = () => {
     }
   };
 
+  const getWhatsAppLink = (serviceName: string) => {
+    return `https://wa.me/919677708535?text=${encodeURIComponent(`Hi TruPaintz! I am interested in your ${serviceName} services. Please share more details and arrange a site visit.`)}`;
+  };
+
   return (
     <div className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12 pt-6 sm:pt-8 lg:pt-9 pb-12 sm:pb-16 space-y-12 sm:space-y-16">
       
-      {/* 1. HERO SECTION (Preserving existing elegance & typography) */}
+      {/* 1. HERO SECTION */}
       <div className="max-w-4xl space-y-4">
         <div className="inline-flex items-center gap-2 rounded-full bg-amber-500/15 px-3 py-1 text-xs font-semibold text-amber-800 border border-amber-500/30">
           <Sparkles className="h-3.5 w-3.5 text-amber-600" />
@@ -50,7 +53,7 @@ export const ServicesPage: React.FC = () => {
           Complete Interior, Exterior &amp; Architectural Solutions
         </h1>
         <p className="text-base sm:text-lg text-neutral-600 leading-relaxed max-w-3xl">
-          From heavy-gauge UPVC window profiles and dustless home painting to designer curtains, AC-rated wooden floors, false ceilings, and artificial grass — engineered with uncompromised craftsmanship.
+          From heavy-gauge UPVC window profiles and dustless home painting to designer curtains, AC-rated wooden floors, false ceilings, and artificial grass — engineered with uncompromised craftsmanship and manufacturer warranties.
         </p>
       </div>
 
@@ -58,7 +61,7 @@ export const ServicesPage: React.FC = () => {
       <div className="sticky top-16 sm:top-20 z-40 -mx-4 sm:-mx-6 lg:-mx-10 xl:-mx-12 px-4 sm:px-6 lg:px-10 xl:px-12 py-3 bg-[#FAF7F2]/95 backdrop-blur-md border-y border-amber-900/10 shadow-xs">
         <div className="flex items-center gap-2 overflow-x-auto no-scrollbar scroll-smooth py-1">
           <span className="text-xs font-bold uppercase tracking-wider text-neutral-400 shrink-0 hidden md:inline mr-2">
-            Categories:
+            Services:
           </span>
           {CATALOGUE_CATEGORIES.map((cat) => (
             <button
@@ -70,7 +73,6 @@ export const ServicesPage: React.FC = () => {
                   : 'bg-white/80 hover:bg-white text-neutral-700 hover:text-neutral-950 border border-neutral-200/90'
               }`}
             >
-              <span className="font-mono text-[10px] opacity-70">{cat.num}</span>
               <span>{cat.title}</span>
             </button>
           ))}
@@ -85,23 +87,33 @@ export const ServicesPage: React.FC = () => {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-neutral-200/80 pb-6">
             <div>
               <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-700 mb-1">
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-amber-600 text-white text-[10px] font-mono">01</span>
+                <span className="h-2 w-2 rounded-full bg-amber-600 animate-pulse"></span>
                 <span>ARCHITECTURAL PROFILES &amp; SYSTEMS</span>
               </div>
               <h2 className="font-display text-3xl sm:text-4xl font-bold text-neutral-950">
                 UPVC Windows &amp; Doors
               </h2>
               <p className="text-sm text-neutral-600 mt-1 max-w-2xl">
-                Certified EITI 2.5mm and BADYEE 2mm heavy-gauge profile systems engineered for maximum acoustic insulation, dustproofing, and thermal performance.
+                Certified EITI 2.5mm and BADYEE 2mm heavy-gauge profile systems engineered for 42dB acoustic insulation, dustproofing, thermal barrier, and 15–20 year written warranty.
               </p>
             </div>
-            <Link
-              to="/estimator?service=UPVC%20Windows%20%26%20Doors"
-              className="btn-premium inline-flex items-center gap-2 rounded-xl bg-amber-600 px-5 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-amber-500 transition-all shrink-0"
-            >
-              <Calculator className="h-3.5 w-3.5" />
-              <span>Get a Quote</span>
-            </Link>
+            <div className="flex items-center gap-2.5 shrink-0">
+              <a
+                href={getWhatsAppLink('UPVC Windows & Doors')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2.5 rounded-xl border border-neutral-300 bg-white hover:bg-neutral-50 text-xs font-semibold text-neutral-800 transition-colors"
+              >
+                WhatsApp Desk
+              </a>
+              <Link
+                to="/estimator?service=UPVC%20Windows%20%26%20Doors"
+                className="btn-premium btn-shimmer-advanced inline-flex items-center gap-2 rounded-xl bg-amber-600 px-5 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-amber-500 transition-all"
+              >
+                <Calculator className="h-3.5 w-3.5" />
+                <span>Get a Quote (From ₹290 / sq.ft)</span>
+              </Link>
+            </div>
           </div>
 
           {/* Large Hero Card with Badges */}
@@ -120,16 +132,16 @@ export const ServicesPage: React.FC = () => {
                   15–20 Years Warranty
                 </span>
                 <span className="px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-neutral-900 text-xs font-semibold">
-                  4mm Glass Standard
+                  From ₹290 / sq.ft
                 </span>
                 <span className="px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-neutral-900 text-xs font-semibold">
-                  Machine Welding
+                  4mm/5mm/6mm Toughened &amp; DGU Glass
                 </span>
                 <span className="px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-neutral-900 text-xs font-semibold">
-                  EPDM Gasket Sealing
+                  Seamless 4-Point Machine Welding
                 </span>
                 <span className="px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-neutral-900 text-xs font-semibold">
-                  Premium Hardware
+                  EPDM Multi-Fin Gaskets
                 </span>
               </div>
             </div>
@@ -137,21 +149,24 @@ export const ServicesPage: React.FC = () => {
 
           {/* Window Types Grid */}
           <div className="space-y-4">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-neutral-900">
-              Window Types &amp; Operating Configurations:
-            </h3>
+            <div className="flex items-center justify-between">
+              <h3 className="text-sm font-bold uppercase tracking-wider text-neutral-900">
+                Operating Configurations &amp; Profiles:
+              </h3>
+              <span className="text-xs text-neutral-500 font-mono">Certified Heavy-Gauge</span>
+            </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5">
               {[
-                { name: 'Open Windows', desc: 'Hinged outward/inward casement with multi-point lock' },
-                { name: 'Sliding Windows', desc: 'Smooth gliding 2-track & 3-track sliding sashes' },
-                { name: 'Fixed Windows', desc: 'Panoramic picture glass for unobstructed natural light' },
-                { name: 'Top Open Windows', desc: 'Awning top-hung ventilators for bathrooms & kitchens' },
-                { name: 'Lower Windows', desc: 'Integrated architectural louvers for continuous airflow' },
-                { name: 'Touch Lock Sliding', desc: 'One-touch push-to-lock safety handles with child safety' },
+                { name: 'Open / Casement', desc: 'Hinged inward/outward with frictionless friction stays and multi-point locks' },
+                { name: 'Sliding Windows', desc: 'Smooth gliding 2-track & 3-track sliding sashes with heavy-duty brass rollers' },
+                { name: 'Fixed Picture Glass', desc: 'Panoramic architectural picture glass for unobstructed natural light vistas' },
+                { name: 'Top Open / Awning', desc: 'Awning top-hung ventilators with friction hinges for bathrooms & kitchens' },
+                { name: 'Lower Louvers', desc: 'Integrated architectural airflow louvers with acoustic weather seals' },
+                { name: 'Touch Lock Sliding', desc: 'One-touch push-to-lock safety handles with integrated child-safety latches' },
               ].map((win, i) => (
-                <div key={i} className="p-4 rounded-2xl bg-white border border-neutral-200/90 shadow-xs hover:border-amber-400 hover:shadow-sm transition-all flex flex-col justify-between">
+                <div key={i} className="card-advanced-hover p-4 rounded-2xl bg-white border border-neutral-200/90 shadow-xs flex flex-col justify-between">
                   <div className="space-y-1.5">
-                    <span className="font-mono text-[11px] font-bold text-amber-700">0{i+1}.</span>
+                    <div className="h-1.5 w-1.5 rounded-full bg-amber-600 mb-1"></div>
                     <h4 className="font-bold text-sm text-neutral-900">{win.name}</h4>
                     <p className="text-[11px] text-neutral-500 leading-relaxed">{win.desc}</p>
                   </div>
@@ -164,33 +179,33 @@ export const ServicesPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Netlon Doors Sub-Section inside UPVC */}
+          {/* UPVC Doors & Integrated Netlon Showcase */}
           <div className="rounded-3xl border border-amber-900/15 bg-amber-50/40 p-6 sm:p-8 space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-amber-900/10 pb-4">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-amber-800">INTEGRATED INSECT PROTECTION</span>
-                <h4 className="font-display text-xl font-bold text-neutral-950">Netlon Doors for UPVC Frames</h4>
+                <span className="text-xs font-bold uppercase tracking-wider text-amber-800">PREMIUM DOOR SYSTEMS</span>
+                <h4 className="font-display text-xl font-bold text-neutral-950">UPVC Patio Doors &amp; Integrated Netlon Screen Mesh</h4>
               </div>
               <span className="text-xs text-neutral-500 font-mono">Custom Built to Exact Aperture</span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
-                { type: 'Magnet Type', price: '₹300 / sq.ft', badge: 'Magnetic Snap Seal', desc: 'Effortless touch magnetic latch for seamless auto-close.' },
-                { type: 'Normal Lock', price: '₹250 / sq.ft', badge: 'Keyed Latch Handle', desc: 'Sturdy hinged frame with ergonomic lock mechanism.' },
-                { type: 'Pleated', price: '₹300 / sq.ft', badge: 'Accordion Zig-Zag', desc: 'Barrier-free retractable mesh for large sliding patio doors.' },
-                { type: 'Velcro Stapler Stitch', price: '₹45 – ₹60 / sq.ft', badge: 'Economical Screen', desc: 'Double-stitched high-strength velcro mesh for window rebates.' },
+                { type: 'Slide & Fold Doors', price: '₹550+ / sq.ft', badge: 'Panoramic Opening', desc: 'Seamless accordion folding doors connecting living rooms to gardens.' },
+                { type: 'Sliding Patio Doors', price: '₹340+ / sq.ft', badge: 'Heavy Duty 3-Track', desc: 'High-weight sashes with silent track gliders and mosquito net integration.' },
+                { type: 'French Balcony Doors', price: '₹380+ / sq.ft', badge: 'Double Leaf Casement', desc: 'Classical double-leaf glass doors with multipoint perimeter security.' },
+                { type: 'Pleated Netlon Doors', price: '₹300 / sq.ft', badge: 'Zig-Zag Mesh', desc: 'Barrier-free retractable pleated mosquito net for continuous pest defense.' },
               ].map((net, i) => (
-                <div key={i} className="p-4 rounded-2xl bg-white border border-neutral-200/80 shadow-xs flex flex-col justify-between">
+                <div key={i} className="card-advanced-hover p-4 rounded-2xl bg-white border border-neutral-200/80 shadow-xs flex flex-col justify-between">
                   <div className="space-y-1">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-amber-700">{net.badge}</span>
-                    <h5 className="font-bold text-sm text-neutral-900">{net.type}</h5>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2 py-0.5 rounded">{net.badge}</span>
+                    <h5 className="font-bold text-sm text-neutral-900 mt-1">{net.type}</h5>
                     <p className="text-[11px] text-neutral-600">{net.desc}</p>
                   </div>
                   <div className="mt-3 pt-2 border-t border-neutral-100 flex items-center justify-between">
                     <span className="font-mono text-xs font-bold text-emerald-700">{net.price}</span>
                     <Link to="/estimator?service=UPVC%20Windows%20%26%20Doors" className="text-[11px] font-semibold text-amber-700 hover:underline">
-                      Quote →
+                      Calculate →
                     </Link>
                   </div>
                 </div>
@@ -205,30 +220,40 @@ export const ServicesPage: React.FC = () => {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-neutral-200/80 pb-6">
             <div>
               <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-700 mb-1">
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-amber-600 text-white text-[10px] font-mono">02</span>
+                <span className="h-2 w-2 rounded-full bg-amber-600 animate-pulse"></span>
                 <span>MECHANIZED DUSTLESS FINISHES</span>
               </div>
               <h2 className="font-display text-3xl sm:text-4xl font-bold text-neutral-950">
                 Interior &amp; Exterior Painting
               </h2>
               <p className="text-sm text-neutral-600 mt-1 max-w-2xl">
-                Certified paint application systems with Asian Paints and Birla Paints. Dust-free vacuum HEPA sanding and multi-year written warranty certificates.
+                Certified paint application systems with Asian Paints and Birla Paints. Dust-free vacuum HEPA sanding (99% dust free), non-destructive moisture scans, and written warranty certificates.
               </p>
             </div>
-            <Link
-              to="/estimator?service=Painting"
-              className="btn-premium inline-flex items-center gap-2 rounded-xl bg-amber-600 px-5 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-amber-500 transition-all shrink-0"
-            >
-              <Paintbrush className="h-3.5 w-3.5" />
-              <span>Get a Quote</span>
-            </Link>
+            <div className="flex items-center gap-2.5 shrink-0">
+              <a
+                href={getWhatsAppLink('Painting')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2.5 rounded-xl border border-neutral-300 bg-white hover:bg-neutral-50 text-xs font-semibold text-neutral-800 transition-colors"
+              >
+                WhatsApp Desk
+              </a>
+              <Link
+                to="/estimator?service=Painting"
+                className="btn-premium btn-shimmer-advanced inline-flex items-center gap-2 rounded-xl bg-amber-600 px-5 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-amber-500 transition-all"
+              >
+                <Paintbrush className="h-3.5 w-3.5" />
+                <span>Get a Quote (From ₹22 / sq.ft)</span>
+              </Link>
+            </div>
           </div>
 
           {/* Two Distinct High-End Comparison Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             
             {/* INTERIOR PAINTING CARD */}
-            <div className="rounded-3xl border border-neutral-200/90 bg-white overflow-hidden shadow-sm flex flex-col justify-between group">
+            <div className="card-advanced-hover rounded-3xl border border-neutral-200/90 bg-white overflow-hidden shadow-sm flex flex-col justify-between group">
               <div>
                 <div className="relative aspect-[16/10] overflow-hidden bg-neutral-100">
                   <img
@@ -253,7 +278,7 @@ export const ServicesPage: React.FC = () => {
                       Interior Painting Packages
                     </h3>
                     <p className="text-xs text-neutral-600 leading-relaxed">
-                      Mechanized dustless sanding, primer sealing, putty skimming, and 2 luxury top coats with washable stain-resistant sheen.
+                      Mechanized dustless sanding, primer sealing, 2 coats acrylic putty skimming, and 2 luxury top coats with washable stain-resistant sheen.
                     </p>
                   </div>
 
@@ -284,7 +309,7 @@ export const ServicesPage: React.FC = () => {
               </div>
 
               <div className="p-6 sm:p-8 pt-0 border-t border-neutral-100 mt-4 flex items-center justify-between">
-                <span className="text-xs text-neutral-500">Dustless 99% Clean Handover</span>
+                <span className="text-xs text-neutral-500">99% Dust-Free Vacuum Sanding</span>
                 <Link
                   to="/estimator?service=Interior%20Painting"
                   className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-700 hover:text-amber-800"
@@ -296,7 +321,7 @@ export const ServicesPage: React.FC = () => {
             </div>
 
             {/* EXTERIOR PAINTING CARD */}
-            <div className="rounded-3xl border border-neutral-200/90 bg-white overflow-hidden shadow-sm flex flex-col justify-between group">
+            <div className="card-advanced-hover rounded-3xl border border-neutral-200/90 bg-white overflow-hidden shadow-sm flex flex-col justify-between group">
               <div>
                 <div className="relative aspect-[16/10] overflow-hidden bg-neutral-100">
                   <img
@@ -321,7 +346,7 @@ export const ServicesPage: React.FC = () => {
                       Exterior Painting Packages
                     </h3>
                     <p className="text-xs text-neutral-600 leading-relaxed">
-                      High-pressure wall pressure washing, elastomeric crack filling, anti-algae silicone priming, and weather-defense coatings.
+                      High-pressure wall washing, elastomeric crack filling, anti-algae silicone priming, and weather-defense coatings designed for extreme tropical sun &amp; rain.
                     </p>
                   </div>
 
@@ -352,7 +377,7 @@ export const ServicesPage: React.FC = () => {
               </div>
 
               <div className="p-6 sm:p-8 pt-0 border-t border-neutral-100 mt-4 flex items-center justify-between">
-                <span className="text-xs text-neutral-500">10-Year Weather-Defense</span>
+                <span className="text-xs text-neutral-500">10-Year Anti-Fungal Warranty</span>
                 <Link
                   to="/estimator?service=Exterior%20Painting"
                   className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-700 hover:text-amber-800"
@@ -372,30 +397,40 @@ export const ServicesPage: React.FC = () => {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-neutral-200/80 pb-6">
             <div>
               <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-700 mb-1">
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-amber-600 text-white text-[10px] font-mono">03</span>
+                <span className="h-2 w-2 rounded-full bg-amber-600 animate-pulse"></span>
                 <span>BESPOKE WINDOW TREATMENTS</span>
               </div>
               <h2 className="font-display text-3xl sm:text-4xl font-bold text-neutral-950">
                 Curtains &amp; Designer Drapery
               </h2>
               <p className="text-sm text-neutral-600 mt-1 max-w-2xl">
-                Curated designer fabric collections crafted with wave-fold silent tracks, sheer day filtration, thermal blackout velvets, and precision hardware.
+                Curated designer fabric collections crafted with wave-fold silent tracks, sheer day filtration, thermal blackout velvets, precision hardware, and custom stitching.
               </p>
             </div>
-            <Link
-              to="/estimator?service=Curtains"
-              className="btn-premium inline-flex items-center gap-2 rounded-xl bg-amber-600 px-5 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-amber-500 transition-all shrink-0"
-            >
-              <Calculator className="h-3.5 w-3.5" />
-              <span>Get a Quote</span>
-            </Link>
+            <div className="flex items-center gap-2.5 shrink-0">
+              <a
+                href={getWhatsAppLink('Curtains & Designer Drapery')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2.5 rounded-xl border border-neutral-300 bg-white hover:bg-neutral-50 text-xs font-semibold text-neutral-800 transition-colors"
+              >
+                WhatsApp Desk
+              </a>
+              <Link
+                to="/estimator?service=Curtains"
+                className="btn-premium btn-shimmer-advanced inline-flex items-center gap-2 rounded-xl bg-amber-600 px-5 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-amber-500 transition-all"
+              >
+                <Calculator className="h-3.5 w-3.5" />
+                <span>Get a Quote (From ₹250 / m)</span>
+              </Link>
+            </div>
           </div>
 
           {/* Clean Subcategory Product Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             
             {/* Collection 1: Curtains Avenue */}
-            <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm flex flex-col justify-between space-y-4">
+            <div className="card-advanced-hover rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm flex flex-col justify-between space-y-4">
               <div className="space-y-3">
                 <div className="h-44 rounded-2xl overflow-hidden bg-neutral-100">
                   <img
@@ -408,6 +443,7 @@ export const ServicesPage: React.FC = () => {
                 <div className="space-y-1">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-amber-700">PREMIUM SERIES</span>
                   <h3 className="font-display text-xl font-bold text-neutral-950">Curtains Avenue</h3>
+                  <p className="text-[11px] text-neutral-500">High-GSM Belgian textures &amp; daylight filtration sheers.</p>
                 </div>
                 <div className="flex flex-wrap gap-1.5 pt-1">
                   {[
@@ -419,20 +455,20 @@ export const ServicesPage: React.FC = () => {
                     'Elements',
                     'Iconic',
                   ].map((item, idx) => (
-                    <span key={idx} className="px-2.5 py-1 rounded-lg bg-neutral-100 text-neutral-800 text-xs font-medium border border-neutral-200">
+                    <span key={idx} className="px-2 py-0.5 rounded-md bg-neutral-100 text-neutral-800 text-[11px] font-medium border border-neutral-200">
                       {item}
                     </span>
                   ))}
                 </div>
               </div>
               <div className="pt-3 border-t border-neutral-100 flex items-center justify-between text-xs">
-                <span className="text-neutral-500">Fabric Swatches Available</span>
-                <span className="font-semibold text-amber-700">Enquire for Price</span>
+                <span className="text-neutral-500 font-mono">From ₹350 / m</span>
+                <span className="font-semibold text-amber-700">Swatches in Studio</span>
               </div>
             </div>
 
             {/* Collection 2: MBF Collection */}
-            <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm flex flex-col justify-between space-y-4">
+            <div className="card-advanced-hover rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm flex flex-col justify-between space-y-4">
               <div className="space-y-3">
                 <div className="h-44 rounded-2xl overflow-hidden bg-neutral-100">
                   <img
@@ -445,23 +481,24 @@ export const ServicesPage: React.FC = () => {
                 <div className="space-y-1">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-amber-700">CONTEMPORARY WEAVES</span>
                   <h3 className="font-display text-xl font-bold text-neutral-950">MBF Collection</h3>
+                  <p className="text-[11px] text-neutral-500">Flowing tactile weaves tailored for modern luxury residences.</p>
                 </div>
                 <div className="flex flex-wrap gap-1.5 pt-1">
-                  {['Sushi', 'Jersey', 'Pastle', 'Cinkam'].map((item, idx) => (
-                    <span key={idx} className="px-2.5 py-1 rounded-lg bg-neutral-100 text-neutral-800 text-xs font-medium border border-neutral-200">
+                  {['Sushi', 'Jersey', 'Pastel', 'Cinkam'].map((item, idx) => (
+                    <span key={idx} className="px-2 py-0.5 rounded-md bg-neutral-100 text-neutral-800 text-[11px] font-medium border border-neutral-200">
                       {item}
                     </span>
                   ))}
                 </div>
               </div>
               <div className="pt-3 border-t border-neutral-100 flex items-center justify-between text-xs">
-                <span className="text-neutral-500">Modern Textures</span>
-                <span className="font-semibold text-amber-700">Enquire for Price</span>
+                <span className="text-neutral-500 font-mono">From ₹280 / m</span>
+                <span className="font-semibold text-amber-700">Modern Textures</span>
               </div>
             </div>
 
             {/* Collection 3: BD Balaji Décor */}
-            <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm flex flex-col justify-between space-y-4">
+            <div className="card-advanced-hover rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm flex flex-col justify-between space-y-4">
               <div className="space-y-3">
                 <div className="h-44 rounded-2xl overflow-hidden bg-neutral-100">
                   <img
@@ -474,23 +511,24 @@ export const ServicesPage: React.FC = () => {
                 <div className="space-y-1">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-amber-700">EMBOSSED LUXURY</span>
                   <h3 className="font-display text-xl font-bold text-neutral-950">BD Balaji Décor</h3>
+                  <p className="text-[11px] text-neutral-500">Opulent heavyweight jacquards &amp; 3D embossed velvet drapes.</p>
                 </div>
                 <div className="flex flex-wrap gap-1.5 pt-1">
-                  {['Marvel', 'Exotic', 'Nitro', 'IPL', '3D Embose'].map((item, idx) => (
-                    <span key={idx} className="px-2.5 py-1 rounded-lg bg-neutral-100 text-neutral-800 text-xs font-medium border border-neutral-200">
+                  {['Marvel', 'Exotic', 'Nitro', 'IPL', '3D Emboss'].map((item, idx) => (
+                    <span key={idx} className="px-2 py-0.5 rounded-md bg-neutral-100 text-neutral-800 text-[11px] font-medium border border-neutral-200">
                       {item}
                     </span>
                   ))}
                 </div>
               </div>
               <div className="pt-3 border-t border-neutral-100 flex items-center justify-between text-xs">
-                <span className="text-neutral-500">Heavy Weight Drapery</span>
-                <span className="font-semibold text-amber-700">Enquire for Price</span>
+                <span className="text-neutral-500 font-mono">From ₹420 / m</span>
+                <span className="font-semibold text-amber-700">Heavy Weight Drapery</span>
               </div>
             </div>
 
             {/* Hardware & Accessories */}
-            <div className="rounded-3xl border border-amber-900/15 bg-amber-50/50 p-6 shadow-sm flex flex-col justify-between space-y-4">
+            <div className="card-advanced-hover rounded-3xl border border-amber-900/15 bg-amber-50/50 p-6 shadow-sm flex flex-col justify-between space-y-4">
               <div className="space-y-3">
                 <div className="space-y-1">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-amber-800">HARDWARE &amp; FITTINGS</span>
@@ -510,7 +548,7 @@ export const ServicesPage: React.FC = () => {
                     'Stitching Service',
                     'Measurement (Free)',
                   ].map((acc, idx) => (
-                    <div key={idx} className="p-2 rounded-xl bg-white border border-neutral-200/90 text-[11px] font-semibold text-neutral-800 flex items-center gap-1.5">
+                    <div key={idx} className="p-1.5 rounded-xl bg-white border border-neutral-200/90 text-[11px] font-semibold text-neutral-800 flex items-center gap-1.5">
                       <Check className="h-3 w-3 text-amber-600 shrink-0" />
                       <span>{acc}</span>
                     </div>
@@ -534,45 +572,55 @@ export const ServicesPage: React.FC = () => {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-neutral-200/80 pb-6">
             <div>
               <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-700 mb-1">
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-amber-600 text-white text-[10px] font-mono">04</span>
+                <span className="h-2 w-2 rounded-full bg-amber-600 animate-pulse"></span>
                 <span>LIGHT FILTRATION &amp; SMART SHADING</span>
               </div>
               <h2 className="font-display text-3xl sm:text-4xl font-bold text-neutral-950">
                 Window Blinds &amp; Shades
               </h2>
               <p className="text-sm text-neutral-600 mt-1 max-w-2xl">
-                Motorized remote &amp; manual roller screens, day-and-night Zebra dual layers, natural timber louvers, and commercial PVC blinds.
+                Motorized remote &amp; manual roller screens, day-and-night Zebra dual layers, natural timber louvers, and commercial PVC blinds engineered for exact fit.
               </p>
             </div>
-            <Link
-              to="/estimator?service=Blinds"
-              className="btn-premium inline-flex items-center gap-2 rounded-xl bg-amber-600 px-5 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-amber-500 transition-all shrink-0"
-            >
-              <Calculator className="h-3.5 w-3.5" />
-              <span>Get a Quote</span>
-            </Link>
+            <div className="flex items-center gap-2.5 shrink-0">
+              <a
+                href={getWhatsAppLink('Window Blinds & Shades')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2.5 rounded-xl border border-neutral-300 bg-white hover:bg-neutral-50 text-xs font-semibold text-neutral-800 transition-colors"
+              >
+                WhatsApp Desk
+              </a>
+              <Link
+                to="/estimator?service=Blinds"
+                className="btn-premium btn-shimmer-advanced inline-flex items-center gap-2 rounded-xl bg-amber-600 px-5 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-amber-500 transition-all"
+              >
+                <Calculator className="h-3.5 w-3.5" />
+                <span>Get a Quote (From ₹75 / sq.ft)</span>
+              </Link>
+            </div>
           </div>
 
           {/* Visual Cards with Hover Effects */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-4">
             {[
-              { title: 'Roller Blinds', desc: 'UV solar block & blackout fabrics', tag: 'Blackout / Sheer' },
-              { title: 'Zebra Blinds', desc: 'Dual-layer day and night light adjust', tag: 'Dual Layer' },
-              { title: 'Décor Blinds', desc: 'Designer woven tactile textures', tag: 'Textured' },
-              { title: 'Bamboo Blinds', desc: '100% natural organic woven timber', tag: 'Natural Wood' },
-              { title: 'Vertical Blinds', desc: 'Full ceiling-to-floor balcony louvers', tag: 'Floor to Ceiling' },
-              { title: 'PVC Blinds', desc: '100% waterproof for kitchens & bath', tag: 'Water Resistant' },
-              { title: 'Venetian Blinds', desc: 'Precision tilt aluminum & wood slats', tag: 'Slatted Tilt' },
+              { title: 'Roller Blinds', desc: 'UV solar block & blackout fabrics', tag: 'From ₹75 / sq.ft' },
+              { title: 'Zebra Blinds', desc: 'Dual-layer day and night light adjust', tag: 'From ₹110 / sq.ft' },
+              { title: 'Décor Blinds', desc: 'Designer woven tactile textures', tag: 'From ₹95 / sq.ft' },
+              { title: 'Bamboo Blinds', desc: '100% natural organic woven timber', tag: 'From ₹130 / sq.ft' },
+              { title: 'Vertical Blinds', desc: 'Full ceiling-to-floor balcony louvers', tag: 'From ₹65 / sq.ft' },
+              { title: 'PVC Blinds', desc: '100% waterproof for kitchens & bath', tag: 'From ₹85 / sq.ft' },
+              { title: 'Venetian Blinds', desc: 'Precision tilt aluminum & wood slats', tag: 'From ₹95 / sq.ft' },
             ].map((blind, i) => (
               <div
                 key={i}
-                className="group card-hover-lift p-4 rounded-2xl bg-white border border-neutral-200 shadow-xs flex flex-col justify-between"
+                className="card-advanced-hover p-4 rounded-2xl bg-white border border-neutral-200 shadow-xs flex flex-col justify-between"
               >
                 <div className="space-y-2">
-                  <span className="text-[9px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2 py-0.5 rounded-md inline-block">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2 py-0.5 rounded-md inline-block">
                     {blind.tag}
                   </span>
-                  <h4 className="font-bold text-sm text-neutral-950 group-hover:text-amber-700 transition-colors">
+                  <h4 className="font-bold text-sm text-neutral-950">
                     {blind.title}
                   </h4>
                   <p className="text-[11px] text-neutral-500 leading-relaxed">
@@ -581,7 +629,7 @@ export const ServicesPage: React.FC = () => {
                 </div>
                 <div className="mt-4 pt-2 border-t border-neutral-100 flex items-center justify-between text-[11px]">
                   <span className="text-neutral-400">Custom Cut</span>
-                  <span className="font-semibold text-amber-700 group-hover:translate-x-0.5 transition-transform">→</span>
+                  <span className="font-semibold text-amber-700">→</span>
                 </div>
               </div>
             ))}
@@ -596,7 +644,7 @@ export const ServicesPage: React.FC = () => {
               <div className="text-xs">
                 <span className="font-bold text-neutral-900 block">Transparent Installation &amp; Transit:</span>
                 <span className="text-neutral-600">
-                  Fitting Charges &amp; Safe Transport Charges are itemized transparently in every on-site quotation.
+                  Fitting Charges &amp; Safe Transport Charges are itemized transparently in every on-site quotation. Motorized remote options also available.
                 </span>
               </div>
             </div>
@@ -615,28 +663,31 @@ export const ServicesPage: React.FC = () => {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-neutral-200/80 pb-6">
             <div>
               <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-700 mb-1">
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-amber-600 text-white text-[10px] font-mono">05</span>
+                <span className="h-2 w-2 rounded-full bg-amber-600 animate-pulse"></span>
                 <span>IMPORTED VINYL WALLCOVERINGS</span>
               </div>
               <h2 className="font-display text-3xl sm:text-4xl font-bold text-neutral-950">
                 Designer Wallpapers &amp; Murals
               </h2>
               <p className="text-sm text-neutral-600 mt-1 max-w-2xl">
-                Heavy-grade vinyl coated rolls engineered for 10-year durability, seamless geometric alignments, and tailored panoramic murals.
+                Heavy-grade vinyl coated rolls engineered for 10-year durability, seamless geometric alignments, and tailored 3D panoramic murals.
               </p>
             </div>
-            <div className="flex items-center gap-2 shrink-0">
-              <Link
-                to="/projects"
-                className="px-4 py-2.5 rounded-xl border border-neutral-300 bg-white text-xs font-semibold text-neutral-800 hover:bg-neutral-50 transition-colors"
+            <div className="flex items-center gap-2.5 shrink-0">
+              <a
+                href={getWhatsAppLink('Designer Wallpapers & Murals')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2.5 rounded-xl border border-neutral-300 bg-white hover:bg-neutral-50 text-xs font-semibold text-neutral-800 transition-colors"
               >
-                Explore Designs
-              </Link>
+                WhatsApp Desk
+              </a>
               <Link
                 to="/estimator?service=Wallpapers"
-                className="btn-premium rounded-xl bg-amber-600 px-5 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-amber-500 transition-all"
+                className="btn-premium btn-shimmer-advanced inline-flex items-center gap-2 rounded-xl bg-amber-600 px-5 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-amber-500 transition-all"
               >
-                Get a Quote
+                <Calculator className="h-3.5 w-3.5" />
+                <span>Get a Quote (From ₹950 / roll)</span>
               </Link>
             </div>
           </div>
@@ -661,11 +712,11 @@ export const ServicesPage: React.FC = () => {
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {[
                   { label: 'Vinyl Coating', desc: '100% Washable & Scratch-Proof' },
-                  { label: '10 Year Info', desc: 'Long-term peel & fade resistance' },
+                  { label: '10 Year Life', desc: 'Long-term peel & fade resistance' },
                   { label: '57 sq.ft / Roll', desc: 'Standard European roll size' },
-                  { label: 'Multiple Designs', desc: 'Over 1,200+ catalogs in studio' },
+                  { label: '1,200+ Designs', desc: 'Curated physical studio catalogs' },
                 ].map((hl, i) => (
-                  <div key={i} className="p-3.5 rounded-2xl bg-amber-50/60 border border-amber-900/15 space-y-1">
+                  <div key={i} className="card-advanced-hover p-3.5 rounded-2xl bg-amber-50/60 border border-amber-900/15 space-y-1">
                     <span className="text-xs font-bold text-amber-950 block">{hl.label}</span>
                     <span className="text-[11px] text-neutral-600 leading-tight block">{hl.desc}</span>
                   </div>
@@ -686,7 +737,7 @@ export const ServicesPage: React.FC = () => {
                     'Style',
                     'Temptation',
                     'Fabtec',
-                    'Customized Wallpapers',
+                    'Customized 3D Murals',
                   ].map((coll, idx) => (
                     <div
                       key={idx}
@@ -709,30 +760,40 @@ export const ServicesPage: React.FC = () => {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-neutral-200/80 pb-6">
             <div>
               <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-700 mb-1">
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-amber-600 text-white text-[10px] font-mono">06</span>
+                <span className="h-2 w-2 rounded-full bg-amber-600 animate-pulse"></span>
                 <span>EUROPEAN AC-RATED TIMBER SURFACES</span>
               </div>
               <h2 className="font-display text-3xl sm:text-4xl font-bold text-neutral-950">
                 Wooden Flooring &amp; Waterproof Planks
               </h2>
               <p className="text-sm text-neutral-600 mt-1 max-w-2xl">
-                Certified Action Tesa and Surya laminate flooring systems with multi-year warranties, plus high-performance SPC vinyl and VOX European planks.
+                Certified Action Tesa and Surya laminate flooring systems with multi-year warranties, plus high-performance 100% waterproof SPC vinyl and VOX European planks.
               </p>
             </div>
-            <Link
-              to="/estimator?service=Wooden%20Flooring"
-              className="btn-premium inline-flex items-center gap-2 rounded-xl bg-amber-600 px-5 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-amber-500 transition-all shrink-0"
-            >
-              <Calculator className="h-3.5 w-3.5" />
-              <span>Get a Quote</span>
-            </Link>
+            <div className="flex items-center gap-2.5 shrink-0">
+              <a
+                href={getWhatsAppLink('Wooden Flooring')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2.5 rounded-xl border border-neutral-300 bg-white hover:bg-neutral-50 text-xs font-semibold text-neutral-800 transition-colors"
+              >
+                WhatsApp Desk
+              </a>
+              <Link
+                to="/estimator?service=Wooden%20Flooring"
+                className="btn-premium btn-shimmer-advanced inline-flex items-center gap-2 rounded-xl bg-amber-600 px-5 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-amber-500 transition-all"
+              >
+                <Calculator className="h-3.5 w-3.5" />
+                <span>Get a Quote (From ₹140 / sq.ft)</span>
+              </Link>
+            </div>
           </div>
 
           {/* Action Tesa vs Surya Comparison Cards */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             
             {/* ACTION TESA Brand Section (Col Span 6) */}
-            <div className="lg:col-span-6 rounded-3xl border border-neutral-200 bg-white p-6 sm:p-8 shadow-sm flex flex-col justify-between space-y-6">
+            <div className="lg:col-span-6 card-advanced-hover rounded-3xl border border-neutral-200 bg-white p-6 sm:p-8 shadow-sm flex flex-col justify-between space-y-6">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
@@ -790,7 +851,7 @@ export const ServicesPage: React.FC = () => {
             </div>
 
             {/* SURYA Brand Section (Col Span 6) */}
-            <div className="lg:col-span-6 rounded-3xl border border-neutral-200 bg-white p-6 sm:p-8 shadow-sm flex flex-col justify-between space-y-6">
+            <div className="lg:col-span-6 card-advanced-hover rounded-3xl border border-neutral-200 bg-white p-6 sm:p-8 shadow-sm flex flex-col justify-between space-y-6">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
@@ -853,31 +914,31 @@ export const ServicesPage: React.FC = () => {
               ADDITIONAL SPECIALTY SURFACES
             </span>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="p-4 rounded-2xl bg-white border border-neutral-200 space-y-1.5">
+              <div className="card-advanced-hover p-4 rounded-2xl bg-white border border-neutral-200 space-y-1.5">
                 <h4 className="font-bold text-sm text-neutral-950">Vinyl Flooring (SPC Planks)</h4>
                 <p className="text-xs text-neutral-600">
                   100% waterproof stone plastic composite click flooring with acoustic pad. Ideal for wet areas and kitchens.
                 </p>
                 <span className="inline-block font-mono text-xs font-semibold text-emerald-700 pt-1">
-                  Enquire for Price
+                  From ₹95 / sq.ft
                 </span>
               </div>
-              <div className="p-4 rounded-2xl bg-white border border-neutral-200 space-y-1.5">
+              <div className="card-advanced-hover p-4 rounded-2xl bg-white border border-neutral-200 space-y-1.5">
                 <h4 className="font-bold text-sm text-neutral-950">VOX Flooring</h4>
                 <p className="text-xs text-neutral-600">
                   European polymer planks with authentic tactile woodgrain texture and high impact scratch resistance.
                 </p>
                 <span className="inline-block font-mono text-xs font-semibold text-emerald-700 pt-1">
-                  Enquire for Price
+                  From ₹180 / sq.ft
                 </span>
               </div>
-              <div className="p-4 rounded-2xl bg-white border border-neutral-200 space-y-1.5">
+              <div className="card-advanced-hover p-4 rounded-2xl bg-white border border-neutral-200 space-y-1.5">
                 <h4 className="font-bold text-sm text-neutral-950">Ceiling Paneling Options</h4>
                 <p className="text-xs text-neutral-600">
                   Coordinated wooden slat false ceiling overlays that harmonize seamlessly with your floor palette.
                 </p>
                 <span className="inline-block font-mono text-xs font-semibold text-emerald-700 pt-1">
-                  Enquire for Price
+                  Custom Quote Available
                 </span>
               </div>
             </div>
@@ -890,7 +951,7 @@ export const ServicesPage: React.FC = () => {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-neutral-200/80 pb-6">
             <div>
               <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-700 mb-1">
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-amber-600 text-white text-[10px] font-mono">07</span>
+                <span className="h-2 w-2 rounded-full bg-amber-600 animate-pulse"></span>
                 <span>ARCHITECTURAL CEILINGS &amp; COVES</span>
               </div>
               <h2 className="font-display text-3xl sm:text-4xl font-bold text-neutral-950">
@@ -900,19 +961,29 @@ export const ServicesPage: React.FC = () => {
                 Monolithic Gypsum, acoustic Grid, waterproof PVC, European VOX, and solid Wooden ceilings built with certified Saint-Gobain &amp; USG Boral channels.
               </p>
             </div>
-            <Link
-              to="/estimator?service=False%20Ceiling"
-              className="btn-premium inline-flex items-center gap-2 rounded-xl bg-amber-600 px-5 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-amber-500 transition-all shrink-0"
-            >
-              <Calculator className="h-3.5 w-3.5" />
-              <span>Request Ceiling Estimate</span>
-            </Link>
+            <div className="flex items-center gap-2.5 shrink-0">
+              <a
+                href={getWhatsAppLink('False Ceiling Architecture')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2.5 rounded-xl border border-neutral-300 bg-white hover:bg-neutral-50 text-xs font-semibold text-neutral-800 transition-colors"
+              >
+                WhatsApp Desk
+              </a>
+              <Link
+                to="/estimator?service=False%20Ceiling"
+                className="btn-premium btn-shimmer-advanced inline-flex items-center gap-2 rounded-xl bg-amber-600 px-5 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-amber-500 transition-all"
+              >
+                <Calculator className="h-3.5 w-3.5" />
+                <span>Get a Quote (From ₹75 / sq.ft)</span>
+              </Link>
+            </div>
           </div>
 
           {/* Brands & Pricing Showcase */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             
-            <div className="p-6 rounded-3xl bg-white border border-neutral-200 shadow-sm flex flex-col justify-between space-y-4">
+            <div className="card-advanced-hover p-6 rounded-3xl bg-white border border-neutral-200 shadow-sm flex flex-col justify-between space-y-4">
               <div className="space-y-2">
                 <span className="px-2.5 py-0.5 rounded-md bg-neutral-100 text-neutral-700 text-[10px] font-bold uppercase tracking-wider">
                   COMMERCIAL / OFFICE
@@ -928,7 +999,7 @@ export const ServicesPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="p-6 rounded-3xl bg-white border border-neutral-200 shadow-sm flex flex-col justify-between space-y-4">
+            <div className="card-advanced-hover p-6 rounded-3xl bg-white border border-neutral-200 shadow-sm flex flex-col justify-between space-y-4">
               <div className="space-y-2">
                 <span className="px-2.5 py-0.5 rounded-md bg-sky-50 text-sky-800 text-[10px] font-bold uppercase tracking-wider border border-sky-200">
                   MOISTURE RESISTANT
@@ -944,7 +1015,7 @@ export const ServicesPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="p-6 rounded-3xl bg-white border border-neutral-200 shadow-sm flex flex-col justify-between space-y-4">
+            <div className="card-advanced-hover p-6 rounded-3xl bg-white border border-neutral-200 shadow-sm flex flex-col justify-between space-y-4">
               <div className="space-y-2">
                 <span className="px-2.5 py-0.5 rounded-md bg-amber-50 text-amber-800 text-[10px] font-bold uppercase tracking-wider border border-amber-200">
                   EUROPEAN LUXURY
@@ -960,7 +1031,7 @@ export const ServicesPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="p-6 rounded-3xl bg-white border border-neutral-200 shadow-sm flex flex-col justify-between space-y-4">
+            <div className="card-advanced-hover p-6 rounded-3xl bg-white border border-neutral-200 shadow-sm flex flex-col justify-between space-y-4">
               <div className="space-y-2">
                 <span className="px-2.5 py-0.5 rounded-md bg-emerald-50 text-emerald-800 text-[10px] font-bold uppercase tracking-wider border border-emerald-200">
                   BESPOKE CRAFTSMANSHIP
@@ -987,7 +1058,7 @@ export const ServicesPage: React.FC = () => {
                 <span className="px-2.5 py-1 rounded bg-white font-bold text-neutral-800 border border-neutral-200">USG Boral</span>
               </div>
               <p className="text-neutral-600">
-                Also undertaking turnkey **Gypsum Board**, **Exterior Ceiling**, and **Plaster of Paris (POP)** decorative moldings — customized according to your lighting design.
+                Also undertaking turnkey **Gypsum Board Cove Ceilings (₹95–₹130/sq.ft)**, **Exterior Ceiling**, and **Plaster of Paris (POP)** decorative moldings customized according to your lighting architecture.
               </p>
             </div>
             <Link
@@ -1005,35 +1076,45 @@ export const ServicesPage: React.FC = () => {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-neutral-200/80 pb-6">
             <div>
               <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-700 mb-1">
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-amber-600 text-white text-[10px] font-mono">08</span>
+                <span className="h-2 w-2 rounded-full bg-amber-600 animate-pulse"></span>
                 <span>INSECT PROTECTION SYSTEMS</span>
               </div>
               <h2 className="font-display text-3xl sm:text-4xl font-bold text-neutral-950">
                 Netlon / Mosquito Nets
               </h2>
               <p className="text-sm text-neutral-600 mt-1 max-w-2xl">
-                100% insect and dengue mosquito defense for windows and doors using genuine Saint-Gobain high-tensile fiberglass mesh.
+                100% insect and dengue mosquito defense for windows and doors using genuine Saint-Gobain high-tensile fiberglass mesh and heavy-gauge aluminium profiles.
               </p>
             </div>
-            <Link
-              to="/estimator?service=Netlon%20%2F%20Mosquito%20Nets"
-              className="btn-premium inline-flex items-center gap-2 rounded-xl bg-amber-600 px-5 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-amber-500 transition-all shrink-0"
-            >
-              <ShieldCheck className="h-3.5 w-3.5" />
-              <span>Get a Quote</span>
-            </Link>
+            <div className="flex items-center gap-2.5 shrink-0">
+              <a
+                href={getWhatsAppLink('Netlon & Mosquito Nets')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2.5 rounded-xl border border-neutral-300 bg-white hover:bg-neutral-50 text-xs font-semibold text-neutral-800 transition-colors"
+              >
+                WhatsApp Desk
+              </a>
+              <Link
+                to="/estimator?service=Netlon%20%2F%20Mosquito%20Nets"
+                className="btn-premium btn-shimmer-advanced inline-flex items-center gap-2 rounded-xl bg-amber-600 px-5 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-amber-500 transition-all"
+              >
+                <ShieldCheck className="h-3.5 w-3.5" />
+                <span>Get a Quote (From ₹45 / sq.ft)</span>
+              </Link>
+            </div>
           </div>
 
           {/* Pricing Grid Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {[
               { type: 'Magnet Type', price: '₹300', unit: '/ sq.ft', tag: 'Windows & Doors', desc: 'Magnetic perimeter strip for effortless open & snap-close seal' },
-              { type: 'Pleated', price: '₹300', unit: '/ sq.ft', tag: 'Balconies & Sliders', desc: 'Smooth horizontal accordion sliding mesh with low-profile bottom guide' },
-              { type: 'Normal Lock', price: '₹250', unit: '/ sq.ft', tag: 'Hinged Doors', desc: 'Heavy-duty aluminium door frame equipped with mechanical lock & handle' },
+              { type: 'Pleated Accordion', price: '₹300', unit: '/ sq.ft', tag: 'Balconies & Sliders', desc: 'Smooth horizontal accordion sliding mesh with low-profile bottom guide' },
+              { type: 'Normal Lock Hinged', price: '₹250', unit: '/ sq.ft', tag: 'Hinged Doors', desc: 'Heavy-duty aluminium door frame equipped with mechanical lock & handle' },
               { type: 'Velcro Stapler Stitched', price: '₹45', unit: '/ sq.ft', tag: 'Budget Friendly', desc: 'High-strength stitched velcro border screen for wooden and aluminium window frames' },
               { type: 'Saint-Gobain Mesh', price: '₹55 – ₹62', unit: '/ sq.ft', tag: 'Genuine Mesh', desc: '100% authentic Saint-Gobain fiberglass mesh roll with anti-tear coating' },
             ].map((item, idx) => (
-              <div key={idx} className="p-5 rounded-2xl bg-white border border-neutral-200/90 shadow-xs flex flex-col justify-between space-y-4">
+              <div key={idx} className="card-advanced-hover p-5 rounded-2xl bg-white border border-neutral-200/90 shadow-xs flex flex-col justify-between space-y-4">
                 <div className="space-y-1.5">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2 py-0.5 rounded">
                     {item.tag}
@@ -1081,23 +1162,33 @@ export const ServicesPage: React.FC = () => {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-neutral-200/80 pb-6">
             <div>
               <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-700 mb-1">
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-amber-600 text-white text-[10px] font-mono">09</span>
+                <span className="h-2 w-2 rounded-full bg-amber-600 animate-pulse"></span>
                 <span>DECORATIVE WALL PANELS</span>
               </div>
               <h2 className="font-display text-3xl sm:text-4xl font-bold text-neutral-950">
                 Architectural Wall Louvers
               </h2>
               <p className="text-sm text-neutral-600 mt-1 max-w-2xl">
-                Shore Louvers and Charcoal Louvers fabricated on 16mm commercial plywood with scratch-resistant premium lamination for media elevations.
+                Shore Louvers and Charcoal Louvers fabricated on 16mm commercial plywood core with scratch-resistant premium lamination for media elevations &amp; bed backdrops.
               </p>
             </div>
-            <Link
-              to="/estimator?service=Louvers"
-              className="btn-premium inline-flex items-center gap-2 rounded-xl bg-amber-600 px-5 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-amber-500 transition-all shrink-0"
-            >
-              <Calculator className="h-3.5 w-3.5" />
-              <span>Get a Quote</span>
-            </Link>
+            <div className="flex items-center gap-2.5 shrink-0">
+              <a
+                href={getWhatsAppLink('Architectural Wall Louvers')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2.5 rounded-xl border border-neutral-300 bg-white hover:bg-neutral-50 text-xs font-semibold text-neutral-800 transition-colors"
+              >
+                WhatsApp Desk
+              </a>
+              <Link
+                to="/estimator?service=Louvers"
+                className="btn-premium btn-shimmer-advanced inline-flex items-center gap-2 rounded-xl bg-amber-600 px-5 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-amber-500 transition-all"
+              >
+                <Calculator className="h-3.5 w-3.5" />
+                <span>Get a Quote (From ₹850 / pc)</span>
+              </Link>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -1118,7 +1209,7 @@ export const ServicesPage: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 
                 {/* Product 1: 8" × 8 ft */}
-                <div className="p-6 rounded-2xl bg-white border border-neutral-200/90 shadow-xs space-y-3">
+                <div className="card-advanced-hover p-6 rounded-2xl bg-white border border-neutral-200/90 shadow-xs space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2 py-0.5 rounded">
                       Standard Height
@@ -1134,11 +1225,12 @@ export const ServicesPage: React.FC = () => {
                   <div className="pt-2 text-[11px] font-semibold text-neutral-700 space-y-1">
                     <div>• Profiles: Shore Louvers &amp; Charcoal Louvers</div>
                     <div>• Finish: Premium Scratch-Resistant Lamination</div>
+                    <div>• Core: 16mm Heavy Commercial Plywood</div>
                   </div>
                 </div>
 
                 {/* Product 2: 8" × 9 ft */}
-                <div className="p-6 rounded-2xl bg-white border border-neutral-200/90 shadow-xs space-y-3">
+                <div className="card-advanced-hover p-6 rounded-2xl bg-white border border-neutral-200/90 shadow-xs space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2 py-0.5 rounded">
                       Tall Ceiling Height
@@ -1154,6 +1246,7 @@ export const ServicesPage: React.FC = () => {
                   <div className="pt-2 text-[11px] font-semibold text-neutral-700 space-y-1">
                     <div>• Profiles: Shore Louvers &amp; Charcoal Louvers</div>
                     <div>• Core: 16mm Heavy Commercial Plywood</div>
+                    <div>• Tongue-and-Groove Interlocking Joints</div>
                   </div>
                 </div>
 
@@ -1163,7 +1256,7 @@ export const ServicesPage: React.FC = () => {
               <div className="p-4 rounded-2xl bg-neutral-100/70 border border-neutral-200 text-xs flex flex-col sm:flex-row items-center justify-between gap-3">
                 <div className="flex items-center gap-2 text-neutral-800">
                   <ShieldCheck className="h-4 w-4 text-amber-600 shrink-0" />
-                  <span><strong>Material Specification:</strong> 16mm Commercial Grade Plywood + Premium Lamination</span>
+                  <span><strong>Material Specification:</strong> 16mm Commercial Grade Anti-Borer Plywood + Premium Lamination</span>
                 </div>
                 <Link to="/contact" className="text-amber-800 font-bold hover:underline shrink-0">
                   View Sample Swatches →
@@ -1180,23 +1273,33 @@ export const ServicesPage: React.FC = () => {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-neutral-200/80 pb-6">
             <div>
               <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-700 mb-1">
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-amber-600 text-white text-[10px] font-mono">10</span>
+                <span className="h-2 w-2 rounded-full bg-amber-600 animate-pulse"></span>
                 <span>LANDSCAPING &amp; BALCONY TURF</span>
               </div>
               <h2 className="font-display text-3xl sm:text-4xl font-bold text-neutral-950">
                 Artificial Grass &amp; Turf Laying
               </h2>
               <p className="text-sm text-neutral-600 mt-1 max-w-2xl">
-                Lush, realistic all-weather green turf for balconies, terrace gardens, villas, and commercial outdoor spaces with zero mowing and low maintenance.
+                Lush, realistic all-weather green turf for balconies, terrace gardens, villas, and commercial outdoor spaces with zero mowing, UV resistance, and pet-safe materials.
               </p>
             </div>
-            <Link
-              to="/estimator?service=Artificial%20Grass"
-              className="btn-premium inline-flex items-center gap-2 rounded-xl bg-amber-600 px-5 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-amber-500 transition-all shrink-0"
-            >
-              <Calculator className="h-3.5 w-3.5" />
-              <span>Get Installation Quote</span>
-            </Link>
+            <div className="flex items-center gap-2.5 shrink-0">
+              <a
+                href={getWhatsAppLink('Artificial Grass & Turf Laying')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2.5 rounded-xl border border-neutral-300 bg-white hover:bg-neutral-50 text-xs font-semibold text-neutral-800 transition-colors"
+              >
+                WhatsApp Desk
+              </a>
+              <Link
+                to="/estimator?service=Artificial%20Grass"
+                className="btn-premium btn-shimmer-advanced inline-flex items-center gap-2 rounded-xl bg-amber-600 px-5 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-amber-500 transition-all"
+              >
+                <Calculator className="h-3.5 w-3.5" />
+                <span>Get Installation Quote (From ₹55 / sq.ft)</span>
+              </Link>
+            </div>
           </div>
 
           {/* Pricing Grid */}
@@ -1206,9 +1309,9 @@ export const ServicesPage: React.FC = () => {
               { height: '35mm Pile', price: '₹65', unit: '/ sq.ft', ideal: 'Terrace & Patio Lounges' },
               { height: '40mm Pile', price: '₹70', unit: '/ sq.ft', ideal: 'Lush Residential Gardens' },
               { height: '50mm Pile', price: '₹80', unit: '/ sq.ft', ideal: 'Super Plush Luxury Turf' },
-              { height: 'Grass Laying', price: '₹15', unit: '/ sq.ft', ideal: 'Glue & Underlay Fixing' },
+              { height: 'Turf Laying', price: '₹15', unit: '/ sq.ft', ideal: 'Glue & Underlay Fixing' },
             ].map((turf, idx) => (
-              <div key={idx} className="p-5 rounded-2xl bg-white border border-neutral-200/90 shadow-xs flex flex-col justify-between space-y-3">
+              <div key={idx} className="card-advanced-hover p-5 rounded-2xl bg-white border border-neutral-200/90 shadow-xs flex flex-col justify-between space-y-3">
                 <div className="space-y-1">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded">
                     UV Protected
@@ -1231,12 +1334,12 @@ export const ServicesPage: React.FC = () => {
             </span>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
               {[
-                { title: 'Balcony', desc: 'Instant green makeover' },
-                { title: 'Terrace', desc: 'Weatherproof roof deck' },
-                { title: 'Garden', desc: 'Zero mowing or weeds' },
-                { title: 'Commercial', desc: 'Cafes & offices' },
-                { title: 'Low Maintenance', desc: 'Washable with water' },
-                { title: 'Green Look All Year', desc: 'UV resistant fibers' },
+                { title: 'Balcony Makeover', desc: 'Instant clean green space' },
+                { title: 'Terrace Roofs', desc: 'Weatherproof roof deck' },
+                { title: 'Villa Gardens', desc: 'Zero mowing or weeds' },
+                { title: 'Commercial Cafes', desc: 'High footfall durability' },
+                { title: 'Drainage Backing', desc: 'Fast water runoff holes' },
+                { title: 'UV Shielded', desc: 'Green look 8+ years' },
               ].map((item, i) => (
                 <div key={i} className="p-3.5 rounded-xl bg-white border border-emerald-200/80 shadow-xs space-y-0.5">
                   <h5 className="font-bold text-xs text-neutral-950">{item.title}</h5>
@@ -1249,7 +1352,7 @@ export const ServicesPage: React.FC = () => {
 
       </div>
 
-      {/* 4. STRONG FINAL CTA SECTION (As Requested by User) */}
+      {/* 4. STRONG FINAL CTA SECTION */}
       <div className="rounded-3xl border border-amber-900/15 bg-gradient-to-br from-neutral-950 via-neutral-900 to-amber-950 text-white p-8 sm:p-14 shadow-xl flex flex-col md:flex-row items-center justify-between gap-8">
         <div className="space-y-4 max-w-2xl text-center md:text-left">
           <div className="inline-flex items-center gap-2 rounded-full bg-amber-500/20 px-3.5 py-1 text-xs font-bold text-amber-300 border border-amber-500/30">
@@ -1260,26 +1363,28 @@ export const ServicesPage: React.FC = () => {
             Transform Your Space with Trupaintz Interiors
           </h2>
           <p className="text-sm sm:text-base text-neutral-300 leading-relaxed">
-            From windows and painting to flooring, ceilings and complete interior solutions — we bring quality, style and functionality together.
+            From windows and painting to flooring, ceilings and complete interior solutions — we bring heirloom quality, transparent pricing, and written manufacturer warranties.
           </p>
         </div>
 
         <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full sm:w-auto">
           <Link
             to="/estimator"
-            className="w-full sm:w-auto btn-premium rounded-xl bg-amber-600 px-7 py-3.5 text-xs sm:text-sm font-bold text-white shadow-lg hover:bg-amber-500 transition-all text-center flex items-center justify-center gap-2"
+            className="w-full sm:w-auto btn-premium btn-shimmer-advanced rounded-xl bg-amber-600 px-7 py-3.5 text-xs sm:text-sm font-bold text-white shadow-lg hover:bg-amber-500 transition-all text-center flex items-center justify-center gap-2"
           >
             <Calculator className="h-4 w-4" />
-            <span>Get a Free Quote</span>
+            <span>Calculate Instant Estimate</span>
           </Link>
 
-          <Link
-            to="/contact"
+          <a
+            href="https://wa.me/919677708535?text=Hi%20TruPaintz!%20I%20would%20like%20to%20enquire%20about%20your%20complete%20interior%20services."
+            target="_blank"
+            rel="noopener noreferrer"
             className="w-full sm:w-auto rounded-xl border border-neutral-700 bg-neutral-800/80 px-7 py-3.5 text-xs sm:text-sm font-bold text-white hover:bg-neutral-700 transition-all text-center flex items-center justify-center gap-2"
           >
             <Phone className="h-4 w-4 text-amber-400" />
-            <span>Contact Us</span>
-          </Link>
+            <span>WhatsApp Consultation</span>
+          </a>
         </div>
       </div>
 

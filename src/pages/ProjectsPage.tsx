@@ -152,7 +152,7 @@ export const ProjectsPage: React.FC = () => {
         {filteredProjects.map((project) => (
           <div
             key={project.id}
-            className="card-hover-lift rounded-3xl border border-neutral-200/90 bg-white overflow-hidden shadow-sm flex flex-col justify-between group"
+            className="card-advanced-hover rounded-3xl border border-neutral-200/90 bg-white overflow-hidden shadow-sm flex flex-col justify-between group"
           >
             <div>
               {/* Image */}
@@ -336,7 +336,7 @@ export const ProjectsPage: React.FC = () => {
               <Link
                 to={`/contact?project=${encodeURIComponent(selectedProject.title)}`}
                 onClick={() => setSelectedProject(null)}
-                className="w-full sm:w-auto text-center rounded-xl bg-amber-600 px-5 py-2.5 text-xs font-semibold text-white hover:bg-amber-500 transition-colors"
+                className="btn-shimmer-advanced w-full sm:w-auto text-center rounded-xl bg-amber-600 px-5 py-2.5 text-xs font-semibold text-white hover:bg-amber-500 transition-colors shadow-md"
               >
                 Inquire About a Project Like This →
               </Link>

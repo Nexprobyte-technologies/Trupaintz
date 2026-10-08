@@ -11,7 +11,7 @@ export interface ServiceCatalogueCategory {
 export const CATALOGUE_CATEGORIES: ServiceCatalogueCategory[] = [
   {
     id: 'upvc',
-    num: '01',
+    num: '',
     title: 'UPVC Windows & Doors',
     tagline: 'Precision engineered German-standard acoustic profiles & netlon systems',
     badge: 'EITI & BADYEE Certified',
@@ -20,7 +20,7 @@ export const CATALOGUE_CATEGORIES: ServiceCatalogueCategory[] = [
   },
   {
     id: 'painting',
-    num: '02',
+    num: '',
     title: 'Painting',
     tagline: 'Dustless mechanized interior & exterior painting with multi-year warranties',
     badge: 'Asian Paints & Birla Paints',
@@ -29,7 +29,7 @@ export const CATALOGUE_CATEGORIES: ServiceCatalogueCategory[] = [
   },
   {
     id: 'curtains',
-    num: '03',
+    num: '',
     title: 'Curtains',
     tagline: 'Luxury drapery, wave-fold sheers & designer fabric collections',
     badge: 'Curtains Avenue · MBF · BD Balaji',
@@ -38,7 +38,7 @@ export const CATALOGUE_CATEGORIES: ServiceCatalogueCategory[] = [
   },
   {
     id: 'blinds',
-    num: '04',
+    num: '',
     title: 'Blinds',
     tagline: 'Architectural motorized & manual window light control systems',
     badge: 'Roller · Zebra · Bamboo · PVC',
@@ -47,7 +47,7 @@ export const CATALOGUE_CATEGORIES: ServiceCatalogueCategory[] = [
   },
   {
     id: 'wallpapers',
-    num: '05',
+    num: '',
     title: 'Wallpapers',
     tagline: 'Imported vinyl textured wallcoverings with 10-year durability info',
     badge: '57 sq.ft / Roll · Vinyl Coated',
@@ -56,7 +56,7 @@ export const CATALOGUE_CATEGORIES: ServiceCatalogueCategory[] = [
   },
   {
     id: 'wooden-flooring',
-    num: '06',
+    num: '',
     title: 'Wooden Flooring',
     tagline: 'Action Tesa & Surya laminate AC3–AC5 planks, vinyl & VOX options',
     badge: 'Action Tesa · Surya · VOX',
@@ -65,7 +65,7 @@ export const CATALOGUE_CATEGORIES: ServiceCatalogueCategory[] = [
   },
   {
     id: 'false-ceiling',
-    num: '07',
+    num: '',
     title: 'False Ceiling',
     tagline: 'Cove lighting drywall, grid, PVC, VOX and wooden ceiling architecture',
     badge: 'Saint-Gobain & USG Boral',
@@ -74,7 +74,7 @@ export const CATALOGUE_CATEGORIES: ServiceCatalogueCategory[] = [
   },
   {
     id: 'mosquito-nets',
-    num: '08',
+    num: '',
     title: 'Netlon / Mosquito Nets',
     tagline: '100% insect protection with magnetic, pleated and Saint-Gobain mesh',
     badge: 'Saint-Gobain Certified Mesh',
@@ -83,7 +83,7 @@ export const CATALOGUE_CATEGORIES: ServiceCatalogueCategory[] = [
   },
   {
     id: 'louvers',
-    num: '09',
+    num: '',
     title: 'Louvers',
     tagline: 'High-end charcoal and shore fluted wall panels on 16mm commercial plywood',
     badge: '16mm Commercial Plywood',
@@ -92,7 +92,7 @@ export const CATALOGUE_CATEGORIES: ServiceCatalogueCategory[] = [
   },
   {
     id: 'artificial-grass',
-    num: '10',
+    num: '',
     title: 'Artificial Grass',
     tagline: 'Natural lush green landscaping turf for balconies, terraces & lawns',
     badge: '25mm to 50mm Pile Height',

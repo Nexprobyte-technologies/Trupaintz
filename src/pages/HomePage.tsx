@@ -18,6 +18,7 @@ import {
   Award,
   Download,
   Sun,
+  Sunset,
   Moon,
   Lightbulb,
   Sliders,
@@ -47,7 +48,7 @@ interface HeroSlide {
 const HERO_SLIDES: HeroSlide[] = [
   {
     id: 0,
-    number: '01',
+    number: '',
     category: 'Dustless Painting & Home Solutions',
     title: 'Precision Painting & ',
     highlightText: 'Complete Interior Solutions',
@@ -62,7 +63,7 @@ const HERO_SLIDES: HeroSlide[] = [
   },
   {
     id: 1,
-    number: '02',
+    number: '',
     category: 'Architectural Louvers, Ceilings & Turf',
     title: 'Transform Spaces with ',
     highlightText: 'Louvers, Ceilings & Grass',
@@ -77,7 +78,7 @@ const HERO_SLIDES: HeroSlide[] = [
   },
   {
     id: 2,
-    number: '03',
+    number: '',
     category: 'Heavy-Gauge UPVC Windows & Doors',
     title: 'Precision UPVC Profiles & ',
     highlightText: 'Saint-Gobain Mosquito Net',
@@ -92,7 +93,7 @@ const HERO_SLIDES: HeroSlide[] = [
   },
   {
     id: 3,
-    number: '04',
+    number: '',
     category: 'Curtains, Motorized Blinds & Hardwood Flooring',
     title: 'Bespoke Drapery, Smart Blinds & ',
     highlightText: 'Luxury Flooring',
@@ -188,38 +189,38 @@ const VISUALIZER_TEXTURES: VisualizerTexture[] = [
 ];
 
 const LIGHTING_CONFIG = {
-  morning: {
-    name: 'Morning Mode',
-    sub: 'Crisp Dawn Sunlight',
-    kelvin: '5200K Dawn',
-    lux: '480 Lux',
-    cssFilter: 'brightness(1.06) contrast(1.04) saturate(1.05) hue-rotate(-2deg)',
-    overlayStyle: 'linear-gradient(135deg, rgba(186, 230, 253, 0.18) 0%, rgba(254, 243, 199, 0.16) 45%, transparent 90%)',
-    badgeText: '5200K Dawn · Crisp Horizon Light',
-    accentColor: '#38bdf8',
-    description: 'Highlights crisp natural reflections, clean UPVC lines, and subtle plaster texture gradients at daybreak.',
-  },
   day: {
     name: 'Day Mode',
-    sub: 'Natural High Noon',
-    kelvin: '4200K Daylight',
-    lux: '860 Lux',
-    cssFilter: 'brightness(1.02) contrast(1.06) saturate(1.1)',
-    overlayStyle: 'linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, transparent 60%)',
-    badgeText: '4200K Sun · True-Color Architectural Daylight',
-    accentColor: '#fbbf24',
-    description: 'Maximizes architectural color clarity and natural stone/wood grain contrast under high daylight conditions.',
+    sub: 'True Natural Sun',
+    kelvin: '5600K Daylight',
+    lux: '980 Lux',
+    cssFilter: 'brightness(1.12) contrast(1.05) saturate(1.15)',
+    overlayStyle: 'linear-gradient(145deg, rgba(255, 255, 255, 0.22) 0%, rgba(224, 242, 254, 0.16) 35%, transparent 75%)',
+    badgeText: '5600K Day · Natural Architectural Sun',
+    accentColor: '#38bdf8',
+    description: 'Clean, high-clarity natural sunlight revealing authentic surface textures, sharp UPVC window contours, and natural material tones.',
   },
-  light: {
-    name: 'Light Mode',
-    sub: 'Warm Cove & Chandelier',
-    kelvin: '2700K Warm Gold',
-    lux: '260 Lux',
-    cssFilter: 'brightness(0.92) contrast(1.14) sepia(0.24) saturate(1.28)',
-    overlayStyle: 'radial-gradient(ellipse at 50% 15%, rgba(245, 158, 11, 0.35) 0%, rgba(180, 83, 9, 0.16) 55%, rgba(15, 12, 8, 0.72) 100%)',
-    badgeText: '2700K Warm Gold · Hidden Cove LEDs & Crystal Chandelier',
+  evening: {
+    name: 'Evening Mode',
+    sub: 'Golden Sunset Hour',
+    kelvin: '3400K Golden Sunset',
+    lux: '520 Lux',
+    cssFilter: 'brightness(1.02) contrast(1.16) sepia(0.38) saturate(1.48) hue-rotate(-8deg)',
+    overlayStyle: 'linear-gradient(125deg, rgba(245, 158, 11, 0.48) 0%, rgba(217, 119, 6, 0.32) 45%, rgba(180, 83, 9, 0.18) 75%, transparent 100%)',
+    badgeText: '3400K Sunset · Golden Hour Radiance',
+    accentColor: '#f97316',
+    description: 'Rich sunset rays casting warm amber and terracotta highlights on Italian stucco walls, hardwood flooring, and drapery.',
+  },
+  night: {
+    name: 'Night Mode',
+    sub: 'Warm Chandelier & Hidden Cove LEDs',
+    kelvin: '2400K Warm Gold',
+    lux: '180 Lux',
+    cssFilter: 'brightness(0.72) contrast(1.3) saturate(1.25) hue-rotate(-5deg)',
+    overlayStyle: 'radial-gradient(circle at 50% 35%, rgba(20, 15, 10, 0.12) 0%, rgba(10, 8, 6, 0.88) 100%)',
+    badgeText: '2400K Night · Hidden Cove LEDs & Crystal Chandelier',
     accentColor: '#f59e0b',
-    description: 'Transforms the room into an ambient sanctuary with warm golden ceiling coves, spotlight accents, and intimate textures.',
+    description: 'Intimate midnight luxury ambiance with concealed ceiling cove illumination, warm spotlight cones, and chandelier glow.',
   },
 };
 
@@ -238,8 +239,8 @@ export const HomePage: React.FC = () => {
   const [homeSqft, setHomeSqft] = useState(1500);
   const [homeService, setHomeService] = useState('Home Painting');
 
-  // Interactive 3D Visualizer Studio State
-  const [visLighting, setVisLighting] = useState<'morning' | 'day' | 'light'>('light');
+  // Interactive 3D Visualizer Studio State (Day, Evening, Night)
+  const [visLighting, setVisLighting] = useState<'day' | 'evening' | 'night'>('evening');
   const [visRoom, setVisRoom] = useState<'living' | 'bedroom' | 'balcony'>('living');
   const [visTexture, setVisTexture] = useState<'travertine' | 'venetian' | 'fluted' | 'hardwood'>('travertine');
   const [is3dPerspective, setIs3dPerspective] = useState(true);
@@ -340,7 +341,7 @@ export const HomePage: React.FC = () => {
                   <div className="pt-2 flex flex-wrap items-center gap-3">
                     <Link
                       to={activeSlideData.primaryCtaLink}
-                      className="btn-premium btn-shimmer inline-flex items-center justify-center gap-2 rounded-xl bg-amber-500 px-6 py-3.5 text-sm font-bold text-neutral-950 shadow-xl shadow-amber-500/25 hover:bg-amber-400 transition-all text-center"
+                      className="btn-premium btn-shimmer-advanced inline-flex items-center justify-center gap-2 rounded-xl bg-amber-500 px-6 py-3.5 text-sm font-bold text-neutral-950 shadow-xl shadow-amber-500/30 hover:bg-amber-400 transition-all text-center"
                     >
                       <span>{activeSlideData.primaryCtaText}</span>
                       <ArrowRight className="h-4 w-4" />
@@ -348,7 +349,7 @@ export const HomePage: React.FC = () => {
 
                     <Link
                       to={activeSlideData.secondaryCtaLink}
-                      className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/40 bg-white/15 backdrop-blur-md px-6 py-3.5 text-sm font-medium text-white hover:bg-white/25 transition-all text-center shadow-sm hover:scale-[1.02]"
+                      className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/40 bg-white/15 backdrop-blur-md px-6 py-3.5 text-sm font-medium text-white hover:bg-white/25 transition-all text-center shadow-sm hover:scale-[1.03]"
                     >
                       <Eye className="h-4 w-4 text-amber-300" />
                       <span>{activeSlideData.secondaryCtaText}</span>
@@ -358,7 +359,7 @@ export const HomePage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setIsAppModalOpen(true)}
-                      className="inline-flex items-center justify-center gap-2 rounded-xl border border-amber-400/50 bg-amber-950/70 backdrop-blur-md px-5 py-3.5 text-sm font-semibold text-amber-200 hover:bg-amber-900/80 hover:text-white transition-all text-center shadow-md cursor-pointer hover:scale-[1.02]"
+                      className="inline-flex items-center justify-center gap-2 rounded-xl border border-amber-400/50 bg-amber-950/70 backdrop-blur-md px-5 py-3.5 text-sm font-semibold text-amber-200 hover:bg-amber-900/80 hover:text-white transition-all text-center shadow-md cursor-pointer hover:scale-[1.03]"
                     >
                       <Download className="h-4 w-4 text-amber-300" />
                       <span>Download App</span>
@@ -377,7 +378,7 @@ export const HomePage: React.FC = () => {
                     <span className="hidden sm:inline text-amber-300">{activeSlideData.finishType}</span>
                   </div>
 
-                  {/* 4 Interactive Slide Tabs with 5s Progress Bars */}
+                  {/* 4 Interactive Slide Tabs with 5s Progress Bars (Numbers Removed) */}
                   <div className="grid grid-cols-4 gap-2 sm:gap-3 w-full sm:w-auto">
                     {HERO_SLIDES.map((slide, idx) => (
                       <button
@@ -390,10 +391,9 @@ export const HomePage: React.FC = () => {
                             : 'bg-black/20 hover:bg-white/10 text-neutral-400 hover:text-white border border-transparent'
                         }`}
                       >
-                        <div className="flex items-center justify-between text-[11px] font-mono font-bold mb-1">
-                          <span>{slide.number}</span>
-                          <span className="hidden md:inline text-[10px] font-sans font-normal opacity-80 truncate max-w-[80px]">
-                            {idx === 0 ? 'Living' : idx === 1 ? 'Architecture' : idx === 2 ? 'Bedrooms' : 'Drapery'}
+                        <div className="flex items-center justify-between text-[11px] font-medium mb-1">
+                          <span className="truncate">
+                            {idx === 0 ? 'Living Hall' : idx === 1 ? 'Architecture' : idx === 2 ? 'Master Suites' : 'Drapery'}
                           </span>
                         </div>
                         {/* Progress Bar Track */}
@@ -450,9 +450,7 @@ export const HomePage: React.FC = () => {
           <div className="ethos-card rounded-2xl border border-neutral-200/90 bg-white p-6 shadow-xs flex flex-col justify-between group">
             <div>
               <div className="flex items-center justify-between mb-4">
-                <span className="font-display text-3xl font-bold text-amber-600/70 group-hover:text-amber-600 transition-colors">
-                  01
-                </span>
+                <div className="h-2.5 w-2.5 rounded-full bg-amber-500 group-hover:scale-125 transition-transform"></div>
                 <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-700 group-hover:bg-amber-600 group-hover:text-white transition-colors">
                   <Compass className="h-5 w-5" />
                 </div>
@@ -476,9 +474,7 @@ export const HomePage: React.FC = () => {
           <div className="ethos-card rounded-2xl border border-neutral-200/90 bg-white p-6 shadow-xs flex flex-col justify-between group">
             <div>
               <div className="flex items-center justify-between mb-4">
-                <span className="font-display text-3xl font-bold text-amber-600/70 group-hover:text-amber-600 transition-colors">
-                  02
-                </span>
+                <div className="h-2.5 w-2.5 rounded-full bg-amber-500 group-hover:scale-125 transition-transform"></div>
                 <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-700 group-hover:bg-amber-600 group-hover:text-white transition-colors">
                   <Sparkles className="h-5 w-5" />
                 </div>
@@ -502,9 +498,7 @@ export const HomePage: React.FC = () => {
           <div className="ethos-card rounded-2xl border border-neutral-200/90 bg-white p-6 shadow-xs flex flex-col justify-between group">
             <div>
               <div className="flex items-center justify-between mb-4">
-                <span className="font-display text-3xl font-bold text-amber-600/70 group-hover:text-amber-600 transition-colors">
-                  03
-                </span>
+                <div className="h-2.5 w-2.5 rounded-full bg-amber-500 group-hover:scale-125 transition-transform"></div>
                 <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-700 group-hover:bg-amber-600 group-hover:text-white transition-colors">
                   <Ruler className="h-5 w-5" />
                 </div>
@@ -528,9 +522,7 @@ export const HomePage: React.FC = () => {
           <div className="ethos-card rounded-2xl border border-neutral-200/90 bg-white p-6 shadow-xs flex flex-col justify-between group">
             <div>
               <div className="flex items-center justify-between mb-4">
-                <span className="font-display text-3xl font-bold text-amber-600/70 group-hover:text-amber-600 transition-colors">
-                  04
-                </span>
+                <div className="h-2.5 w-2.5 rounded-full bg-amber-500 group-hover:scale-125 transition-transform"></div>
                 <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-700 group-hover:bg-amber-600 group-hover:text-white transition-colors">
                   <CheckCircle2 className="h-5 w-5" />
                 </div>
@@ -679,10 +671,10 @@ export const HomePage: React.FC = () => {
 
         {/* 5 Core Services Interactive Responsive Grid (4, 5, 8, 9, 10 removed as requested) */}
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
-          {SERVICES_DATA.filter((s) => !['04', '05', '08', '09', '10'].includes(s.num)).map((service) => (
+          {SERVICES_DATA.filter((s) => ['srv-1', 'srv-2', 'srv-3', 'srv-6', 'srv-7'].includes(s.id)).map((service) => (
             <div
               key={service.id}
-              className="ethos-card card-lift-glow rounded-2xl border border-neutral-200/90 bg-white p-4 shadow-xs flex flex-col justify-between group overflow-hidden"
+              className="card-advanced-hover rounded-2xl border border-neutral-200/90 bg-white p-4 shadow-sm flex flex-col justify-between group overflow-hidden"
             >
               <div>
                 <div className="relative aspect-[16/11] rounded-xl overflow-hidden mb-3 bg-neutral-100">
@@ -692,9 +684,6 @@ export const HomePage: React.FC = () => {
                     className="w-full h-full object-cover img-hover-zoom"
                     loading="lazy"
                   />
-                  <span className="absolute top-2 left-2 bg-black/75 backdrop-blur-md px-2 py-0.5 rounded-md text-[11px] font-mono font-bold text-amber-300">
-                    {service.num}
-                  </span>
                 </div>
                 
                 <span className="text-[10px] font-bold text-amber-700 uppercase tracking-wider block">
@@ -761,41 +750,41 @@ export const HomePage: React.FC = () => {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-1.5 bg-neutral-100/90 p-1.5 rounded-2xl border border-neutral-200/90 shrink-0">
               <button
                 type="button"
-                onClick={() => setVisLighting('morning')}
-                className={`flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all ${
-                  visLighting === 'morning'
-                    ? 'bg-white text-neutral-900 shadow-sm border border-neutral-200/80 ring-1 ring-sky-400/40'
-                    : 'text-neutral-600 hover:text-neutral-900 hover:bg-white/50'
+                onClick={() => setVisLighting('day')}
+                className={`flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                  visLighting === 'day'
+                    ? 'bg-white text-neutral-900 shadow-md border border-neutral-200 ring-2 ring-sky-400'
+                    : 'text-neutral-600 hover:text-neutral-900 hover:bg-white/60'
                 }`}
               >
                 <Sun className="h-4 w-4 text-sky-500" />
-                <span>Morning Mode (5200K)</span>
+                <span>Day Mode (5600K)</span>
               </button>
 
               <button
                 type="button"
-                onClick={() => setVisLighting('day')}
-                className={`flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all ${
-                  visLighting === 'day'
-                    ? 'bg-white text-neutral-900 shadow-sm border border-neutral-200/80 ring-1 ring-amber-400/40'
-                    : 'text-neutral-600 hover:text-neutral-900 hover:bg-white/50'
+                onClick={() => setVisLighting('evening')}
+                className={`flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                  visLighting === 'evening'
+                    ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-md border border-amber-400 ring-2 ring-amber-400/50'
+                    : 'text-neutral-600 hover:text-neutral-900 hover:bg-white/60'
                 }`}
               >
-                <Sun className="h-4 w-4 text-amber-500" />
-                <span>Day Mode (4200K)</span>
+                <Sunset className="h-4 w-4 text-amber-200" />
+                <span>Evening Mode (3400K)</span>
               </button>
 
               <button
                 type="button"
-                onClick={() => setVisLighting('light')}
-                className={`flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all ${
-                  visLighting === 'light'
-                    ? 'bg-neutral-900 text-amber-300 shadow-sm border border-neutral-800 ring-1 ring-amber-400/50'
-                    : 'text-neutral-600 hover:text-neutral-900 hover:bg-white/50'
+                onClick={() => setVisLighting('night')}
+                className={`flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                  visLighting === 'night'
+                    ? 'bg-neutral-950 text-amber-300 shadow-md border border-amber-500/50 ring-2 ring-amber-400/60'
+                    : 'text-neutral-600 hover:text-neutral-900 hover:bg-white/60'
                 }`}
               >
-                <Lightbulb className="h-4 w-4 text-amber-400" />
-                <span>Light Mode (2700K Warm)</span>
+                <Moon className="h-4 w-4 text-amber-400" />
+                <span>Night Mode (2400K)</span>
               </button>
             </div>
           </div>
@@ -813,7 +802,7 @@ export const HomePage: React.FC = () => {
                     key={room.id}
                     type="button"
                     onClick={() => setVisRoom(room.id as 'living' | 'bedroom' | 'balcony')}
-                    className={`px-3.5 py-2 rounded-xl text-xs font-medium transition-all shrink-0 border ${
+                    className={`px-3.5 py-2 rounded-xl text-xs font-medium transition-all shrink-0 border cursor-pointer ${
                       visRoom === room.id
                         ? 'border-amber-600 bg-amber-500/15 text-amber-900 font-bold shadow-xs'
                         : 'border-neutral-200 bg-neutral-50/80 text-neutral-600 hover:bg-neutral-100'
@@ -826,7 +815,7 @@ export const HomePage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setIs3dPerspective(!is3dPerspective)}
-                  className={`ml-auto hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[11px] font-semibold border transition-all ${
+                  className={`ml-auto hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[11px] font-semibold border transition-all cursor-pointer ${
                     is3dPerspective
                       ? 'border-amber-400 bg-amber-50 text-amber-800'
                       : 'border-neutral-200 text-neutral-500 hover:bg-neutral-50'
@@ -864,14 +853,44 @@ export const HomePage: React.FC = () => {
                     }}
                   />
 
-                  {/* Evening Warm Cove Breathing Effect */}
-                  {visLighting === 'light' && (
+                  {/* Day Mode: Natural Sunbeam flare from high angle */}
+                  {visLighting === 'day' && (
                     <div
-                      className="absolute inset-0 pointer-events-none animate-cove-pulse"
+                      className="absolute inset-0 pointer-events-none animate-sunray"
                       style={{
-                        background: 'radial-gradient(circle at 50% 20%, rgba(245, 158, 11, 0.28) 0%, transparent 60%)',
+                        background: 'radial-gradient(circle at 85% 15%, rgba(254, 240, 138, 0.35) 0%, rgba(224, 242, 254, 0.2) 35%, transparent 70%)',
                       }}
                     />
+                  )}
+
+                  {/* Evening Mode: Golden Sunset Horizon sweep */}
+                  {visLighting === 'evening' && (
+                    <div
+                      className="absolute inset-0 pointer-events-none"
+                      style={{
+                        background: 'radial-gradient(ellipse 90% 60% at 75% 45%, rgba(251, 146, 60, 0.35) 0%, rgba(217, 119, 6, 0.2) 50%, transparent 80%)',
+                      }}
+                    />
+                  )}
+
+                  {/* Night Mode: False Ceiling Concealed Cove LEDs + Feature Wall Spotlights */}
+                  {visLighting === 'night' && (
+                    <>
+                      {/* Active Glowing False Ceiling Cove Strip */}
+                      <div
+                        className="absolute inset-0 pointer-events-none animate-cove-pulse"
+                        style={{
+                          background: 'radial-gradient(ellipse 95% 45% at 50% 10%, rgba(251, 191, 36, 0.8) 0%, rgba(217, 119, 6, 0.38) 40%, transparent 80%)',
+                        }}
+                      />
+                      {/* Spotlights pooling on accent wall */}
+                      <div
+                        className="absolute inset-0 pointer-events-none animate-night-glow"
+                        style={{
+                          background: 'radial-gradient(ellipse at 30% 35%, rgba(254, 243, 199, 0.35) 0%, transparent 35%), radial-gradient(ellipse at 70% 35%, rgba(254, 243, 199, 0.35) 0%, transparent 35%)',
+                        }}
+                      />
+                    </>
                   )}
 
                   {/* Live Simulation Telemetry HUD */}
@@ -1030,7 +1049,7 @@ export const HomePage: React.FC = () => {
           {PROJECTS_DATA.slice(0, 3).map((proj) => (
             <div
               key={proj.id}
-              className="card-lift-glow rounded-2xl border border-neutral-200/90 bg-white overflow-hidden shadow-sm flex flex-col group"
+              className="card-advanced-hover rounded-2xl border border-neutral-200/90 bg-white overflow-hidden shadow-sm flex flex-col group"
             >
               <div className="relative aspect-[16/11] overflow-hidden">
                 <img
@@ -1149,7 +1168,7 @@ export const HomePage: React.FC = () => {
                 </div>
                 <Link
                   to={`/estimator?sqft=${homeSqft}&service=${encodeURIComponent(homeService)}`}
-                  className="rounded-xl bg-amber-600 hover:bg-amber-500 px-4 py-2.5 text-xs font-semibold text-white transition-colors shrink-0 shadow-sm whitespace-nowrap"
+                  className="btn-shimmer-advanced rounded-xl bg-amber-600 hover:bg-amber-500 px-4 py-2.5 text-xs font-semibold text-white transition-colors shrink-0 shadow-sm whitespace-nowrap"
                 >
                   Full Breakdown →
                 </Link>
@@ -1162,21 +1181,21 @@ export const HomePage: React.FC = () => {
           </div>
 
           {/* Right Column: Complimentary On-Site Inspection Desk (Fills space with high-value relevant offering) */}
-          <div className="lg:col-span-5 rounded-3xl border border-neutral-800 bg-neutral-950 text-white p-6 sm:p-8 lg:p-9 shadow-xl flex flex-col justify-between relative overflow-hidden group">
-            {/* Architectural Room Background Image with dark luxury overlay */}
+          <div className="lg:col-span-5 rounded-3xl border border-amber-900/30 bg-neutral-950 text-white p-6 sm:p-8 lg:p-9 shadow-2xl flex flex-col justify-between relative overflow-hidden group">
+            {/* Architectural Room Background Image - Visibly prominent with warm interior lighting */}
             <div className="absolute inset-0 z-0 overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
-                alt="Architectural Site Visit"
-                className="w-full h-full object-cover object-center opacity-30 mix-blend-luminosity scale-105 group-hover:scale-110 transition-transform duration-1000"
+                src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=85"
+                alt="Luxury Villa Interior Inspection"
+                className="w-full h-full object-cover object-center opacity-60 scale-100 group-hover:scale-105 transition-transform duration-700"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-br from-neutral-950/95 via-neutral-950/85 to-[#1C1814]/90" />
+              <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/95 via-neutral-950/65 to-neutral-950/40 pointer-events-none" />
             </div>
 
             {/* Ambient gold glow */}
             <div 
-              className="pointer-events-none absolute -top-20 -right-20 w-60 h-60 rounded-full blur-3xl opacity-25 z-0"
+              className="pointer-events-none absolute -top-20 -right-20 w-60 h-60 rounded-full blur-3xl opacity-30 z-0"
               style={{ background: 'radial-gradient(circle, #f59e0b 0%, transparent 70%)' }}
             />
 
@@ -1188,41 +1207,41 @@ export const HomePage: React.FC = () => {
               <h3 className="font-display text-2xl sm:text-3xl font-bold text-white leading-tight">
                 Free On-Site Inspection &amp; Moisture Testing
               </h3>
-              <p className="mt-2.5 text-xs sm:text-sm text-neutral-300 leading-relaxed">
+              <p className="mt-2.5 text-xs sm:text-sm text-neutral-200 leading-relaxed drop-shadow-sm">
                 Before confirming your project, our senior project engineer visits your location with precision inspection equipment and physical material samples.
               </p>
 
-              {/* 4 Trust Highlights */}
+              {/* 4 Trust Highlights with Glassmorphism */}
               <div className="mt-5 space-y-2.5">
-                <div className="flex items-start gap-2.5 p-2 rounded-xl bg-white/5 border border-white/10">
+                <div className="flex items-start gap-2.5 p-2.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/15 hover:border-amber-400/50 transition-colors">
                   <Ruler className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" />
                   <div>
                     <h5 className="text-xs font-bold text-white">Micron Laser Area Measurement</h5>
-                    <p className="text-[11px] text-neutral-400">Accurate sq.ft calculation for windows, flooring &amp; walls.</p>
+                    <p className="text-[11px] text-neutral-300">Accurate sq.ft calculation for windows, flooring &amp; walls.</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-2.5 p-2 rounded-xl bg-white/5 border border-white/10">
+                <div className="flex items-start gap-2.5 p-2.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/15 hover:border-emerald-400/50 transition-colors">
                   <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0 mt-0.5" />
                   <div>
                     <h5 className="text-xs font-bold text-white">Digital Pinless Moisture Scan</h5>
-                    <p className="text-[11px] text-neutral-400">Detects hidden wall dampness before paint or floor installation.</p>
+                    <p className="text-[11px] text-neutral-300">Detects hidden wall dampness before paint or floor installation.</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-2.5 p-2 rounded-xl bg-white/5 border border-white/10">
+                <div className="flex items-start gap-2.5 p-2.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/15 hover:border-amber-400/50 transition-colors">
                   <Layers className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" />
                   <div>
                     <h5 className="text-xs font-bold text-white">50+ Physical Swatches &amp; Profiles</h5>
-                    <p className="text-[11px] text-neutral-400">Touch genuine EITI UPVC sections, curtains, and flooring AC samples.</p>
+                    <p className="text-[11px] text-neutral-300">Touch genuine EITI UPVC sections, curtains, and flooring AC samples.</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-2.5 p-2 rounded-xl bg-white/5 border border-white/10">
+                <div className="flex items-start gap-2.5 p-2.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/15 hover:border-amber-400/50 transition-colors">
                   <Award className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" />
                   <div>
                     <h5 className="text-xs font-bold text-white">Guaranteed Transparent Pricing</h5>
-                    <p className="text-[11px] text-neutral-400">Zero hidden extras with 10–20 year manufacturer written warranty.</p>
+                    <p className="text-[11px] text-neutral-300">Zero hidden extras with 10–20 year manufacturer written warranty.</p>
                   </div>
                 </div>
               </div>
@@ -1232,7 +1251,7 @@ export const HomePage: React.FC = () => {
             <div className="mt-6 pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center gap-3 relative z-10">
               <Link
                 to="/contact"
-                className="btn-shimmer w-full sm:w-auto flex-1 text-center rounded-xl bg-amber-500 hover:bg-amber-400 px-4 py-2.5 text-xs font-bold text-neutral-950 shadow-md transition-all"
+                className="btn-shimmer-advanced w-full sm:w-auto flex-1 text-center rounded-xl bg-amber-500 hover:bg-amber-400 px-4 py-2.5 text-xs font-bold text-neutral-950 shadow-md transition-all"
               >
                 Book Free Site Visit →
               </Link>

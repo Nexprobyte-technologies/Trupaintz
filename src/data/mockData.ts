@@ -197,7 +197,7 @@ export const PROJECTS_DATA: Project[] = [
 export const SERVICES_DATA: ServiceItem[] = [
   {
     id: 'srv-1',
-    num: '01',
+    num: '',
     title: 'UPVC Windows & Doors',
     shortDesc: 'Premium UPVC profiles in EITI 2.5mm and BADYEE 2mm with open, sliding, fixed, and touch-lock designs.',
     fullDesc: 'Engineered for exceptional acoustic insulation, dust prevention, and thermal efficiency. We fabricate precision UPVC windows and doors utilizing certified EITI 2.5mm and BADYEE 2mm profiles, automated machine welding, heavy-duty multi-point hardware, and weather-resistant EPDM gaskets backed by a 15–20 year warranty.',
@@ -214,7 +214,7 @@ export const SERVICES_DATA: ServiceItem[] = [
   },
   {
     id: 'srv-2',
-    num: '02',
+    num: '',
     title: 'Painting',
     shortDesc: 'Dustless mechanized interior and exterior home painting with Asian Paints & Birla Paints with multi-year warranties.',
     fullDesc: 'Turnkey interior and exterior painting engineered for flawless satin durability. Using dustless mechanized sanding and certified Asian Paints & Birla Paints systems, we deliver pristine walls backed by 3, 7, and 10-year warranties.',
@@ -231,7 +231,7 @@ export const SERVICES_DATA: ServiceItem[] = [
   },
   {
     id: 'srv-3',
-    num: '03',
+    num: '',
     title: 'Curtains',
     shortDesc: 'Bespoke drapery tailored with Curtains Avenue, MBF Collection, and BD Balaji Décor fabrics with complete accessories.',
     fullDesc: 'Handcrafted luxury window treatments crafted to drape with fluid elegance. We custom-stitch pinch pleats, ripple fold waves, and multi-layered sheer and blackout drapery featuring premium collections and designer hardware.',
@@ -248,7 +248,7 @@ export const SERVICES_DATA: ServiceItem[] = [
   },
   {
     id: 'srv-4',
-    num: '04',
+    num: '',
     title: 'Blinds',
     shortDesc: 'Architectural motorized and manual blinds including Roller, Zebra, Décor, Bamboo, Vertical, PVC, and Venetian styles.',
     fullDesc: 'Seamless light filtration with whisper-quiet controls. Our collection includes motorized and manual blackout rollers, dual-shade Zebra day-night screens, natural woven bamboo, and moisture-resistant PVC blinds with transparent fitting & transport charges.',
@@ -265,7 +265,7 @@ export const SERVICES_DATA: ServiceItem[] = [
   },
   {
     id: 'srv-5',
-    num: '05',
+    num: '',
     title: 'Wallpapers',
     shortDesc: 'European textured wallcoverings, Tattva Opel, Ombre, Truffle, Style, Fabtec, and custom large-format murals.',
     fullDesc: 'Infuse texture and depth into bedrooms and formal elevations. We curate vinyl-coated wallpaper collections featuring botanical landscapes, geometric metallics, textured grasscloths, and peel-resistant murals backed by 10-year durability info.',
@@ -282,7 +282,7 @@ export const SERVICES_DATA: ServiceItem[] = [
   },
   {
     id: 'srv-6',
-    num: '06',
+    num: '',
     title: 'Wooden Flooring',
     shortDesc: 'Action Tesa AC3–AC5 and Surya laminate flooring, complete with accessories, vinyl, and VOX flooring options.',
     fullDesc: 'Transform living spaces with certified European AC-rated flooring. We supply and install Action Tesa and Surya wooden planks, waterproof SPC vinyl, and European VOX planks with seamless transitions and multi-year warranties.',
@@ -299,7 +299,7 @@ export const SERVICES_DATA: ServiceItem[] = [
   },
   {
     id: 'srv-7',
-    num: '07',
+    num: '',
     title: 'False Ceiling',
     shortDesc: 'Modern false ceilings by Saint-Gobain & USG Boral in Gypsum, Grid, PVC, VOX, Exterior, Wooden, and POP designs.',
     fullDesc: 'End-to-end architectural ceiling design and ambient cove illumination. We engineer moisture-resistant Gypsum ceilings, acoustic grid panels, sleek PVC/VOX systems, and rich wooden ceilings utilizing certified Saint-Gobain & USG Boral channels.',
@@ -316,7 +316,7 @@ export const SERVICES_DATA: ServiceItem[] = [
   },
   {
     id: 'srv-8',
-    num: '08',
+    num: '',
     title: 'Netlon / Mosquito Nets',
     shortDesc: 'Complete window & door insect screening with Magnetic type, Pleated, Normal Lock, Velcro, and Saint-Gobain mesh.',
     fullDesc: 'Shield your living spaces from insects and dengue mosquitoes without blocking natural ventilation and panoramic views. We fabricate heavy-duty aluminium frames with genuine Saint-Gobain fiberglass mesh, magnetic seals, and barrier-free pleated systems.',
@@ -333,7 +333,7 @@ export const SERVICES_DATA: ServiceItem[] = [
   },
   {
     id: 'srv-9',
-    num: '09',
+    num: '',
     title: 'Louvers',
     shortDesc: 'Architectural Shore Louvers and Charcoal Louvers on 16mm commercial plywood with premium lamination.',
     fullDesc: 'Add dramatic vertical depth and linear shadows to TV accent walls, foyers, and bed headboards. Our decorative louvers are milled from durable 16mm commercial plywood and finished in high-pressure premium scratchproof laminates.',
@@ -350,7 +350,7 @@ export const SERVICES_DATA: ServiceItem[] = [
   },
   {
     id: 'srv-10',
-    num: '10',
+    num: '',
     title: 'Artificial Grass',
     shortDesc: 'Realistic landscape turf in 25mm to 50mm pile heights for balconies, terraces, gardens, and commercial spaces.',
     fullDesc: 'Create a vibrant year-round natural green sanctuary. Our UV-stabilized high-density artificial turf delivers lush aesthetic appeal with zero mowing, low maintenance, and quick-drain technology for residential and commercial spaces.',

@@ -95,34 +95,41 @@ export const AboutPage: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
             {
-              step: '01',
+              id: 'inspect',
+              icon: Ruler,
               title: 'Substrate Inspection',
               desc: 'Digital moisture testing below 10%, surface flatness mapping, and alkaline barrier primer application.',
             },
             {
-              step: '02',
+              id: 'prep',
+              icon: Paintbrush,
               title: 'Dustless Mechanized Prep',
               desc: 'Direct HEPA vacuum-connected oscillating sanders remove uneven layers with zero airborne chalk.',
             },
             {
-              step: '03',
+              id: 'artisan',
+              icon: Sparkles,
               title: 'Artisan Finish Coats',
               desc: 'Up to 3 hand-burnished trowel passes with genuine marble dust, metallic micas, or premium emulsions.',
             },
             {
-              step: '04',
+              id: 'handover',
+              icon: ShieldCheck,
               title: 'White-Glove Handover',
               desc: 'Thorough cleaning, architectural cove light inspection, and 10-year written warranty certificate.',
             },
           ].map((item) => (
             <div
-              key={item.step}
-              className="rounded-2xl border border-neutral-200/90 bg-white p-6 shadow-sm flex flex-col justify-between"
+              key={item.id}
+              className="card-advanced-hover rounded-2xl border border-neutral-200/90 bg-white p-6 shadow-sm flex flex-col justify-between"
             >
               <div>
-                <span className="font-mono text-2xl font-bold text-amber-600 block mb-3">
-                  {item.step}
-                </span>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="h-2.5 w-2.5 rounded-full bg-amber-500"></div>
+                  <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-700">
+                    <item.icon className="h-5 w-5" />
+                  </div>
+                </div>
                 <h3 className="font-display text-lg font-bold text-neutral-950">
                   {item.title}
                 </h3>
