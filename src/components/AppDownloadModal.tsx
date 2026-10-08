@@ -58,10 +58,10 @@ export const AppDownloadModal: React.FC<AppDownloadModalProps> = ({ isOpen, onCl
           <X className="h-4 w-4" />
         </button>
 
-        {/* App Monogram Icon */}
-        <div className="mx-auto mb-4 relative flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-500 via-amber-600 to-amber-700 text-white shadow-lg ring-4 ring-amber-400/20">
-          <span className="font-serif font-bold text-2xl tracking-wider">TP</span>
-          <span className="absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-emerald-600 text-white shadow ring-2 ring-[#FAF7F2] dark:ring-[#12151B]">
+        {/* App Logo Icon with White Background */}
+        <div className="mx-auto mb-4 relative flex h-16 w-16 items-center justify-center rounded-2xl bg-white p-2 shadow-lg border border-neutral-200">
+          <img src="/logo.png" alt="TruPaintz" className="h-full w-full object-contain" />
+          <span className="absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-emerald-600 text-white shadow ring-2 ring-white">
             <Smartphone className="h-3 w-3" />
           </span>
         </div>

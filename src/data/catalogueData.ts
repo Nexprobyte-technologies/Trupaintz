@@ -15,7 +15,7 @@ export const CATALOGUE_CATEGORIES: ServiceCatalogueCategory[] = [
     title: 'UPVC Windows & Doors',
     tagline: 'Precision engineered German-standard acoustic profiles & netlon systems',
     badge: 'EITI & BADYEE Certified',
-    heroImage: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=1200&q=80',
     priceStarting: 'From ₹290 / sq.ft',
   },
   {
@@ -42,7 +42,7 @@ export const CATALOGUE_CATEGORIES: ServiceCatalogueCategory[] = [
     title: 'Blinds',
     tagline: 'Architectural motorized & manual window light control systems',
     badge: 'Roller · Zebra · Bamboo · PVC',
-    heroImage: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=1200&q=80',
     priceStarting: 'Enquire for Price',
   },
   {
@@ -78,7 +78,7 @@ export const CATALOGUE_CATEGORIES: ServiceCatalogueCategory[] = [
     title: 'Netlon / Mosquito Nets',
     tagline: '100% insect protection with magnetic, pleated and Saint-Gobain mesh',
     badge: 'Saint-Gobain Certified Mesh',
-    heroImage: 'https://images.unsplash.com/photo-1540518614846-7ede433c4ef0?auto=format&fit=crop&w=1200&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=80',
     priceStarting: 'From ₹45 / sq.ft',
   },
   {
@@ -87,7 +87,7 @@ export const CATALOGUE_CATEGORIES: ServiceCatalogueCategory[] = [
     title: 'Louvers',
     tagline: 'High-end charcoal and shore fluted wall panels on 16mm commercial plywood',
     badge: '16mm Commercial Plywood',
-    heroImage: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1200&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1200&q=80',
     priceStarting: 'From ₹850 / piece',
   },
   {
@@ -96,7 +96,7 @@ export const CATALOGUE_CATEGORIES: ServiceCatalogueCategory[] = [
     title: 'Artificial Grass',
     tagline: 'Natural lush green landscaping turf for balconies, terraces & lawns',
     badge: '25mm to 50mm Pile Height',
-    heroImage: 'https://images.unsplash.com/photo-1558904541-efa8c4a08931?auto=format&fit=crop&w=1200&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1584467541268-b040f83be3fd?auto=format&fit=crop&w=1200&q=80',
     priceStarting: 'From ₹55 / sq.ft',
   },
 ];

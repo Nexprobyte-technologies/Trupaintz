@@ -129,7 +129,7 @@ export const EstimatorPage: React.FC = () => {
   };
 
   return (
-    <div className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12 py-10 sm:py-16 space-y-12">
+    <div className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12 pt-2 sm:pt-4 pb-12 sm:pb-16 space-y-10 sm:space-y-12">
       
       {/* Page Header */}
       <div className="max-w-3xl space-y-3">

@@ -7,7 +7,6 @@ import {
   Sparkles, 
   Calculator, 
   Layers, 
-  Image as GalleryIcon,
   Star, 
   ArrowRight
 } from 'lucide-react';
@@ -55,18 +54,6 @@ export const Header: React.FC = () => {
       icon: Layers,
     },
     {
-      to: '/gallery',
-      label: 'Gallery',
-      desc: 'All categories: UPVC, mosquito net, flooring & decor',
-      icon: GalleryIcon,
-    },
-    {
-      to: '/visualizer',
-      label: '3D Studio',
-      desc: 'Simulate Italian stuccos and lighting in real time',
-      icon: Sparkles,
-    },
-    {
       to: '/estimator',
       label: 'Cost Estimator',
       desc: 'Transparent sq.ft calculation & site visit booking',
@@ -86,15 +73,19 @@ export const Header: React.FC = () => {
     <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-amber-900/10 bg-[#FAF7F2]/98 backdrop-blur-md shadow-xs transition-all duration-200">
       <div className="mx-auto flex h-16 sm:h-20 max-w-screen-2xl w-full items-center justify-between px-4 sm:px-6 lg:px-10 xl:px-12">
         
-        {/* Brand Logo with letter "TP" */}
+        {/* Brand Logo with White Background */}
         <Link
           to="/"
           className="group flex items-center gap-3 text-left focus:outline-none shrink-0 mr-4"
           aria-label="TruPaintz and Interiors Home"
         >
-          {/* Letter "TP" Logo Badge */}
-          <div className="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-500 via-amber-600 to-amber-700 text-white shadow-md ring-2 ring-amber-400/40 shrink-0 font-serif font-bold text-base sm:text-lg tracking-wider transition-transform duration-300 group-hover:scale-105">
-            TP
+          {/* Logo with White Background Badge */}
+          <div className="flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-2xl bg-white shadow-md border border-neutral-200/90 p-1.5 shrink-0 transition-transform duration-300 group-hover:scale-105">
+            <img 
+              src="/logo.png" 
+              alt="TruPaintz & Interiors" 
+              className="h-full w-full object-contain" 
+            />
           </div>
 
           <div className="flex flex-col">

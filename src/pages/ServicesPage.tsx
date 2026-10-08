@@ -38,7 +38,7 @@ export const ServicesPage: React.FC = () => {
   };
 
   return (
-    <div className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12 py-10 sm:py-16 space-y-16">
+    <div className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12 pt-2 sm:pt-4 pb-12 sm:pb-16 space-y-12 sm:space-y-16">
       
       {/* 1. HERO SECTION (Preserving existing elegance & typography) */}
       <div className="max-w-4xl space-y-4">
@@ -108,7 +108,7 @@ export const ServicesPage: React.FC = () => {
           <div className="relative rounded-3xl overflow-hidden border border-neutral-200 bg-neutral-900 shadow-md group">
             <div className="aspect-[16/8] sm:aspect-[21/9] w-full overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1600&q=80"
+                src="https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=1600&q=80"
                 alt="Luxury UPVC Windows & Doors Installation"
                 className="w-full h-full object-cover img-hover-zoom brightness-90 group-hover:brightness-95 transition-all duration-700"
                 loading="lazy"
@@ -627,7 +627,7 @@ export const ServicesPage: React.FC = () => {
             </div>
             <div className="flex items-center gap-2 shrink-0">
               <Link
-                to="/gallery?category=Wallpapers"
+                to="/projects"
                 className="px-4 py-2.5 rounded-xl border border-neutral-300 bg-white text-xs font-semibold text-neutral-800 hover:bg-neutral-50 transition-colors"
               >
                 Explore Designs

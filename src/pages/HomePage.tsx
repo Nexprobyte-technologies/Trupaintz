@@ -11,16 +11,16 @@ import {
   Eye, 
   Calculator, 
   CheckCircle2, 
-  Instagram,
   Compass, 
   Layers, 
   Phone,
-  PhoneCall,
   Clock,
-  Award
+  Award,
+  Download
 } from 'lucide-react';
 import { BRAND_INFO, SERVICES_DATA, PROJECTS_DATA } from '../data/mockData';
 import { useReviews } from '../context/ReviewsContext';
+import { AppDownloadModal } from '../components/AppDownloadModal';
 
 interface HeroSlide {
   id: number;
@@ -66,8 +66,8 @@ const HERO_SLIDES: HeroSlide[] = [
     finishType: '16mm Louvers, VOX Ceilings & 40mm Turf',
     primaryCtaText: 'Explore All 10 Services',
     primaryCtaLink: '/services',
-    secondaryCtaText: 'View Design Gallery',
-    secondaryCtaLink: '/gallery',
+    secondaryCtaText: 'Explore Projects',
+    secondaryCtaLink: '/projects',
   },
   {
     id: 2,
@@ -94,8 +94,8 @@ const HERO_SLIDES: HeroSlide[] = [
     image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1920&q=85',
     locationBadge: 'Aura Residence · Chinnamathampalayam',
     finishType: 'Smart Blinds, Curtains Avenue & Action Tesa',
-    primaryCtaText: 'Launch 3D Studio',
-    primaryCtaLink: '/visualizer',
+    primaryCtaText: 'Instant Estimate',
+    primaryCtaLink: '/estimator',
     secondaryCtaText: 'Explore All Solutions',
     secondaryCtaLink: '/services',
   },
@@ -105,15 +105,12 @@ export const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const { reviews, averageRating, totalReviews } = useReviews();
 
+  // App Download Modal State
+  const [isAppModalOpen, setIsAppModalOpen] = useState(false);
+
   // 5-Second Carousel State
   const [currentSlide, setCurrentSlide] = useState(0);
   const [animProgressKey, setAnimProgressKey] = useState(0);
-
-  // Quick Callback Form State (inspired by Global Ethos)
-  const [cbName, setCbName] = useState('');
-  const [cbPhone, setCbPhone] = useState('');
-  const [cbService, setCbService] = useState('UPVC Windows & Doors');
-  const [cbSubmitted, setCbSubmitted] = useState(false);
 
   // Quick Estimator State on Home Page
   const [homeSqft, setHomeSqft] = useState(1500);
@@ -136,24 +133,13 @@ export const HomePage: React.FC = () => {
     setAnimProgressKey((prev) => prev + 1);
   };
 
-  const handleCallbackSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!cbName.trim() || !cbPhone.trim()) return;
-    setCbSubmitted(true);
-    setTimeout(() => {
-      setCbName('');
-      setCbPhone('');
-      setCbSubmitted(false);
-    }, 5000);
-  };
-
   const activeSlideData = HERO_SLIDES[currentSlide];
 
   return (
-    <div className="space-y-16 sm:space-y-24 pb-16">
+    <div className="space-y-10 sm:space-y-12 pb-12">
       
       {/* 1. Global Ethos Inspired 5-Second Auto-Advancing Hero Carousel */}
-      <section className="relative overflow-hidden pt-4 pb-12 sm:pt-8 sm:pb-16 lg:pb-20">
+      <section className="relative overflow-hidden pt-1 pb-4 sm:pt-2 sm:pb-6 lg:pb-8">
         {/* Subtle Ambient Light Glow */}
         <div
           className="pointer-events-none absolute -top-32 left-1/2 -z-10 h-[500px] w-[900px] -translate-x-1/2 rounded-full opacity-20 blur-3xl"
@@ -164,30 +150,11 @@ export const HomePage: React.FC = () => {
 
         <div className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
           
-          {/* Top Verification Kicker */}
-          <div className="mb-4 sm:mb-6 flex flex-wrap items-center gap-2 text-xs text-neutral-600">
-            <span className="font-semibold text-amber-800 px-2.5 py-1 rounded-full bg-amber-500/15 border border-amber-500/30">
-              Artisanal Studio
-            </span>
-            <span aria-hidden="true" className="text-neutral-400">·</span>
-            <a
-              href={BRAND_INFO.instagramUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 font-medium text-neutral-800 hover:text-amber-700 underline-offset-4 hover:underline transition-colors"
-            >
-              <Instagram className="h-3.5 w-3.5 text-pink-600" />
-              <span>{BRAND_INFO.instagramHandle}</span>
-            </a>
-            <span aria-hidden="true" className="hidden sm:inline text-neutral-400">·</span>
-            <span className="text-neutral-500 hidden sm:inline">Bespoke Italian Plasters &amp; Turnkey Interiors</span>
-          </div>
-
           {/* Hero Main Presentation Card */}
           <div className="relative rounded-3xl overflow-hidden border border-amber-900/15 bg-white shadow-2xl">
             
             {/* Visual Carousel Backdrop & Image Layers */}
-            <div className="relative h-[480px] sm:h-[540px] lg:h-[620px] w-full overflow-hidden bg-neutral-900">
+            <div className="relative min-h-[520px] sm:h-[580px] lg:h-[640px] xl:h-[680px] w-full overflow-hidden bg-neutral-900">
               {HERO_SLIDES.map((slide, idx) => (
                 <div
                   key={slide.id}
@@ -198,7 +165,7 @@ export const HomePage: React.FC = () => {
                   <img
                     src={slide.image}
                     alt={slide.title}
-                    className={`w-full h-full object-cover transition-transform duration-[6000ms] ease-out ${
+                    className={`w-full h-full object-cover object-center transition-transform duration-[6000ms] ease-out ${
                       idx === currentSlide ? 'scale-105' : 'scale-100'
                     }`}
                   />
@@ -259,13 +226,15 @@ export const HomePage: React.FC = () => {
                       <span>{activeSlideData.secondaryCtaText}</span>
                     </Link>
 
-                    <Link
-                      to="/visualizer"
-                      className="inline-flex items-center justify-center gap-2 rounded-xl border border-amber-400/50 bg-amber-900/30 backdrop-blur-md px-5 py-3.5 text-sm font-medium text-amber-200 hover:bg-amber-900/50 transition-all text-center"
+                    {/* Download App Button with interactive modal */}
+                    <button
+                      type="button"
+                      onClick={() => setIsAppModalOpen(true)}
+                      className="inline-flex items-center justify-center gap-2 rounded-xl border border-amber-400/50 bg-amber-950/70 backdrop-blur-md px-5 py-3.5 text-sm font-semibold text-amber-200 hover:bg-amber-900/80 hover:text-white transition-all text-center shadow-md cursor-pointer"
                     >
-                      <Sparkles className="h-4 w-4 text-amber-300" />
-                      <span>3D Studio</span>
-                    </Link>
+                      <Download className="h-4 w-4 text-amber-300" />
+                      <span>Download App</span>
+                    </button>
                   </div>
                 </div>
 
@@ -332,160 +301,9 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 2. Global Ethos Inspired Quick Call Back & Architecture Highlight Bar */}
+      {/* 2. Architectural Pillars: "Discover the Beauty of Modern Architecture" */}
       <section className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-          
-          {/* Left: Quick Call Back Request (Like Global Ethos "Your Dream Interiors, Just a Form Away") */}
-          <div className="lg:col-span-7 rounded-3xl border border-amber-900/15 bg-gradient-to-br from-white via-amber-50/40 to-white p-6 sm:p-8 shadow-sm flex flex-col justify-between">
-            <div>
-              <div className="flex items-center justify-between mb-3">
-                <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-500/15 px-3 py-1 rounded-full border border-amber-500/25">
-                  <PhoneCall className="h-3.5 w-3.5" />
-                  <span>Request a Call Back</span>
-                </span>
-                <span className="text-xs text-neutral-500 font-medium">Free Architectural Advisory</span>
-              </div>
-
-              <h2 className="font-display text-2xl sm:text-3xl font-bold text-neutral-950">
-                Your Dream Interiors, Just a Form Away
-              </h2>
-              <p className="mt-2 text-xs sm:text-sm text-neutral-600 leading-relaxed">
-                Connect with our senior design director. We will review your floorplan, discuss customized finishes, and schedule a physical swatch visit.
-              </p>
-
-              {cbSubmitted ? (
-                <div className="mt-6 p-5 rounded-2xl bg-emerald-50 border border-emerald-300 text-emerald-900 flex items-center gap-3">
-                  <CheckCircle2 className="h-6 w-6 text-emerald-600 shrink-0" />
-                  <div>
-                    <h4 className="font-bold text-sm">Call Request Received!</h4>
-                    <p className="text-xs text-emerald-700 mt-0.5">
-                      Our lead architectural designer will call you shortly on your provided number.
-                    </p>
-                  </div>
-                </div>
-              ) : (
-                <form onSubmit={handleCallbackSubmit} className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  <div>
-                    <label className="block text-xs font-semibold text-neutral-700 mb-1">Your Name</label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="e.g. Rajesh Kumar"
-                      value={cbName}
-                      onChange={(e) => setCbName(e.target.value)}
-                      className="w-full rounded-xl border border-neutral-300 bg-white px-3.5 py-2.5 text-xs text-neutral-900 focus:border-amber-600 focus:outline-none shadow-xs"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-neutral-700 mb-1">Phone Number</label>
-                    <input
-                      type="tel"
-                      required
-                      placeholder="+91 9845X XXXXX"
-                      value={cbPhone}
-                      onChange={(e) => setCbPhone(e.target.value)}
-                      className="w-full rounded-xl border border-neutral-300 bg-white px-3.5 py-2.5 text-xs text-neutral-900 focus:border-amber-600 focus:outline-none shadow-xs"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-neutral-700 mb-1">Service Needed</label>
-                    <select
-                      value={cbService}
-                      onChange={(e) => setCbService(e.target.value)}
-                      className="w-full rounded-xl border border-neutral-300 bg-white px-3 py-2.5 text-xs text-neutral-900 focus:border-amber-600 focus:outline-none shadow-xs"
-                    >
-                      <option value="UPVC Windows & Doors">UPVC Windows &amp; Doors (EITI &amp; BADYEE)</option>
-                      <option value="Painting">Dustless Painting (Asian &amp; Birla Paints)</option>
-                      <option value="Curtains">Curtains (Curtains Avenue &amp; MBF)</option>
-                      <option value="Blinds">Blinds (Roller, Zebra, Bamboo, Venetian)</option>
-                      <option value="Wallpapers">Wallpapers (European Textured Vinyl)</option>
-                      <option value="Wooden Flooring">Wooden Flooring (Action Tesa &amp; Surya)</option>
-                      <option value="False Ceiling">False Ceiling (Saint-Gobain &amp; USG Boral)</option>
-                      <option value="Netlon / Mosquito Nets">Netlon / Mosquito Nets (Saint-Gobain)</option>
-                      <option value="Louvers">Louvers (Shore &amp; Charcoal Fluted)</option>
-                      <option value="Artificial Grass">Artificial Grass (25mm–50mm Turf)</option>
-                    </select>
-                  </div>
-
-                  <div className="sm:col-span-3 pt-1 flex flex-col sm:flex-row items-center gap-3">
-                    <button
-                      type="submit"
-                      className="w-full sm:w-auto btn-premium rounded-xl bg-amber-600 px-6 py-2.5 text-xs font-bold text-white shadow-md hover:bg-amber-500 transition-all flex items-center justify-center gap-2"
-                    >
-                      <Phone className="h-3.5 w-3.5" />
-                      <span>Get a Call Back Now</span>
-                    </button>
-                    <a
-                      href={`https://wa.me/919677708535?text=${encodeURIComponent('Hi TruPaintz and Interiors team! I would like to schedule a call back for my project.')}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full sm:w-auto rounded-xl border border-emerald-300 bg-emerald-50 px-4 py-2.5 text-xs font-semibold text-emerald-800 hover:bg-emerald-100 transition-colors text-center"
-                    >
-                      Or Chat Directly on WhatsApp →
-                    </a>
-                  </div>
-                </form>
-              )}
-            </div>
-
-            <div className="mt-6 pt-4 border-t border-neutral-200/80 flex flex-wrap items-center justify-between text-[11px] text-neutral-500 gap-2">
-              <span className="flex items-center gap-1.5">
-                <Clock className="h-3.5 w-3.5 text-amber-600" />
-                Response within 15 mins during studio hours (9am - 8pm)
-              </span>
-              <span className="font-medium text-neutral-700">Bengaluru &amp; Chennai Regional Coverage</span>
-            </div>
-          </div>
-
-          {/* Right: Key Verified Metrics Display */}
-          <div className="lg:col-span-5 rounded-3xl border border-amber-900/15 bg-white p-6 sm:p-8 shadow-sm flex flex-col justify-between">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-amber-700">Proven Studio Heritage</span>
-              <h3 className="mt-1 font-display text-2xl font-bold text-neutral-950">
-                Where Ideas Take Shape, and Design Tells a Story
-              </h3>
-              <p className="mt-2 text-xs sm:text-sm text-neutral-600">
-                Be it your home, penthouse, or executive workspace — our numbers reflect rigorous quality standards.
-              </p>
-            </div>
-
-            <div className="mt-6 grid grid-cols-2 gap-4">
-              <div className="p-3.5 rounded-2xl bg-amber-50/60 border border-amber-200/60 text-center">
-                <span className="font-display text-3xl font-extrabold text-neutral-950 block">450+</span>
-                <span className="text-[11px] font-medium text-neutral-600 uppercase tracking-wider mt-0.5 block">Spaces Crafted</span>
-              </div>
-              <div className="p-3.5 rounded-2xl bg-amber-50/60 border border-amber-200/60 text-center">
-                <span className="font-display text-3xl font-extrabold text-neutral-950 block">10 Yrs</span>
-                <span className="text-[11px] font-medium text-neutral-600 uppercase tracking-wider mt-0.5 block">Adhesion Warranty</span>
-              </div>
-              <div className="p-3.5 rounded-2xl bg-amber-50/60 border border-amber-200/60 text-center">
-                <span className="font-display text-3xl font-extrabold text-neutral-950 block">0% Dust</span>
-                <span className="text-[11px] font-medium text-neutral-600 uppercase tracking-wider mt-0.5 block">Mechanized HEPA</span>
-              </div>
-              <div className="p-3.5 rounded-2xl bg-amber-50/60 border border-amber-200/60 text-center">
-                <span className="font-display text-3xl font-extrabold text-amber-600 block">4.9 ★</span>
-                <span className="text-[11px] font-medium text-neutral-600 uppercase tracking-wider mt-0.5 block">Verified Rating</span>
-              </div>
-            </div>
-
-            <div className="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between">
-              <span className="text-xs font-medium text-neutral-600">Rated {averageRating} / 5.0 across {totalReviews}+ projects</span>
-              <Link to="/reviews" className="text-xs font-semibold text-amber-700 hover:text-amber-800 flex items-center gap-1">
-                <span>View Ratings</span>
-                <ChevronRight className="h-3.5 w-3.5" />
-              </Link>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* 3. Global Ethos Pillars: "Discover the Beauty of Modern Architecture" */}
-      <section className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
-        <div className="text-center max-w-3xl mx-auto pb-10">
+        <div className="text-center max-w-3xl mx-auto pb-6">
           <div className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-amber-700 mb-2">
             <Compass className="h-3.5 w-3.5" />
             <span>Architectural Philosophy</span>
@@ -546,8 +364,8 @@ export const HomePage: React.FC = () => {
             </div>
             <div className="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between text-xs">
               <span className="font-medium text-neutral-500">Italian Stucco &amp; Joinery</span>
-              <Link to="/gallery" className="font-semibold text-amber-700 group-hover:underline flex items-center gap-1">
-                Gallery <ChevronRight className="h-3.5 w-3.5" />
+              <Link to="/services" className="font-semibold text-amber-700 group-hover:underline flex items-center gap-1">
+                Services <ChevronRight className="h-3.5 w-3.5" />
               </Link>
             </div>
           </div>
@@ -633,10 +451,10 @@ export const HomePage: React.FC = () => {
                   <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
                 <Link
-                  to="/gallery"
+                  to="/services"
                   className="inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-800 hover:text-amber-700 transition-colors"
                 >
-                  <span>View All Categories</span>
+                  <span>View All Services</span>
                   <ChevronRight className="h-3.5 w-3.5" />
                 </Link>
               </div>
@@ -701,7 +519,7 @@ export const HomePage: React.FC = () => {
 
       {/* 5. Complete Range of Interior Design Solutions (The 10 Numbered Services Grid from Global Ethos) */}
       <section className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 border-b border-neutral-200/80">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-5 border-b border-neutral-200/80">
           <div>
             <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-amber-700">
               <Sparkles className="h-3.5 w-3.5" />
@@ -716,10 +534,10 @@ export const HomePage: React.FC = () => {
           </div>
           <div className="flex items-center gap-3">
             <Link
-              to="/gallery"
+              to="/projects"
               className="inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-700 hover:text-neutral-900 border border-neutral-300 rounded-xl px-3.5 py-2 bg-white shadow-xs"
             >
-              <span>Design Gallery (All Categories)</span>
+              <span>Recent Transformations</span>
             </Link>
             <Link
               to="/services"
@@ -732,7 +550,7 @@ export const HomePage: React.FC = () => {
         </div>
 
         {/* 10 Services Interactive Responsive Grid */}
-        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
           {SERVICES_DATA.map((service) => (
             <div
               key={service.id}
@@ -773,10 +591,10 @@ export const HomePage: React.FC = () => {
                   <ChevronRight className="h-3 w-3" />
                 </Link>
                 <Link
-                  to={`/gallery?category=${encodeURIComponent(service.title)}`}
+                  to="/services"
                   className="text-[10px] text-neutral-500 hover:text-neutral-800"
                 >
-                  Photos →
+                  Details →
                 </Link>
               </div>
             </div>
@@ -786,7 +604,7 @@ export const HomePage: React.FC = () => {
 
       {/* 6. Featured Living Space Transformations */}
       <section className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 border-b border-neutral-200/80">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-5 border-b border-neutral-200/80">
           <div>
             <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-amber-700">
               <Eye className="h-3.5 w-3.5" />
@@ -800,12 +618,12 @@ export const HomePage: React.FC = () => {
             to="/projects"
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-amber-700 hover:text-amber-800 transition-colors"
           >
-            <span>View Full Portfolio Gallery</span>
+            <span>View All Projects</span>
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
 
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
           {PROJECTS_DATA.slice(0, 3).map((proj) => (
             <div
               key={proj.id}
@@ -849,142 +667,96 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 7. Interactive Quick Estimator & 3D Studio Banner */}
+      {/* 7. Interactive Quick Estimator Card (Centered & Streamlined) */}
       <section className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          
-          {/* Quick Estimator Card */}
-          <div className="lg:col-span-7 rounded-3xl border border-amber-900/15 bg-white p-6 sm:p-8 shadow-md flex flex-col justify-between">
+        <div className="max-w-4xl mx-auto rounded-3xl border border-amber-900/15 bg-white p-6 sm:p-8 lg:p-10 shadow-md">
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-amber-700 mb-2">
+            <Calculator className="h-4 w-4" />
+            <span>Instant Cost Calculator</span>
+          </div>
+          <h3 className="font-display text-2xl sm:text-3xl font-bold text-neutral-950">
+            Plan Your Renovation Budget
+          </h3>
+          <p className="mt-2 text-xs sm:text-sm text-neutral-600">
+            Get an instant realistic estimate based on surface area and finish tier.
+          </p>
+
+          {/* Controls */}
+          <div className="mt-6 space-y-4">
             <div>
-              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-amber-700 mb-2">
-                <Calculator className="h-4 w-4" />
-                <span>Instant Cost Calculator</span>
+              <div className="flex justify-between text-xs font-semibold text-neutral-800 mb-1">
+                <span>Floor / Carpet Area:</span>
+                <span className="font-mono text-amber-700">{homeSqft} sq.ft</span>
               </div>
-              <h3 className="font-display text-2xl sm:text-3xl font-bold text-neutral-950">
-                Plan Your Renovation Budget
-              </h3>
-              <p className="mt-2 text-xs sm:text-sm text-neutral-600">
-                Get an instant realistic estimate based on surface area and finish tier.
-              </p>
-
-              {/* Controls */}
-              <div className="mt-6 space-y-4">
-                <div>
-                  <div className="flex justify-between text-xs font-semibold text-neutral-800 mb-1">
-                    <span>Floor / Carpet Area:</span>
-                    <span className="font-mono text-amber-700">{homeSqft} sq.ft</span>
-                  </div>
-                  <input
-                    type="range"
-                    min={500}
-                    max={5000}
-                    step={100}
-                    value={homeSqft}
-                    onChange={(e) => setHomeSqft(Number(e.target.value))}
-                    className="w-full accent-amber-600 cursor-pointer"
-                  />
-                  <div className="flex justify-between text-[10px] text-neutral-400 mt-0.5">
-                    <span>500 sq.ft</span>
-                    <span>2,500 sq.ft</span>
-                    <span>5,000 sq.ft</span>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-neutral-800 mb-1.5">
-                    Finish Scope:
-                  </label>
-                  <div className="grid grid-cols-3 gap-2">
-                    {['Home Painting', 'UPVC Windows', 'Wooden Flooring'].map((type) => (
-                      <button
-                        key={type}
-                        type="button"
-                        onClick={() => setHomeService(type)}
-                        className={`py-2 px-2 rounded-xl border text-xs font-medium transition-all text-center ${
-                          homeService === type
-                            ? 'border-amber-600 bg-amber-500/15 text-amber-800 font-semibold shadow-sm'
-                            : 'border-neutral-200 text-neutral-600 hover:bg-neutral-50'
-                        }`}
-                      >
-                        {type}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Estimate Calculation Result */}
-              <div className="mt-6 p-4 rounded-2xl bg-amber-50/80 border border-amber-200/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-                <div>
-                  <span className="text-[11px] uppercase tracking-wider text-neutral-500 block">
-                    Estimated Investment Range
-                  </span>
-                  <span className="font-display text-2xl font-bold text-neutral-950">
-                    ₹{estimatedMin.toLocaleString()} – ₹{estimatedMax.toLocaleString()}
-                  </span>
-                  <span className="text-[10px] text-neutral-500 block mt-0.5">
-                    Includes material, mechanized sanding &amp; artisan application
-                  </span>
-                </div>
-                <Link
-                  to={`/estimator?sqft=${homeSqft}&service=${encodeURIComponent(homeService)}`}
-                  className="rounded-xl bg-amber-600 px-4 py-2.5 text-xs font-semibold text-white hover:bg-amber-500 transition-colors shrink-0"
-                >
-                  Full Itemized Breakdown →
-                </Link>
+              <input
+                type="range"
+                min={500}
+                max={5000}
+                step={100}
+                value={homeSqft}
+                onChange={(e) => setHomeSqft(Number(e.target.value))}
+                className="w-full accent-amber-600 cursor-pointer"
+              />
+              <div className="flex justify-between text-[10px] text-neutral-400 mt-0.5">
+                <span>500 sq.ft</span>
+                <span>2,500 sq.ft</span>
+                <span>5,000 sq.ft</span>
               </div>
             </div>
 
-            <p className="mt-4 text-[11px] text-neutral-500">
-              * Final quote confirmed after non-destructive digital moisture inspection on site.
-            </p>
-          </div>
-
-          {/* 3D Visualizer Teaser Banner */}
-          <div className="lg:col-span-5 rounded-3xl border border-neutral-800 bg-neutral-950 text-white p-6 sm:p-8 shadow-xl flex flex-col justify-between relative overflow-hidden">
-            <div className="relative z-10">
-              <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-amber-400 mb-2">
-                <Sparkles className="h-4 w-4" />
-                <span>3D Interactive Studio</span>
+            <div>
+              <label className="block text-xs font-semibold text-neutral-800 mb-1.5">
+                Finish Scope:
+              </label>
+              <div className="grid grid-cols-3 gap-2">
+                {['Home Painting', 'UPVC Windows', 'Wooden Flooring'].map((type) => (
+                  <button
+                    key={type}
+                    type="button"
+                    onClick={() => setHomeService(type)}
+                    className={`py-2 px-2 rounded-xl border text-xs font-medium transition-all text-center ${
+                      homeService === type
+                        ? 'border-amber-600 bg-amber-500/15 text-amber-800 font-semibold shadow-sm'
+                        : 'border-neutral-200 text-neutral-600 hover:bg-neutral-50'
+                    }`}
+                  >
+                    {type}
+                  </button>
+                ))}
               </div>
-              <h3 className="font-display text-2xl sm:text-3xl font-bold text-white leading-tight">
-                Simulate Italian Stuccos Before Execution
-              </h3>
-              <p className="mt-3 text-xs sm:text-sm text-neutral-300 leading-relaxed">
-                Test hand-troweled Venetian plasters, warm travertine tones, and lighting atmospheres on photorealistic room walls in real time.
-              </p>
-
-              <div className="mt-6 flex flex-wrap gap-2 text-xs">
-                <span className="px-2.5 py-1 rounded-lg bg-neutral-800 text-amber-300 border border-neutral-700">
-                  Imperial Roman Stucco
-                </span>
-                <span className="px-2.5 py-1 rounded-lg bg-neutral-800 text-neutral-300 border border-neutral-700">
-                  Champagne Dune
-                </span>
-                <span className="px-2.5 py-1 rounded-lg bg-neutral-800 text-neutral-300 border border-neutral-700">
-                  Obsidian Matte
-                </span>
-              </div>
-            </div>
-
-            <div className="mt-8 pt-6 border-t border-neutral-800 flex items-center justify-between relative z-10">
-              <span className="text-xs text-neutral-400">WebGL Real-time Engine</span>
-              <Link
-                to="/visualizer"
-                className="btn-premium inline-flex items-center gap-2 rounded-xl bg-amber-500 px-4 py-2.5 text-xs font-bold text-neutral-950 hover:bg-amber-400 transition-all shadow-md"
-              >
-                <span>Launch 3D Studio</span>
-                <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
             </div>
           </div>
 
+          {/* Estimate Calculation Result */}
+          <div className="mt-6 p-4 sm:p-5 rounded-2xl bg-amber-50/80 border border-amber-200/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <span className="text-[11px] uppercase tracking-wider text-neutral-500 block">
+                Estimated Investment Range
+              </span>
+              <span className="font-display text-2xl sm:text-3xl font-bold text-neutral-950">
+                ₹{estimatedMin.toLocaleString()} – ₹{estimatedMax.toLocaleString()}
+              </span>
+              <span className="text-[10px] sm:text-xs text-neutral-500 block mt-0.5">
+                Includes material, mechanized sanding &amp; artisan application
+              </span>
+            </div>
+            <Link
+              to={`/estimator?sqft=${homeSqft}&service=${encodeURIComponent(homeService)}`}
+              className="rounded-xl bg-amber-600 hover:bg-amber-500 px-5 py-3 text-xs sm:text-sm font-semibold text-white transition-colors shrink-0 shadow-sm"
+            >
+              Full Itemized Breakdown →
+            </Link>
+          </div>
+
+          <p className="mt-4 text-[11px] text-neutral-500 text-center sm:text-left">
+            * Final quote confirmed after non-destructive digital moisture inspection on site.
+          </p>
         </div>
       </section>
 
       {/* 8. Testimonials Highlight */}
       <section className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 border-b border-neutral-200/80">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-5 border-b border-neutral-200/80">
           <div>
             <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-amber-700">
               <Star className="h-3.5 w-3.5 fill-amber-500 text-amber-500" />
@@ -1003,7 +775,7 @@ export const HomePage: React.FC = () => {
           </Link>
         </div>
 
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
           {reviews.slice(0, 2).map((rev) => (
             <div
               key={rev.id}
@@ -1067,6 +839,12 @@ export const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Official App Download Modal */}
+      <AppDownloadModal 
+        isOpen={isAppModalOpen} 
+        onClose={() => setIsAppModalOpen(false)} 
+      />
 
     </div>
   );
