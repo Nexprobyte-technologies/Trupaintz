@@ -31,7 +31,7 @@ export const ProjectsPage: React.FC = () => {
   const featured = PROJECTS_DATA.find((p) => p.featured) || PROJECTS_DATA[0];
 
   return (
-    <div className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12 pt-2 sm:pt-4 pb-12 sm:pb-16 space-y-8 sm:space-y-12 lg:space-y-14">
+    <div className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12 pt-6 sm:pt-8 lg:pt-9 pb-12 sm:pb-16 space-y-8 sm:space-y-12 lg:space-y-14">
       
       {/* Page Header */}
       <div className="flex flex-col gap-5 pb-5 border-b border-neutral-200">
@@ -48,28 +48,30 @@ export const ProjectsPage: React.FC = () => {
           </p>
         </div>
 
-        {/* Filter Pills - snug width ending exactly where content ends */}
-        <div className="inline-flex flex-wrap items-center gap-1.5 p-1 bg-white rounded-2xl border border-neutral-200/90 shadow-sm w-fit max-w-full">
-          {[
-            { id: 'all', label: 'All Works' },
-            { id: 'windows', label: 'UPVC & Netlon' },
-            { id: 'painting', label: 'Painting & Ceilings' },
-            { id: 'flooring', label: 'Flooring & Blinds' },
-            { id: 'louvers', label: 'Louvers & Wallpapers' },
-            { id: 'curtains', label: 'Grass & Curtains' },
-          ].map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setActiveCategory(cat.id as ProjectCategory)}
-              className={`px-3.5 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap transition-all ${
-                activeCategory === cat.id
-                  ? 'bg-amber-600 text-white font-semibold shadow-sm'
-                  : 'text-neutral-600 hover:text-neutral-950 hover:bg-neutral-100'
-              }`}
-            >
-              {cat.label}
-            </button>
-          ))}
+        {/* Filter Pills - fully responsive with touch swipe scroll on mobile & snug inline bar on desktop */}
+        <div className="w-full overflow-x-auto no-scrollbar py-1 -my-1">
+          <div className="inline-flex items-center gap-1.5 p-1.5 bg-white rounded-2xl border border-neutral-200/90 shadow-sm w-max max-w-none">
+            {[
+              { id: 'all', label: 'All Works' },
+              { id: 'windows', label: 'UPVC & Netlon' },
+              { id: 'painting', label: 'Painting & Ceilings' },
+              { id: 'flooring', label: 'Flooring & Blinds' },
+              { id: 'louvers', label: 'Louvers & Wallpapers' },
+              { id: 'curtains', label: 'Grass & Curtains' },
+            ].map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id as ProjectCategory)}
+                className={`px-3.5 py-2 sm:py-1.5 rounded-xl text-xs font-medium whitespace-nowrap transition-all shrink-0 cursor-pointer ${
+                  activeCategory === cat.id
+                    ? 'bg-amber-600 text-white font-semibold shadow-sm'
+                    : 'text-neutral-600 hover:text-neutral-950 hover:bg-neutral-100'
+                }`}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 

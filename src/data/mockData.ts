@@ -226,7 +226,7 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Anti-Fungal, Washable & Weatherproof Protective Barrier',
     ],
     priceRange: 'From ₹22 / sq.ft.',
-    image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=1000&q=80',
+    image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=85',
     highlightTag: 'Asian & Birla Paints',
   },
   {

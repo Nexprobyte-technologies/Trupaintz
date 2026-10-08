@@ -16,7 +16,7 @@ import { BRAND_INFO, BLOG_POSTS } from '../data/mockData';
 
 export const AboutPage: React.FC = () => {
   return (
-    <div className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12 pt-1 sm:pt-2 pb-10 sm:pb-12 space-y-6 sm:space-y-8">
+    <div className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12 pt-6 sm:pt-8 lg:pt-9 pb-10 sm:pb-12 space-y-6 sm:space-y-8">
       
       {/* Page Header */}
       <div className="max-w-3xl space-y-2">

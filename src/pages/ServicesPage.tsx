@@ -38,7 +38,7 @@ export const ServicesPage: React.FC = () => {
   };
 
   return (
-    <div className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12 pt-2 sm:pt-4 pb-12 sm:pb-16 space-y-12 sm:space-y-16">
+    <div className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12 pt-6 sm:pt-8 lg:pt-9 pb-12 sm:pb-16 space-y-12 sm:space-y-16">
       
       {/* 1. HERO SECTION (Preserving existing elegance & typography) */}
       <div className="max-w-4xl space-y-4">
@@ -232,7 +232,7 @@ export const ServicesPage: React.FC = () => {
               <div>
                 <div className="relative aspect-[16/10] overflow-hidden bg-neutral-100">
                   <img
-                    src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=1000&q=80"
+                    src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=85"
                     alt="Interior Luxury Home Painting"
                     className="w-full h-full object-cover img-hover-zoom"
                     loading="lazy"

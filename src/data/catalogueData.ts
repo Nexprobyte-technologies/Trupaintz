@@ -24,7 +24,7 @@ export const CATALOGUE_CATEGORIES: ServiceCatalogueCategory[] = [
     title: 'Painting',
     tagline: 'Dustless mechanized interior & exterior painting with multi-year warranties',
     badge: 'Asian Paints & Birla Paints',
-    heroImage: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=1200&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=85',
     priceStarting: 'From ₹22 / sq.ft',
   },
   {

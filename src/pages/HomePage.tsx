@@ -16,7 +16,13 @@ import {
   Phone,
   Clock,
   Award,
-  Download
+  Download,
+  Sun,
+  Moon,
+  Lightbulb,
+  Sliders,
+  RotateCcw,
+  Check
 } from 'lucide-react';
 import { BRAND_INFO, SERVICES_DATA, PROJECTS_DATA } from '../data/mockData';
 import { useReviews } from '../context/ReviewsContext';
@@ -101,6 +107,122 @@ const HERO_SLIDES: HeroSlide[] = [
   },
 ];
 
+interface VisualizerRoom {
+  id: 'living' | 'bedroom' | 'balcony';
+  name: string;
+  sub: string;
+  image: string;
+  sqft: string;
+  features: string[];
+}
+
+interface VisualizerTexture {
+  id: 'travertine' | 'venetian' | 'fluted' | 'hardwood';
+  name: string;
+  category: string;
+  lrv: string;
+  colorHex: string;
+  desc: string;
+}
+
+const VISUALIZER_ROOMS: Record<string, VisualizerRoom> = {
+  living: {
+    id: 'living',
+    name: 'Luxury Grand Hall',
+    sub: 'Panoramic Bay UPVC & Stucco Feature Wall',
+    image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=85',
+    sqft: '450 sq.ft',
+    features: ['German UPVC Profiles', 'Dustless Royal Glaze', 'Italian Stucco Accent'],
+  },
+  bedroom: {
+    id: 'bedroom',
+    name: 'Executive Master Suite',
+    sub: 'Acoustic Fluted Louvers & Cove False Ceiling',
+    image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1600&q=85',
+    sqft: '320 sq.ft',
+    features: ['Charcoal Acoustic Louvers', 'Warm Cove LED Tray', 'Belgian Sheer Curtains'],
+  },
+  balcony: {
+    id: 'balcony',
+    name: 'Garden Veranda & Lounge',
+    sub: 'High-Density Turf & Soundproof UPVC Sliders',
+    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=85',
+    sqft: '280 sq.ft',
+    features: ['40mm UV Artificial Grass', 'Heavy Duty UPVC Sliders', 'Louver Ceiling Paneling'],
+  },
+};
+
+const VISUALIZER_TEXTURES: VisualizerTexture[] = [
+  {
+    id: 'travertine',
+    name: 'Roman Travertine Plaster',
+    category: 'Italian Plaster',
+    lrv: '68% LRV',
+    colorHex: '#D6C7B2',
+    desc: 'Earthen matte limestone texture with gentle porous depth',
+  },
+  {
+    id: 'venetian',
+    name: 'Venetian Gold Marmorino',
+    category: 'Luxury Finish',
+    lrv: '76% LRV',
+    colorHex: '#E2D5BE',
+    desc: 'Hand-troweled silky burnish with luminous reflection',
+  },
+  {
+    id: 'fluted',
+    name: 'Charcoal Acoustic Louver',
+    category: 'Architectural Wood',
+    lrv: '22% LRV',
+    colorHex: '#2E2D2B',
+    desc: 'Precision fluted WPC paneling with noise dampening',
+  },
+  {
+    id: 'hardwood',
+    name: 'Bavarian Oak Plank',
+    category: 'Flooring Finish',
+    lrv: '45% LRV',
+    colorHex: '#A27B5C',
+    desc: 'High-density German AC4 natural matte grain',
+  },
+];
+
+const LIGHTING_CONFIG = {
+  morning: {
+    name: 'Morning Mode',
+    sub: 'Crisp Dawn Sunlight',
+    kelvin: '5200K Dawn',
+    lux: '480 Lux',
+    cssFilter: 'brightness(1.06) contrast(1.04) saturate(1.05) hue-rotate(-2deg)',
+    overlayStyle: 'linear-gradient(135deg, rgba(186, 230, 253, 0.18) 0%, rgba(254, 243, 199, 0.16) 45%, transparent 90%)',
+    badgeText: '5200K Dawn · Crisp Horizon Light',
+    accentColor: '#38bdf8',
+    description: 'Highlights crisp natural reflections, clean UPVC lines, and subtle plaster texture gradients at daybreak.',
+  },
+  day: {
+    name: 'Day Mode',
+    sub: 'Natural High Noon',
+    kelvin: '4200K Daylight',
+    lux: '860 Lux',
+    cssFilter: 'brightness(1.02) contrast(1.06) saturate(1.1)',
+    overlayStyle: 'linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, transparent 60%)',
+    badgeText: '4200K Sun · True-Color Architectural Daylight',
+    accentColor: '#fbbf24',
+    description: 'Maximizes architectural color clarity and natural stone/wood grain contrast under high daylight conditions.',
+  },
+  light: {
+    name: 'Light Mode',
+    sub: 'Warm Cove & Chandelier',
+    kelvin: '2700K Warm Gold',
+    lux: '260 Lux',
+    cssFilter: 'brightness(0.92) contrast(1.14) sepia(0.24) saturate(1.28)',
+    overlayStyle: 'radial-gradient(ellipse at 50% 15%, rgba(245, 158, 11, 0.35) 0%, rgba(180, 83, 9, 0.16) 55%, rgba(15, 12, 8, 0.72) 100%)',
+    badgeText: '2700K Warm Gold · Hidden Cove LEDs & Crystal Chandelier',
+    accentColor: '#f59e0b',
+    description: 'Transforms the room into an ambient sanctuary with warm golden ceiling coves, spotlight accents, and intimate textures.',
+  },
+};
+
 export const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const { reviews, averageRating, totalReviews } = useReviews();
@@ -115,6 +237,12 @@ export const HomePage: React.FC = () => {
   // Quick Estimator State on Home Page
   const [homeSqft, setHomeSqft] = useState(1500);
   const [homeService, setHomeService] = useState('Home Painting');
+
+  // Interactive 3D Visualizer Studio State
+  const [visLighting, setVisLighting] = useState<'morning' | 'day' | 'light'>('light');
+  const [visRoom, setVisRoom] = useState<'living' | 'bedroom' | 'balcony'>('living');
+  const [visTexture, setVisTexture] = useState<'travertine' | 'venetian' | 'fluted' | 'hardwood'>('travertine');
+  const [is3dPerspective, setIs3dPerspective] = useState(true);
 
   const estimatedMin = Math.round(homeSqft * (homeService === 'Home Painting' ? 28 : homeService === 'Wooden Flooring' ? 150 : 360));
   const estimatedMax = Math.round(estimatedMin * 1.25);
@@ -139,7 +267,7 @@ export const HomePage: React.FC = () => {
     <div className="space-y-10 sm:space-y-12 pb-12">
       
       {/* 1. Global Ethos Inspired 5-Second Auto-Advancing Hero Carousel */}
-      <section className="relative overflow-hidden pt-1 pb-4 sm:pt-2 sm:pb-6 lg:pb-8">
+      <section className="relative overflow-hidden pt-5 pb-5 sm:pt-7 sm:pb-7 lg:pt-8 lg:pb-9">
         {/* Subtle Ambient Light Glow */}
         <div
           className="pointer-events-none absolute -top-32 left-1/2 -z-10 h-[500px] w-[900px] -translate-x-1/2 rounded-full opacity-20 blur-3xl"
@@ -212,7 +340,7 @@ export const HomePage: React.FC = () => {
                   <div className="pt-2 flex flex-wrap items-center gap-3">
                     <Link
                       to={activeSlideData.primaryCtaLink}
-                      className="btn-premium inline-flex items-center justify-center gap-2 rounded-xl bg-amber-500 px-6 py-3.5 text-sm font-bold text-neutral-950 shadow-xl shadow-amber-500/25 hover:bg-amber-400 transition-all text-center"
+                      className="btn-premium btn-shimmer inline-flex items-center justify-center gap-2 rounded-xl bg-amber-500 px-6 py-3.5 text-sm font-bold text-neutral-950 shadow-xl shadow-amber-500/25 hover:bg-amber-400 transition-all text-center"
                     >
                       <span>{activeSlideData.primaryCtaText}</span>
                       <ArrowRight className="h-4 w-4" />
@@ -220,7 +348,7 @@ export const HomePage: React.FC = () => {
 
                     <Link
                       to={activeSlideData.secondaryCtaLink}
-                      className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/40 bg-white/15 backdrop-blur-md px-6 py-3.5 text-sm font-medium text-white hover:bg-white/25 transition-all text-center shadow-sm"
+                      className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/40 bg-white/15 backdrop-blur-md px-6 py-3.5 text-sm font-medium text-white hover:bg-white/25 transition-all text-center shadow-sm hover:scale-[1.02]"
                     >
                       <Eye className="h-4 w-4 text-amber-300" />
                       <span>{activeSlideData.secondaryCtaText}</span>
@@ -230,7 +358,7 @@ export const HomePage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setIsAppModalOpen(true)}
-                      className="inline-flex items-center justify-center gap-2 rounded-xl border border-amber-400/50 bg-amber-950/70 backdrop-blur-md px-5 py-3.5 text-sm font-semibold text-amber-200 hover:bg-amber-900/80 hover:text-white transition-all text-center shadow-md cursor-pointer"
+                      className="inline-flex items-center justify-center gap-2 rounded-xl border border-amber-400/50 bg-amber-950/70 backdrop-blur-md px-5 py-3.5 text-sm font-semibold text-amber-200 hover:bg-amber-900/80 hover:text-white transition-all text-center shadow-md cursor-pointer hover:scale-[1.02]"
                     >
                       <Download className="h-4 w-4 text-amber-300" />
                       <span>Download App</span>
@@ -554,7 +682,7 @@ export const HomePage: React.FC = () => {
           {SERVICES_DATA.filter((s) => !['04', '05', '08', '09', '10'].includes(s.num)).map((service) => (
             <div
               key={service.id}
-              className="ethos-card rounded-2xl border border-neutral-200/90 bg-white p-4 shadow-xs flex flex-col justify-between group overflow-hidden"
+              className="ethos-card card-lift-glow rounded-2xl border border-neutral-200/90 bg-white p-4 shadow-xs flex flex-col justify-between group overflow-hidden"
             >
               <div>
                 <div className="relative aspect-[16/11] rounded-xl overflow-hidden mb-3 bg-neutral-100">
@@ -602,6 +730,281 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
+      {/* 5.5 Interactive 3D Visualizer Studio with Morning, Day & Light (Warm Cove) Modes */}
+      <section className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
+        <div className="rounded-3xl border border-amber-900/15 bg-white p-5 sm:p-8 lg:p-10 shadow-xl overflow-hidden relative">
+          {/* Subtle Ambient Decorative Glow */}
+          <div
+            className="pointer-events-none absolute -top-24 right-1/4 h-80 w-80 rounded-full blur-3xl opacity-20"
+            style={{ background: 'radial-gradient(circle, #f59e0b 0%, transparent 70%)' }}
+          />
+
+          {/* Section Header */}
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6 border-b border-neutral-200/80">
+            <div>
+              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-amber-700">
+                <Sparkles className="h-4 w-4" />
+                <span>Interactive 3D Architectural Studio</span>
+                <span className="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-full border border-amber-200">
+                  Live Lighting Simulation
+                </span>
+              </div>
+              <h2 className="mt-2 font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-neutral-950">
+                Experience Natural Light &amp; Luxury Finishes in 3D
+              </h2>
+              <p className="mt-2 text-xs sm:text-sm text-neutral-600 max-w-2xl leading-relaxed">
+                Toggle between Morning, Day, and Light (warm evening cove) illumination. Observe how European wall plasters, UPVC bay frames, and acoustic louvers respond dynamically to ambient lighting.
+              </p>
+            </div>
+
+            {/* Lighting Mode Selector Controls */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-1.5 bg-neutral-100/90 p-1.5 rounded-2xl border border-neutral-200/90 shrink-0">
+              <button
+                type="button"
+                onClick={() => setVisLighting('morning')}
+                className={`flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all ${
+                  visLighting === 'morning'
+                    ? 'bg-white text-neutral-900 shadow-sm border border-neutral-200/80 ring-1 ring-sky-400/40'
+                    : 'text-neutral-600 hover:text-neutral-900 hover:bg-white/50'
+                }`}
+              >
+                <Sun className="h-4 w-4 text-sky-500" />
+                <span>Morning Mode (5200K)</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setVisLighting('day')}
+                className={`flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all ${
+                  visLighting === 'day'
+                    ? 'bg-white text-neutral-900 shadow-sm border border-neutral-200/80 ring-1 ring-amber-400/40'
+                    : 'text-neutral-600 hover:text-neutral-900 hover:bg-white/50'
+                }`}
+              >
+                <Sun className="h-4 w-4 text-amber-500" />
+                <span>Day Mode (4200K)</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setVisLighting('light')}
+                className={`flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all ${
+                  visLighting === 'light'
+                    ? 'bg-neutral-900 text-amber-300 shadow-sm border border-neutral-800 ring-1 ring-amber-400/50'
+                    : 'text-neutral-600 hover:text-neutral-900 hover:bg-white/50'
+                }`}
+              >
+                <Lightbulb className="h-4 w-4 text-amber-400" />
+                <span>Light Mode (2700K Warm)</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Interactive Workspace: Visualizer Stage + Material Customizer */}
+          <div className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            {/* Visualizer 3D Stage (Col 8) */}
+            <div className="lg:col-span-8 flex flex-col gap-4">
+              
+              {/* Space Selection Tabs */}
+              <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
+                {Object.values(VISUALIZER_ROOMS).map((room) => (
+                  <button
+                    key={room.id}
+                    type="button"
+                    onClick={() => setVisRoom(room.id as 'living' | 'bedroom' | 'balcony')}
+                    className={`px-3.5 py-2 rounded-xl text-xs font-medium transition-all shrink-0 border ${
+                      visRoom === room.id
+                        ? 'border-amber-600 bg-amber-500/15 text-amber-900 font-bold shadow-xs'
+                        : 'border-neutral-200 bg-neutral-50/80 text-neutral-600 hover:bg-neutral-100'
+                    }`}
+                  >
+                    {room.name}
+                  </button>
+                ))}
+
+                <button
+                  type="button"
+                  onClick={() => setIs3dPerspective(!is3dPerspective)}
+                  className={`ml-auto hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[11px] font-semibold border transition-all ${
+                    is3dPerspective
+                      ? 'border-amber-400 bg-amber-50 text-amber-800'
+                      : 'border-neutral-200 text-neutral-500 hover:bg-neutral-50'
+                  }`}
+                  title="Toggle 3D Perspective Tilt"
+                >
+                  <RotateCcw className="h-3 w-3" />
+                  <span>3D Angle: {is3dPerspective ? 'Perspective ON' : 'Flat Plan'}</span>
+                </button>
+              </div>
+
+              {/* Simulated Room Canvas with Live Lighting Shader */}
+              <div className="visualizer-stage relative rounded-2xl overflow-hidden border border-neutral-200/90 shadow-md bg-neutral-950 aspect-[16/10] sm:aspect-[16/9]">
+                <div
+                  className="w-full h-full relative overflow-hidden visualizer-canvas-3d"
+                  style={{
+                    transform: is3dPerspective ? 'perspective(1000px) rotateX(1.5deg) scale(1.01)' : 'none',
+                  }}
+                >
+                  {/* High-Resolution Room Architecture Image */}
+                  <img
+                    src={VISUALIZER_ROOMS[visRoom].image}
+                    alt={VISUALIZER_ROOMS[visRoom].name}
+                    className="w-full h-full object-cover transition-all duration-700 ease-in-out"
+                    style={{
+                      filter: LIGHTING_CONFIG[visLighting].cssFilter,
+                    }}
+                  />
+
+                  {/* Atmospheric Lighting Overlay Gradient */}
+                  <div
+                    className="absolute inset-0 transition-all duration-700 ease-in-out pointer-events-none"
+                    style={{
+                      background: LIGHTING_CONFIG[visLighting].overlayStyle,
+                    }}
+                  />
+
+                  {/* Evening Warm Cove Breathing Effect */}
+                  {visLighting === 'light' && (
+                    <div
+                      className="absolute inset-0 pointer-events-none animate-cove-pulse"
+                      style={{
+                        background: 'radial-gradient(circle at 50% 20%, rgba(245, 158, 11, 0.28) 0%, transparent 60%)',
+                      }}
+                    />
+                  )}
+
+                  {/* Live Simulation Telemetry HUD */}
+                  <div className="absolute top-3 left-3 right-3 flex items-center justify-between gap-2 pointer-events-none">
+                    <div className="bg-neutral-950/85 backdrop-blur-md border border-white/15 px-3 py-1 rounded-full flex items-center gap-2 text-white shadow-sm">
+                      <span className="w-2 h-2 rounded-full animate-ping" style={{ backgroundColor: LIGHTING_CONFIG[visLighting].accentColor }} />
+                      <span className="text-[11px] font-mono font-bold tracking-wide">
+                        {LIGHTING_CONFIG[visLighting].badgeText}
+                      </span>
+                    </div>
+
+                    <div className="bg-neutral-950/85 backdrop-blur-md border border-white/15 px-2.5 py-1 rounded-full text-white text-[10px] font-mono hidden sm:flex items-center gap-1.5">
+                      <span>Simulated Lux:</span>
+                      <span className="text-amber-400 font-bold">{LIGHTING_CONFIG[visLighting].lux}</span>
+                    </div>
+                  </div>
+
+                  {/* Bottom Surface & Spec HUD */}
+                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between pointer-events-none">
+                    <div className="bg-neutral-950/85 backdrop-blur-md border border-white/15 px-3 py-1.5 rounded-xl text-white">
+                      <div className="text-[10px] text-neutral-400 uppercase tracking-wider font-semibold">Active Finish Spec</div>
+                      <div className="text-xs font-bold text-amber-300 flex items-center gap-1.5">
+                        <span
+                          className="w-2.5 h-2.5 rounded-full inline-block border border-white/30"
+                          style={{ backgroundColor: VISUALIZER_TEXTURES.find(t => t.id === visTexture)?.colorHex }}
+                        />
+                        <span>{VISUALIZER_TEXTURES.find(t => t.id === visTexture)?.name}</span>
+                        <span className="text-[10px] font-normal text-neutral-400">({VISUALIZER_TEXTURES.find(t => t.id === visTexture)?.lrv})</span>
+                      </div>
+                    </div>
+
+                    <div className="bg-white/90 backdrop-blur-md px-3 py-1 rounded-xl text-neutral-900 text-[11px] font-semibold border border-neutral-200 shadow-sm hidden md:block">
+                      {VISUALIZER_ROOMS[visRoom].sqft} · Handcrafted by TruPaintz
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              {/* Lighting Mode Description Notice */}
+              <div className="p-3.5 rounded-xl bg-neutral-50 border border-neutral-200/80 flex items-start gap-3 text-xs text-neutral-700">
+                <Sparkles className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-bold text-neutral-950">{LIGHTING_CONFIG[visLighting].name} Telemetry: </span>
+                  <span className="text-neutral-600">{LIGHTING_CONFIG[visLighting].description}</span>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Right Panel: Surface & Architectural Finishes Customizer (Col 4) */}
+            <div className="lg:col-span-4 rounded-2xl bg-neutral-50/90 border border-neutral-200/90 p-5 flex flex-col justify-between h-full gap-5">
+              <div>
+                <div className="flex items-center justify-between pb-3 border-b border-neutral-200">
+                  <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-amber-800">
+                    <Sliders className="h-3.5 w-3.5" />
+                    <span>Material Finishes</span>
+                  </div>
+                  <span className="text-[11px] text-neutral-500 font-mono">4 Tactile Presets</span>
+                </div>
+
+                <div className="mt-4 space-y-2.5">
+                  {VISUALIZER_TEXTURES.map((texture) => {
+                    const isSelected = visTexture === texture.id;
+                    return (
+                      <button
+                        key={texture.id}
+                        type="button"
+                        onClick={() => setVisTexture(texture.id as 'travertine' | 'venetian' | 'fluted' | 'hardwood')}
+                        className={`w-full text-left p-3 rounded-xl border transition-all flex items-start gap-3 ${
+                          isSelected
+                            ? 'border-amber-600 bg-white shadow-sm ring-1 ring-amber-500/30'
+                            : 'border-neutral-200/80 bg-white/60 hover:bg-white hover:border-neutral-300'
+                        }`}
+                      >
+                        <div
+                          className="w-8 h-8 rounded-lg shrink-0 border border-neutral-300 shadow-inner mt-0.5"
+                          style={{ backgroundColor: texture.colorHex }}
+                        />
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs font-bold text-neutral-950">{texture.name}</span>
+                            {isSelected && <Check className="h-3.5 w-3.5 text-amber-600" />}
+                          </div>
+                          <span className="text-[10px] text-amber-700 font-medium block">{texture.category} · {texture.lrv}</span>
+                          <p className="text-[11px] text-neutral-500 mt-0.5 leading-snug line-clamp-1">
+                            {texture.desc}
+                          </p>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Scope features of active room */}
+                <div className="mt-5 pt-4 border-t border-neutral-200">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-600 block mb-2">
+                    Included Architectural Specifications:
+                  </span>
+                  <div className="space-y-1.5">
+                    {VISUALIZER_ROOMS[visRoom].features.map((feat, i) => (
+                      <div key={i} className="flex items-center gap-2 text-xs text-neutral-700">
+                        <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 shrink-0" />
+                        <span>{feat}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Consultation and Sample Box Action */}
+              <div className="pt-4 border-t border-neutral-200 flex flex-col gap-2">
+                <Link
+                  to="/contact"
+                  className="btn-shimmer rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs py-2.5 px-4 text-center shadow-sm transition-colors"
+                >
+                  Book In-Person Material Sample Visit →
+                </Link>
+                <Link
+                  to="/estimator"
+                  className="rounded-xl border border-neutral-300 bg-white hover:bg-neutral-50 text-neutral-800 font-semibold text-xs py-2 px-4 text-center transition-colors"
+                >
+                  Calculate Cost for this Configuration
+                </Link>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
       {/* 6. Featured Living Space Transformations */}
       <section className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-5 border-b border-neutral-200/80">
@@ -627,7 +1030,7 @@ export const HomePage: React.FC = () => {
           {PROJECTS_DATA.slice(0, 3).map((proj) => (
             <div
               key={proj.id}
-              className="card-hover-lift rounded-2xl border border-neutral-200/90 bg-white overflow-hidden shadow-sm flex flex-col group"
+              className="card-lift-glow rounded-2xl border border-neutral-200/90 bg-white overflow-hidden shadow-sm flex flex-col group"
             >
               <div className="relative aspect-[16/11] overflow-hidden">
                 <img
@@ -759,14 +1162,25 @@ export const HomePage: React.FC = () => {
           </div>
 
           {/* Right Column: Complimentary On-Site Inspection Desk (Fills space with high-value relevant offering) */}
-          <div className="lg:col-span-5 rounded-3xl border border-neutral-200/90 bg-gradient-to-br from-[#1C1814] via-[#241F1A] to-[#120F0C] text-white p-6 sm:p-8 lg:p-9 shadow-xl flex flex-col justify-between relative overflow-hidden">
+          <div className="lg:col-span-5 rounded-3xl border border-neutral-800 bg-neutral-950 text-white p-6 sm:p-8 lg:p-9 shadow-xl flex flex-col justify-between relative overflow-hidden group">
+            {/* Architectural Room Background Image with dark luxury overlay */}
+            <div className="absolute inset-0 z-0 overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
+                alt="Architectural Site Visit"
+                className="w-full h-full object-cover object-center opacity-30 mix-blend-luminosity scale-105 group-hover:scale-110 transition-transform duration-1000"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-br from-neutral-950/95 via-neutral-950/85 to-[#1C1814]/90" />
+            </div>
+
             {/* Ambient gold glow */}
             <div 
-              className="pointer-events-none absolute -top-20 -right-20 w-60 h-60 rounded-full blur-3xl opacity-20"
+              className="pointer-events-none absolute -top-20 -right-20 w-60 h-60 rounded-full blur-3xl opacity-25 z-0"
               style={{ background: 'radial-gradient(circle, #f59e0b 0%, transparent 70%)' }}
             />
 
-            <div>
+            <div className="relative z-10">
               <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-amber-400 mb-2">
                 <ShieldCheck className="h-4 w-4" />
                 <span>Zero-Obligation Site Visit</span>
@@ -815,10 +1229,10 @@ export const HomePage: React.FC = () => {
             </div>
 
             {/* Quick Actions */}
-            <div className="mt-6 pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center gap-3">
+            <div className="mt-6 pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center gap-3 relative z-10">
               <Link
                 to="/contact"
-                className="btn-premium w-full sm:w-auto flex-1 text-center rounded-xl bg-amber-500 hover:bg-amber-400 px-4 py-2.5 text-xs font-bold text-neutral-950 shadow-md transition-all"
+                className="btn-shimmer w-full sm:w-auto flex-1 text-center rounded-xl bg-amber-500 hover:bg-amber-400 px-4 py-2.5 text-xs font-bold text-neutral-950 shadow-md transition-all"
               >
                 Book Free Site Visit →
               </Link>
