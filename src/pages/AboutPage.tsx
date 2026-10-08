@@ -16,25 +16,25 @@ import { BRAND_INFO, BLOG_POSTS } from '../data/mockData';
 
 export const AboutPage: React.FC = () => {
   return (
-    <div className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12 pt-2 sm:pt-4 pb-12 sm:pb-16 space-y-12 sm:space-y-16">
+    <div className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12 pt-1 sm:pt-2 pb-10 sm:pb-12 space-y-6 sm:space-y-8">
       
       {/* Page Header */}
-      <div className="max-w-3xl space-y-3">
+      <div className="max-w-3xl space-y-2">
         <div className="inline-flex items-center gap-2 rounded-full bg-amber-500/15 px-3 py-1 text-xs font-semibold text-amber-800 border border-amber-500/30">
           <Award className="h-3.5 w-3.5" />
           <span>About TruPaintz &amp; Interiors</span>
         </div>
-        <h1 className="font-display text-4xl sm:text-5xl font-bold tracking-tight text-neutral-950">
+        <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-950 leading-tight">
           Crafting Living Spaces with Enduring Integrity
         </h1>
-        <p className="text-base sm:text-lg text-neutral-600 leading-relaxed">
+        <p className="text-sm sm:text-base text-neutral-600 leading-relaxed">
           We founded TruPaintz &amp; Interiors to bring architectural rigor, imported Italian plaster craftsmanship, and completely dustless execution to Indian homes.
         </p>
       </div>
 
       {/* Brand Story Split Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-        <div className="lg:col-span-7 space-y-5 text-neutral-700 leading-relaxed text-sm sm:text-base">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+        <div className="lg:col-span-7 space-y-3.5 text-neutral-700 leading-relaxed text-sm sm:text-base">
           <h2 className="font-display text-2xl sm:text-3xl font-bold text-neutral-950">
             Why We Reject Ordinary Paint Practices
           </h2>
@@ -45,7 +45,7 @@ export const AboutPage: React.FC = () => {
             At <strong>TruPaintz &amp; Interiors</strong>, we transformed the workflow into an architectural discipline. We utilize German Festool HEPA extractors for 100% dust-free wall preparation, check every square meter with digital pinless moisture meters, and specialize in authentic Italian Venetian plasters sourced directly from Novacolor in Italy.
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
             {[
               '10-Year Adhesion & Anti-Peel Warranty',
               'Mechanized Zero-Dust HEPA Sanding',
@@ -69,7 +69,7 @@ export const AboutPage: React.FC = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="p-4 text-center">
+            <div className="p-3 text-center">
               <p className="font-display text-base font-bold text-neutral-950">
                 ArtisanMohammed &amp; Team
               </p>
@@ -82,12 +82,12 @@ export const AboutPage: React.FC = () => {
       </div>
 
       {/* The 4-Step Execution Workflow */}
-      <div className="space-y-8">
-        <div className="text-center max-w-xl mx-auto space-y-2">
+      <div className="space-y-5">
+        <div className="text-center max-w-xl mx-auto space-y-1.5">
           <span className="text-xs font-bold text-amber-700 uppercase tracking-wider">
             Our Standard Operating Protocol
           </span>
-          <h2 className="font-display text-3xl font-bold text-neutral-950">
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-neutral-950">
             How Every Space is Engineered
           </h2>
         </div>
@@ -136,13 +136,13 @@ export const AboutPage: React.FC = () => {
       </div>
 
       {/* Design Journal Articles (Clean Preview) */}
-      <div className="space-y-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-neutral-200">
+      <div className="space-y-5">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-neutral-200">
           <div>
             <span className="text-xs font-bold text-amber-700 uppercase tracking-wider">
               From Our Architectural Desk
             </span>
-            <h2 className="mt-1 font-display text-3xl font-bold text-neutral-950">
+            <h2 className="mt-1 font-display text-2xl sm:text-3xl font-bold text-neutral-950">
               Design Insights &amp; Plaster Alchemy
             </h2>
           </div>
@@ -157,11 +157,11 @@ export const AboutPage: React.FC = () => {
           </a>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {BLOG_POSTS.map((post) => (
             <div
               key={post.id}
-              className="rounded-2xl border border-neutral-200/90 bg-white p-5 shadow-sm flex flex-col justify-between"
+              className="rounded-2xl border border-neutral-200/90 bg-white p-4 sm:p-5 shadow-sm flex flex-col justify-between"
             >
               <div>
                 <div className="aspect-[16/10] rounded-xl overflow-hidden mb-3 bg-neutral-100">
@@ -187,7 +187,7 @@ export const AboutPage: React.FC = () => {
       </div>
 
       {/* Studio Location & Consultation CTA */}
-      <div className="rounded-3xl border border-amber-900/10 bg-amber-50/60 p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8">
+      <div className="rounded-3xl border border-amber-900/10 bg-amber-50/60 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="space-y-2 max-w-xl">
           <div className="flex items-center gap-2 text-xs font-bold text-amber-800 uppercase tracking-wider">
             <MapPin className="h-4 w-4" />

@@ -104,18 +104,17 @@ export const LiveChatConcierge: React.FC = () => {
   return (
     <div className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-40 flex flex-col items-end">
       
-      {/* Floating Toggle Button */}
+      {/* Floating Toggle Button (Icon Only - text removed as requested) */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="group flex items-center gap-2 rounded-full bg-amber-600 px-3.5 py-2.5 sm:px-4 sm:py-3 text-white shadow-2xl hover:bg-amber-500 transition-all hover:scale-105 active:scale-95 cursor-pointer"
+          className="relative group flex items-center justify-center h-14 w-14 rounded-full bg-amber-600 text-white shadow-2xl hover:bg-amber-500 transition-all hover:scale-105 active:scale-95 cursor-pointer"
           aria-label="Open Live Design Concierge"
         >
-          <MessageSquare className="h-4 w-4 sm:h-5 sm:w-5" />
-          <span className="text-xs font-semibold tracking-wide">Design Concierge</span>
-          <span className="relative flex h-2 w-2">
+          <MessageSquare className="h-6 w-6" />
+          <span className="absolute top-1 right-1 flex h-3.5 w-3.5">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-200 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-white" />
+            <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-white border-2 border-amber-600" />
           </span>
         </button>
       )}

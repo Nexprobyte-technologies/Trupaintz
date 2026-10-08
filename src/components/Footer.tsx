@@ -13,11 +13,11 @@ export const Footer: React.FC = () => (
     <div className="pointer-events-none absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[200px] blur-[100px] opacity-10"
       style={{ background: 'radial-gradient(ellipse, #d97706 0%, transparent 70%)' }} />
 
-    <div className="relative mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-10 xl:px-12 py-8 sm:py-9">
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-10">
+    <div className="relative mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-10 xl:px-12 py-6 sm:py-7">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8">
 
         {/* 1. Brand & Contact */}
-        <div className="md:col-span-5 lg:col-span-4 space-y-4">
+        <div className="md:col-span-5 lg:col-span-4 space-y-3">
           <Link to="/" className="group inline-flex items-center gap-3">
             <div className="flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-2xl bg-white shadow-md p-1.5 shrink-0 transition-transform group-hover:scale-105">
               <img 
@@ -35,10 +35,6 @@ export const Footer: React.FC = () => (
               </p>
             </div>
           </Link>
-
-          <p className="text-xs sm:text-sm leading-relaxed text-neutral-400 max-w-sm">
-            {BRAND_INFO.tagline} — UPVC Windows &amp; Doors, Dustless Painting, Curtains, Blinds, Wallpapers, Wooden Flooring, False Ceilings, Mosquito Nets, Louvers &amp; Artificial Grass.
-          </p>
 
           {/* Contact Details */}
           <div className="space-y-2 pt-1 text-xs sm:text-sm text-neutral-400">
@@ -166,7 +162,7 @@ export const Footer: React.FC = () => (
       </div>
 
       {/* Bottom bar */}
-      <div className="mt-7 pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-neutral-500">
+      <div className="mt-5 pt-3 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-neutral-500">
         <p>© {new Date().getFullYear()} TruPaintz &amp; Interiors. All rights reserved.</p>
         <p className="text-[11px] text-neutral-500">
           Precision Engineering · Non-Destructive Digital Moisture Inspection · Dustless HEPA Workflows

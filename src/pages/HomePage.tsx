@@ -517,7 +517,7 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 5. Complete Range of Interior Design Solutions (The 10 Numbered Services Grid from Global Ethos) */}
+      {/* 5. Core Architectural & Interior Solutions (5 Key Flagship Services) */}
       <section className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-5 border-b border-neutral-200/80">
           <div>
@@ -526,10 +526,10 @@ export const HomePage: React.FC = () => {
               <span>Full Portfolio Spectrum</span>
             </div>
             <h2 className="mt-1 font-display text-3xl sm:text-4xl font-bold text-neutral-950">
-              Discover Our Complete Range of Interior Design Solutions
+              Discover Our Core Interior &amp; Architectural Solutions
             </h2>
             <p className="mt-2 text-xs sm:text-sm text-neutral-600 max-w-2xl">
-              We turn ideas into real spaces. Explore all 10 specialized architectural and bespoke interior categories, built with care and precision.
+              We turn ideas into real spaces. Explore our 5 core architectural and interior services, engineered with heirloom quality and uncompromised craftsmanship.
             </p>
           </div>
           <div className="flex items-center gap-3">
@@ -543,15 +543,15 @@ export const HomePage: React.FC = () => {
               to="/services"
               className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-700 hover:text-amber-800 transition-colors"
             >
-              <span>View All 10 Services</span>
+              <span>View All 10 Services in Catalogue</span>
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>
 
-        {/* 10 Services Interactive Responsive Grid */}
+        {/* 5 Core Services Interactive Responsive Grid (4, 5, 8, 9, 10 removed as requested) */}
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
-          {SERVICES_DATA.map((service) => (
+          {SERVICES_DATA.filter((s) => !['04', '05', '08', '09', '10'].includes(s.num)).map((service) => (
             <div
               key={service.id}
               className="ethos-card rounded-2xl border border-neutral-200/90 bg-white p-4 shadow-xs flex flex-col justify-between group overflow-hidden"
@@ -667,90 +667,173 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 7. Interactive Quick Estimator Card (Centered & Streamlined) */}
+      {/* 7. Interactive Quick Estimator & Complimentary On-Site Inspection Desk */}
       <section className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
-        <div className="max-w-4xl mx-auto rounded-3xl border border-amber-900/15 bg-white p-6 sm:p-8 lg:p-10 shadow-md">
-          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-amber-700 mb-2">
-            <Calculator className="h-4 w-4" />
-            <span>Instant Cost Calculator</span>
-          </div>
-          <h3 className="font-display text-2xl sm:text-3xl font-bold text-neutral-950">
-            Plan Your Renovation Budget
-          </h3>
-          <p className="mt-2 text-xs sm:text-sm text-neutral-600">
-            Get an instant realistic estimate based on surface area and finish tier.
-          </p>
-
-          {/* Controls */}
-          <div className="mt-6 space-y-4">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          
+          {/* Left Column: Quick Estimator Card */}
+          <div className="lg:col-span-7 rounded-3xl border border-amber-900/15 bg-white p-6 sm:p-8 lg:p-9 shadow-md flex flex-col justify-between">
             <div>
-              <div className="flex justify-between text-xs font-semibold text-neutral-800 mb-1">
-                <span>Floor / Carpet Area:</span>
-                <span className="font-mono text-amber-700">{homeSqft} sq.ft</span>
+              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-amber-700 mb-2">
+                <Calculator className="h-4 w-4" />
+                <span>Instant Cost Calculator</span>
               </div>
-              <input
-                type="range"
-                min={500}
-                max={5000}
-                step={100}
-                value={homeSqft}
-                onChange={(e) => setHomeSqft(Number(e.target.value))}
-                className="w-full accent-amber-600 cursor-pointer"
-              />
-              <div className="flex justify-between text-[10px] text-neutral-400 mt-0.5">
-                <span>500 sq.ft</span>
-                <span>2,500 sq.ft</span>
-                <span>5,000 sq.ft</span>
+              <h3 className="font-display text-2xl sm:text-3xl font-bold text-neutral-950">
+                Plan Your Renovation Budget
+              </h3>
+              <p className="mt-2 text-xs sm:text-sm text-neutral-600">
+                Get an instant realistic estimate based on surface area and finish tier.
+              </p>
+
+              {/* Controls */}
+              <div className="mt-6 space-y-4">
+                <div>
+                  <div className="flex justify-between text-xs font-semibold text-neutral-800 mb-1">
+                    <span>Floor / Carpet Area:</span>
+                    <span className="font-mono text-amber-700 font-bold">{homeSqft} sq.ft</span>
+                  </div>
+                  <input
+                    type="range"
+                    min={500}
+                    max={5000}
+                    step={100}
+                    value={homeSqft}
+                    onChange={(e) => setHomeSqft(Number(e.target.value))}
+                    className="w-full accent-amber-600 cursor-pointer"
+                  />
+                  <div className="flex justify-between text-[10px] text-neutral-400 mt-0.5 font-mono">
+                    <span>500 sq.ft</span>
+                    <span>2,500 sq.ft</span>
+                    <span>5,000 sq.ft</span>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-neutral-800 mb-1.5">
+                    Finish Scope:
+                  </label>
+                  <div className="grid grid-cols-3 gap-2">
+                    {['Home Painting', 'UPVC Windows', 'Wooden Flooring'].map((type) => (
+                      <button
+                        key={type}
+                        type="button"
+                        onClick={() => setHomeService(type)}
+                        className={`py-2 px-2 rounded-xl border text-xs font-medium transition-all text-center ${
+                          homeService === type
+                            ? 'border-amber-600 bg-amber-500/15 text-amber-800 font-semibold shadow-sm'
+                            : 'border-neutral-200 text-neutral-600 hover:bg-neutral-50'
+                        }`}
+                      >
+                        {type}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Estimate Calculation Result */}
+              <div className="mt-6 p-4 sm:p-5 rounded-2xl bg-amber-50/80 border border-amber-200/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div>
+                  <span className="text-[11px] uppercase tracking-wider text-neutral-500 block">
+                    Estimated Investment Range
+                  </span>
+                  <span className="font-display text-2xl sm:text-3xl font-bold text-neutral-950">
+                    ₹{estimatedMin.toLocaleString()} – ₹{estimatedMax.toLocaleString()}
+                  </span>
+                  <span className="text-[10px] sm:text-xs text-neutral-500 block mt-0.5">
+                    Includes material, mechanized sanding &amp; artisan application
+                  </span>
+                </div>
+                <Link
+                  to={`/estimator?sqft=${homeSqft}&service=${encodeURIComponent(homeService)}`}
+                  className="rounded-xl bg-amber-600 hover:bg-amber-500 px-4 py-2.5 text-xs font-semibold text-white transition-colors shrink-0 shadow-sm whitespace-nowrap"
+                >
+                  Full Breakdown →
+                </Link>
               </div>
             </div>
 
+            <p className="mt-4 text-[11px] text-neutral-500">
+              * Final quote confirmed after non-destructive digital moisture inspection on site.
+            </p>
+          </div>
+
+          {/* Right Column: Complimentary On-Site Inspection Desk (Fills space with high-value relevant offering) */}
+          <div className="lg:col-span-5 rounded-3xl border border-neutral-200/90 bg-gradient-to-br from-[#1C1814] via-[#241F1A] to-[#120F0C] text-white p-6 sm:p-8 lg:p-9 shadow-xl flex flex-col justify-between relative overflow-hidden">
+            {/* Ambient gold glow */}
+            <div 
+              className="pointer-events-none absolute -top-20 -right-20 w-60 h-60 rounded-full blur-3xl opacity-20"
+              style={{ background: 'radial-gradient(circle, #f59e0b 0%, transparent 70%)' }}
+            />
+
             <div>
-              <label className="block text-xs font-semibold text-neutral-800 mb-1.5">
-                Finish Scope:
-              </label>
-              <div className="grid grid-cols-3 gap-2">
-                {['Home Painting', 'UPVC Windows', 'Wooden Flooring'].map((type) => (
-                  <button
-                    key={type}
-                    type="button"
-                    onClick={() => setHomeService(type)}
-                    className={`py-2 px-2 rounded-xl border text-xs font-medium transition-all text-center ${
-                      homeService === type
-                        ? 'border-amber-600 bg-amber-500/15 text-amber-800 font-semibold shadow-sm'
-                        : 'border-neutral-200 text-neutral-600 hover:bg-neutral-50'
-                    }`}
-                  >
-                    {type}
-                  </button>
-                ))}
+              <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-amber-400 mb-2">
+                <ShieldCheck className="h-4 w-4" />
+                <span>Zero-Obligation Site Visit</span>
+              </div>
+              <h3 className="font-display text-2xl sm:text-3xl font-bold text-white leading-tight">
+                Free On-Site Inspection &amp; Moisture Testing
+              </h3>
+              <p className="mt-2.5 text-xs sm:text-sm text-neutral-300 leading-relaxed">
+                Before confirming your project, our senior project engineer visits your location with precision inspection equipment and physical material samples.
+              </p>
+
+              {/* 4 Trust Highlights */}
+              <div className="mt-5 space-y-2.5">
+                <div className="flex items-start gap-2.5 p-2 rounded-xl bg-white/5 border border-white/10">
+                  <Ruler className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" />
+                  <div>
+                    <h5 className="text-xs font-bold text-white">Micron Laser Area Measurement</h5>
+                    <p className="text-[11px] text-neutral-400">Accurate sq.ft calculation for windows, flooring &amp; walls.</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-2.5 p-2 rounded-xl bg-white/5 border border-white/10">
+                  <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0 mt-0.5" />
+                  <div>
+                    <h5 className="text-xs font-bold text-white">Digital Pinless Moisture Scan</h5>
+                    <p className="text-[11px] text-neutral-400">Detects hidden wall dampness before paint or floor installation.</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-2.5 p-2 rounded-xl bg-white/5 border border-white/10">
+                  <Layers className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" />
+                  <div>
+                    <h5 className="text-xs font-bold text-white">50+ Physical Swatches &amp; Profiles</h5>
+                    <p className="text-[11px] text-neutral-400">Touch genuine EITI UPVC sections, curtains, and flooring AC samples.</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-2.5 p-2 rounded-xl bg-white/5 border border-white/10">
+                  <Award className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" />
+                  <div>
+                    <h5 className="text-xs font-bold text-white">Guaranteed Transparent Pricing</h5>
+                    <p className="text-[11px] text-neutral-400">Zero hidden extras with 10–20 year manufacturer written warranty.</p>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Estimate Calculation Result */}
-          <div className="mt-6 p-4 sm:p-5 rounded-2xl bg-amber-50/80 border border-amber-200/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div>
-              <span className="text-[11px] uppercase tracking-wider text-neutral-500 block">
-                Estimated Investment Range
-              </span>
-              <span className="font-display text-2xl sm:text-3xl font-bold text-neutral-950">
-                ₹{estimatedMin.toLocaleString()} – ₹{estimatedMax.toLocaleString()}
-              </span>
-              <span className="text-[10px] sm:text-xs text-neutral-500 block mt-0.5">
-                Includes material, mechanized sanding &amp; artisan application
-              </span>
+            {/* Quick Actions */}
+            <div className="mt-6 pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center gap-3">
+              <Link
+                to="/contact"
+                className="btn-premium w-full sm:w-auto flex-1 text-center rounded-xl bg-amber-500 hover:bg-amber-400 px-4 py-2.5 text-xs font-bold text-neutral-950 shadow-md transition-all"
+              >
+                Book Free Site Visit →
+              </Link>
+              <a
+                href={`https://wa.me/919677708535?text=${encodeURIComponent('Hi TruPaintz! I would like to book a complimentary on-site measurement and moisture inspection.')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto text-center rounded-xl border border-white/20 bg-white/10 hover:bg-white/20 px-4 py-2.5 text-xs font-semibold text-white transition-all"
+              >
+                WhatsApp Desk
+              </a>
             </div>
-            <Link
-              to={`/estimator?sqft=${homeSqft}&service=${encodeURIComponent(homeService)}`}
-              className="rounded-xl bg-amber-600 hover:bg-amber-500 px-5 py-3 text-xs sm:text-sm font-semibold text-white transition-colors shrink-0 shadow-sm"
-            >
-              Full Itemized Breakdown →
-            </Link>
+
           </div>
 
-          <p className="mt-4 text-[11px] text-neutral-500 text-center sm:text-left">
-            * Final quote confirmed after non-destructive digital moisture inspection on site.
-          </p>
         </div>
       </section>
 
