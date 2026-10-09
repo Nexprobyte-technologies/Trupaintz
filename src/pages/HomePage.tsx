@@ -27,7 +27,6 @@ import {
 } from 'lucide-react';
 import { BRAND_INFO, SERVICES_DATA, PROJECTS_DATA } from '../data/mockData';
 import { useReviews } from '../context/ReviewsContext';
-import { AppDownloadModal } from '../components/AppDownloadModal';
 
 interface HeroSlide {
   id: number;
@@ -228,9 +227,6 @@ export const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const { reviews, averageRating, totalReviews } = useReviews();
 
-  // App Download Modal State
-  const [isAppModalOpen, setIsAppModalOpen] = useState(false);
-
   // 5-Second Carousel State
   const [currentSlide, setCurrentSlide] = useState(0);
   const [animProgressKey, setAnimProgressKey] = useState(0);
@@ -265,10 +261,10 @@ export const HomePage: React.FC = () => {
   const activeSlideData = HERO_SLIDES[currentSlide];
 
   return (
-    <div className="space-y-10 sm:space-y-12 pb-12">
+    <div className="space-y-20 sm:space-y-28 lg:space-y-36 pb-24 sm:pb-32">
       
       {/* 1. Global Ethos Inspired 5-Second Auto-Advancing Hero Carousel */}
-      <section className="relative overflow-hidden pt-5 pb-5 sm:pt-7 sm:pb-7 lg:pt-8 lg:pb-9">
+      <section className="relative overflow-hidden pt-6 pb-6 sm:pt-10 sm:pb-10 lg:pt-12 lg:pb-12">
         {/* Subtle Ambient Light Glow */}
         <div
           className="pointer-events-none absolute -top-32 left-1/2 -z-10 h-[500px] w-[900px] -translate-x-1/2 rounded-full opacity-20 blur-3xl"
@@ -355,15 +351,14 @@ export const HomePage: React.FC = () => {
                       <span>{activeSlideData.secondaryCtaText}</span>
                     </Link>
 
-                    {/* Download App Button with interactive modal */}
-                    <button
-                      type="button"
-                      onClick={() => setIsAppModalOpen(true)}
+                    {/* Download App Button */}
+                    <a
+                      href="#"
                       className="inline-flex items-center justify-center gap-2 rounded-xl border border-amber-400/50 bg-amber-950/70 backdrop-blur-md px-5 py-3.5 text-sm font-semibold text-amber-200 hover:bg-amber-900/80 hover:text-white transition-all text-center shadow-md cursor-pointer hover:scale-[1.03]"
                     >
                       <Download className="h-4 w-4 text-amber-300" />
                       <span>Download App</span>
-                    </button>
+                    </a>
                   </div>
                 </div>
 
@@ -431,7 +426,7 @@ export const HomePage: React.FC = () => {
 
       {/* 2. Architectural Pillars: "Discover the Beauty of Modern Architecture" */}
       <section className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
-        <div className="text-center max-w-3xl mx-auto pb-6">
+        <div className="text-center max-w-3xl mx-auto pb-8 sm:pb-12">
           <div className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-amber-700 mb-2">
             <Compass className="h-3.5 w-3.5" />
             <span>Architectural Philosophy</span>
@@ -444,14 +439,13 @@ export const HomePage: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           
           {/* Pillar 01 */}
           <div className="ethos-card rounded-2xl border border-neutral-200/90 bg-white p-6 shadow-xs flex flex-col justify-between group">
             <div>
-              <div className="flex items-center justify-between mb-4">
-                <div className="h-2.5 w-2.5 rounded-full bg-amber-500 group-hover:scale-125 transition-transform"></div>
-                <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-700 group-hover:bg-amber-600 group-hover:text-white transition-colors">
+              <div className="mb-4">
+                <div className="inline-flex p-2.5 rounded-xl bg-amber-500/10 text-amber-700 group-hover:bg-amber-600 group-hover:text-white transition-colors">
                   <Compass className="h-5 w-5" />
                 </div>
               </div>
@@ -473,9 +467,8 @@ export const HomePage: React.FC = () => {
           {/* Pillar 02 */}
           <div className="ethos-card rounded-2xl border border-neutral-200/90 bg-white p-6 shadow-xs flex flex-col justify-between group">
             <div>
-              <div className="flex items-center justify-between mb-4">
-                <div className="h-2.5 w-2.5 rounded-full bg-amber-500 group-hover:scale-125 transition-transform"></div>
-                <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-700 group-hover:bg-amber-600 group-hover:text-white transition-colors">
+              <div className="mb-4">
+                <div className="inline-flex p-2.5 rounded-xl bg-amber-500/10 text-amber-700 group-hover:bg-amber-600 group-hover:text-white transition-colors">
                   <Sparkles className="h-5 w-5" />
                 </div>
               </div>
@@ -497,9 +490,8 @@ export const HomePage: React.FC = () => {
           {/* Pillar 03 */}
           <div className="ethos-card rounded-2xl border border-neutral-200/90 bg-white p-6 shadow-xs flex flex-col justify-between group">
             <div>
-              <div className="flex items-center justify-between mb-4">
-                <div className="h-2.5 w-2.5 rounded-full bg-amber-500 group-hover:scale-125 transition-transform"></div>
-                <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-700 group-hover:bg-amber-600 group-hover:text-white transition-colors">
+              <div className="mb-4">
+                <div className="inline-flex p-2.5 rounded-xl bg-amber-500/10 text-amber-700 group-hover:bg-amber-600 group-hover:text-white transition-colors">
                   <Ruler className="h-5 w-5" />
                 </div>
               </div>
@@ -521,9 +513,8 @@ export const HomePage: React.FC = () => {
           {/* Pillar 04 */}
           <div className="ethos-card rounded-2xl border border-neutral-200/90 bg-white p-6 shadow-xs flex flex-col justify-between group">
             <div>
-              <div className="flex items-center justify-between mb-4">
-                <div className="h-2.5 w-2.5 rounded-full bg-amber-500 group-hover:scale-125 transition-transform"></div>
-                <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-700 group-hover:bg-amber-600 group-hover:text-white transition-colors">
+              <div className="mb-4">
+                <div className="inline-flex p-2.5 rounded-xl bg-amber-500/10 text-amber-700 group-hover:bg-amber-600 group-hover:text-white transition-colors">
                   <CheckCircle2 className="h-5 w-5" />
                 </div>
               </div>
@@ -583,49 +574,65 @@ export const HomePage: React.FC = () => {
             {/* 4 Architectural Core Values Cards */}
             <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
               
-              <div className="p-5 rounded-2xl bg-neutral-50/80 border border-neutral-200/80 hover:border-amber-400 hover:bg-amber-50/30 transition-all flex items-start gap-4">
-                <div className="p-2.5 rounded-xl bg-white border border-neutral-200 shadow-xs text-amber-600 shrink-0">
-                  <Sparkles className="h-5 w-5" />
-                </div>
+              <div className="p-5 rounded-2xl bg-neutral-50/80 border border-neutral-200/80 hover:border-amber-400 hover:bg-amber-50/30 transition-all flex flex-col justify-between">
                 <div>
-                  <h4 className="font-display text-base font-bold text-neutral-950">Latest Technologies</h4>
-                  <p className="mt-1 text-xs text-neutral-600 leading-relaxed">
+                  <div className="flex items-center justify-between gap-3 mb-2">
+                    <h4 className="font-display text-base font-bold text-neutral-950 uppercase tracking-wide">
+                      Latest Technologies
+                    </h4>
+                    <div className="p-2 rounded-xl bg-white border border-neutral-200 shadow-xs text-amber-600 shrink-0">
+                      <Sparkles className="h-4 w-4 sm:h-5 sm:w-5" />
+                    </div>
+                  </div>
+                  <p className="text-xs text-neutral-600 leading-relaxed">
                     Interactive 3D Studio, digital surface moisture analysis, and mechanized HEPA dust-free sanding machines.
                   </p>
                 </div>
               </div>
 
-              <div className="p-5 rounded-2xl bg-neutral-50/80 border border-neutral-200/80 hover:border-amber-400 hover:bg-amber-50/30 transition-all flex items-start gap-4">
-                <div className="p-2.5 rounded-xl bg-white border border-neutral-200 shadow-xs text-amber-600 shrink-0">
-                  <Paintbrush className="h-5 w-5" />
-                </div>
+              <div className="p-5 rounded-2xl bg-neutral-50/80 border border-neutral-200/80 hover:border-amber-400 hover:bg-amber-50/30 transition-all flex flex-col justify-between">
                 <div>
-                  <h4 className="font-display text-base font-bold text-neutral-950">Expert Craftsmanship</h4>
-                  <p className="mt-1 text-xs text-neutral-600 leading-relaxed">
+                  <div className="flex items-center justify-between gap-3 mb-2">
+                    <h4 className="font-display text-base font-bold text-neutral-950 uppercase tracking-wide">
+                      Expert Craftsmanship
+                    </h4>
+                    <div className="p-2 rounded-xl bg-white border border-neutral-200 shadow-xs text-amber-600 shrink-0">
+                      <Paintbrush className="h-4 w-4 sm:h-5 sm:w-5" />
+                    </div>
+                  </div>
+                  <p className="text-xs text-neutral-600 leading-relaxed">
                     Generational trowel masters trained in authentic Italian Marmorino, Grassello, and seamless microcement.
                   </p>
                 </div>
               </div>
 
-              <div className="p-5 rounded-2xl bg-neutral-50/80 border border-neutral-200/80 hover:border-amber-400 hover:bg-amber-50/30 transition-all flex items-start gap-4">
-                <div className="p-2.5 rounded-xl bg-white border border-neutral-200 shadow-xs text-amber-600 shrink-0">
-                  <Layers className="h-5 w-5" />
-                </div>
+              <div className="p-5 rounded-2xl bg-neutral-50/80 border border-neutral-200/80 hover:border-amber-400 hover:bg-amber-50/30 transition-all flex flex-col justify-between">
                 <div>
-                  <h4 className="font-display text-base font-bold text-neutral-950">High-Quality Designs</h4>
-                  <p className="mt-1 text-xs text-neutral-600 leading-relaxed">
+                  <div className="flex items-center justify-between gap-3 mb-2">
+                    <h4 className="font-display text-base font-bold text-neutral-950 uppercase tracking-wide">
+                      High-Quality Designs
+                    </h4>
+                    <div className="p-2 rounded-xl bg-white border border-neutral-200 shadow-xs text-amber-600 shrink-0">
+                      <Layers className="h-4 w-4 sm:h-5 sm:w-5" />
+                    </div>
+                  </div>
+                  <p className="text-xs text-neutral-600 leading-relaxed">
                     Curated Belgian linens, natural oak veneers, GOLS-certified latex, and European imported wallcoverings.
                   </p>
                 </div>
               </div>
 
-              <div className="p-5 rounded-2xl bg-neutral-50/80 border border-neutral-200/80 hover:border-amber-400 hover:bg-amber-50/30 transition-all flex items-start gap-4">
-                <div className="p-2.5 rounded-xl bg-white border border-neutral-200 shadow-xs text-amber-600 shrink-0">
-                  <ShieldCheck className="h-5 w-5" />
-                </div>
+              <div className="p-5 rounded-2xl bg-neutral-50/80 border border-neutral-200/80 hover:border-amber-400 hover:bg-amber-50/30 transition-all flex flex-col justify-between">
                 <div>
-                  <h4 className="font-display text-base font-bold text-neutral-950">Residential &amp; Commercial</h4>
-                  <p className="mt-1 text-xs text-neutral-600 leading-relaxed">
+                  <div className="flex items-center justify-between gap-3 mb-2">
+                    <h4 className="font-display text-base font-bold text-neutral-950 uppercase tracking-wide">
+                      Residential &amp; Commercial
+                    </h4>
+                    <div className="p-2 rounded-xl bg-white border border-neutral-200 shadow-xs text-amber-600 shrink-0">
+                      <ShieldCheck className="h-4 w-4 sm:h-5 sm:w-5" />
+                    </div>
+                  </div>
+                  <p className="text-xs text-neutral-600 leading-relaxed">
                     Proven track record across luxury villas, duplexes, bespoke boutique studios, and flagship retail showrooms.
                   </p>
                 </div>
@@ -639,7 +646,7 @@ export const HomePage: React.FC = () => {
 
       {/* 5. Core Architectural & Interior Solutions (5 Key Flagship Services) */}
       <section className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-5 border-b border-neutral-200/80">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 sm:pb-8 border-b border-neutral-200/80">
           <div>
             <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-amber-700">
               <Sparkles className="h-3.5 w-3.5" />
@@ -648,7 +655,7 @@ export const HomePage: React.FC = () => {
             <h2 className="mt-1 font-display text-3xl sm:text-4xl font-bold text-neutral-950">
               Discover Our Core Interior &amp; Architectural Solutions
             </h2>
-            <p className="mt-2 text-xs sm:text-sm text-neutral-600 max-w-2xl">
+            <p className="mt-2 text-xs sm:text-sm text-neutral-600 max-w-2xl leading-relaxed">
               We turn ideas into real spaces. Explore our 5 core architectural and interior services, engineered with heirloom quality and uncompromised craftsmanship.
             </p>
           </div>
@@ -670,7 +677,7 @@ export const HomePage: React.FC = () => {
         </div>
 
         {/* 5 Core Services Interactive Responsive Grid (4, 5, 8, 9, 10 removed as requested) */}
-        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+        <div className="mt-8 sm:mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {SERVICES_DATA.filter((s) => ['srv-1', 'srv-2', 'srv-3', 'srv-6', 'srv-7'].includes(s.id)).map((service) => (
             <div
               key={service.id}
@@ -1026,7 +1033,7 @@ export const HomePage: React.FC = () => {
 
       {/* 6. Featured Living Space Transformations */}
       <section className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-5 border-b border-neutral-200/80">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 sm:pb-8 border-b border-neutral-200/80">
           <div>
             <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-amber-700">
               <Eye className="h-3.5 w-3.5" />
@@ -1045,7 +1052,7 @@ export const HomePage: React.FC = () => {
           </Link>
         </div>
 
-        <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="mt-8 sm:mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {PROJECTS_DATA.slice(0, 3).map((proj) => (
             <div
               key={proj.id}
@@ -1091,7 +1098,7 @@ export const HomePage: React.FC = () => {
 
       {/* 7. Interactive Quick Estimator & Complimentary On-Site Inspection Desk */}
       <section className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
           
           {/* Left Column: Quick Estimator Card */}
           <div className="lg:col-span-7 rounded-3xl border border-amber-900/15 bg-white p-6 sm:p-8 lg:p-9 shadow-md flex flex-col justify-between">
@@ -1182,66 +1189,66 @@ export const HomePage: React.FC = () => {
 
           {/* Right Column: Complimentary On-Site Inspection Desk (Fills space with high-value relevant offering) */}
           <div className="lg:col-span-5 rounded-3xl border border-amber-900/30 bg-neutral-950 text-white p-6 sm:p-8 lg:p-9 shadow-2xl flex flex-col justify-between relative overflow-hidden group">
-            {/* Architectural Room Background Image - Visibly prominent with warm interior lighting */}
+            {/* Architectural Room Background Image - Bright Sunlit Luxury Interior */}
             <div className="absolute inset-0 z-0 overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=85"
-                alt="Luxury Villa Interior Inspection"
-                className="w-full h-full object-cover object-center opacity-60 scale-100 group-hover:scale-105 transition-transform duration-700"
+                src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=85"
+                alt="Bright Luxury Interior Inspection"
+                className="w-full h-full object-cover object-center opacity-85 scale-100 group-hover:scale-105 transition-transform duration-700"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/95 via-neutral-950/65 to-neutral-950/40 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/85 via-neutral-950/50 to-neutral-900/25 pointer-events-none" />
             </div>
 
             {/* Ambient gold glow */}
             <div 
-              className="pointer-events-none absolute -top-20 -right-20 w-60 h-60 rounded-full blur-3xl opacity-30 z-0"
+              className="pointer-events-none absolute -top-20 -right-20 w-60 h-60 rounded-full blur-3xl opacity-35 z-0"
               style={{ background: 'radial-gradient(circle, #f59e0b 0%, transparent 70%)' }}
             />
 
             <div className="relative z-10">
-              <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-amber-400 mb-2">
+              <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-amber-300 mb-2">
                 <ShieldCheck className="h-4 w-4" />
                 <span>Zero-Obligation Site Visit</span>
               </div>
-              <h3 className="font-display text-2xl sm:text-3xl font-bold text-white leading-tight">
+              <h3 className="font-display text-2xl sm:text-3xl font-bold text-white leading-tight drop-shadow-md">
                 Free On-Site Inspection &amp; Moisture Testing
               </h3>
-              <p className="mt-2.5 text-xs sm:text-sm text-neutral-200 leading-relaxed drop-shadow-sm">
+              <p className="mt-2.5 text-xs sm:text-sm text-neutral-100 leading-relaxed drop-shadow-sm">
                 Before confirming your project, our senior project engineer visits your location with precision inspection equipment and physical material samples.
               </p>
 
-              {/* 4 Trust Highlights with Glassmorphism */}
+              {/* 4 Trust Highlights with Transparent Glassmorphic Boxes */}
               <div className="mt-5 space-y-2.5">
-                <div className="flex items-start gap-2.5 p-2.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/15 hover:border-amber-400/50 transition-colors">
-                  <Ruler className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" />
+                <div className="flex items-start gap-2.5 p-2.5 rounded-xl bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/25 hover:border-amber-300/60 shadow-sm transition-all">
+                  <Ruler className="h-4 w-4 text-amber-300 shrink-0 mt-0.5" />
                   <div>
                     <h5 className="text-xs font-bold text-white">Micron Laser Area Measurement</h5>
-                    <p className="text-[11px] text-neutral-300">Accurate sq.ft calculation for windows, flooring &amp; walls.</p>
+                    <p className="text-[11px] text-neutral-100">Accurate sq.ft calculation for windows, flooring &amp; walls.</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-2.5 p-2.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/15 hover:border-emerald-400/50 transition-colors">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0 mt-0.5" />
+                <div className="flex items-start gap-2.5 p-2.5 rounded-xl bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/25 hover:border-emerald-300/60 shadow-sm transition-all">
+                  <CheckCircle2 className="h-4 w-4 text-emerald-300 shrink-0 mt-0.5" />
                   <div>
                     <h5 className="text-xs font-bold text-white">Digital Pinless Moisture Scan</h5>
-                    <p className="text-[11px] text-neutral-300">Detects hidden wall dampness before paint or floor installation.</p>
+                    <p className="text-[11px] text-neutral-100">Detects hidden wall dampness before paint or floor installation.</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-2.5 p-2.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/15 hover:border-amber-400/50 transition-colors">
-                  <Layers className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" />
+                <div className="flex items-start gap-2.5 p-2.5 rounded-xl bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/25 hover:border-amber-300/60 shadow-sm transition-all">
+                  <Layers className="h-4 w-4 text-amber-300 shrink-0 mt-0.5" />
                   <div>
                     <h5 className="text-xs font-bold text-white">50+ Physical Swatches &amp; Profiles</h5>
-                    <p className="text-[11px] text-neutral-300">Touch genuine EITI UPVC sections, curtains, and flooring AC samples.</p>
+                    <p className="text-[11px] text-neutral-100">Touch genuine EITI UPVC sections, curtains, and flooring AC samples.</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-2.5 p-2.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/15 hover:border-amber-400/50 transition-colors">
-                  <Award className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" />
+                <div className="flex items-start gap-2.5 p-2.5 rounded-xl bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/25 hover:border-amber-300/60 shadow-sm transition-all">
+                  <Award className="h-4 w-4 text-amber-300 shrink-0 mt-0.5" />
                   <div>
                     <h5 className="text-xs font-bold text-white">Guaranteed Transparent Pricing</h5>
-                    <p className="text-[11px] text-neutral-300">Zero hidden extras with 10–20 year manufacturer written warranty.</p>
+                    <p className="text-[11px] text-neutral-100">Zero hidden extras with 10–20 year manufacturer written warranty.</p>
                   </div>
                 </div>
               </div>
@@ -1272,7 +1279,7 @@ export const HomePage: React.FC = () => {
 
       {/* 8. Testimonials Highlight */}
       <section className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-5 border-b border-neutral-200/80">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 sm:pb-8 border-b border-neutral-200/80">
           <div>
             <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-amber-700">
               <Star className="h-3.5 w-3.5 fill-amber-500 text-amber-500" />
@@ -1291,7 +1298,7 @@ export const HomePage: React.FC = () => {
           </Link>
         </div>
 
-        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="mt-8 sm:mt-10 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {reviews.slice(0, 2).map((rev) => (
             <div
               key={rev.id}
@@ -1356,12 +1363,9 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Official App Download Modal */}
-      <AppDownloadModal 
-        isOpen={isAppModalOpen} 
-        onClose={() => setIsAppModalOpen(false)} 
-      />
+
 
     </div>
   );
 };
+

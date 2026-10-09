@@ -10,20 +10,27 @@ import {
   Star, 
   ArrowRight
 } from 'lucide-react';
+import { CATALOGUE_CATEGORIES } from '../data/catalogueData';
 
 export const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
+  const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
+  const [isExploreDropdownOpen, setIsExploreDropdownOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const [isMobileExploreOpen, setIsMobileExploreOpen] = useState(false);
 
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const servicesDropdownRef = useRef<HTMLDivElement>(null);
+  const exploreDropdownRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 
-  // Close dropdown on click outside
+  // Close dropdowns on click outside
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setIsDropdownOpen(false);
+      if (servicesDropdownRef.current && !servicesDropdownRef.current.contains(e.target as Node)) {
+        setIsServicesDropdownOpen(false);
+      }
+      if (exploreDropdownRef.current && !exploreDropdownRef.current.contains(e.target as Node)) {
+        setIsExploreDropdownOpen(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -33,24 +40,16 @@ export const Header: React.FC = () => {
   // Close menus on route change
   useEffect(() => {
     setIsMobileMenuOpen(false);
-    setIsDropdownOpen(false);
+    setIsServicesDropdownOpen(false);
+    setIsExploreDropdownOpen(false);
   }, [location.pathname]);
 
-  // Direct visible links requested by user:
-  // Home, About Us, Projects, Contact Us
-  const DIRECT_NAV_LINKS = [
-    { to: '/', label: 'Home' },
-    { to: '/about', label: 'About Us' },
-    { to: '/projects', label: 'Projects' },
-    { to: '/contact', label: 'Contact Us' },
-  ];
-
-  // Remaining items in the dropdown menu:
-  const DROPDOWN_ITEMS = [
+  // Explore More Items (Projects moved inside Explore More as requested)
+  const EXPLORE_ITEMS = [
     {
-      to: '/services',
-      label: 'Our Services',
-      desc: 'UPVC windows, Saint-Gobain nets, flooring & interiors',
+      to: '/projects',
+      label: 'Realized Projects',
+      desc: 'Curated residential & commercial spaces',
       icon: Layers,
     },
     {
@@ -60,160 +59,245 @@ export const Header: React.FC = () => {
       icon: Calculator,
     },
     {
+      to: '/visualizer',
+      label: '3D Material Visualizer',
+      desc: 'Simulate Italian stuccos under daylight & cove lights',
+      icon: Sparkles,
+    },
+    {
       to: '/reviews',
-      label: 'Reviews',
-      desc: 'Verified homeowner milestone inspections & feedback',
+      label: 'Client Reviews',
+      desc: 'Verified homeowner milestone inspections & ratings',
       icon: Star,
     },
   ];
 
-  const isDropdownActive = DROPDOWN_ITEMS.some((item) => location.pathname === item.to);
+  const isExploreActive = EXPLORE_ITEMS.some((item) => location.pathname === item.to);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-amber-900/10 bg-[#FAF7F2]/98 backdrop-blur-md shadow-xs transition-all duration-200">
       <div className="mx-auto flex h-16 sm:h-20 max-w-screen-2xl w-full items-center justify-between px-4 sm:px-6 lg:px-10 xl:px-12">
         
-        {/* Brand Logo with White Background */}
-        <Link
-          to="/"
-          className="group flex items-center gap-3 text-left focus:outline-none shrink-0 mr-4"
-          aria-label="TruPaintz and Interiors Home"
-        >
-          {/* Logo with White Background Badge */}
-          <div className="flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-2xl bg-white shadow-md border border-neutral-200/90 p-1.5 shrink-0 transition-transform duration-300 group-hover:scale-105">
-            <img 
-              src="/logo.png" 
-              alt="TruPaintz & Interiors" 
-              className="h-full w-full object-contain" 
-            />
-          </div>
-
-          <div className="flex flex-col">
-            <span className="font-display text-lg sm:text-xl font-bold tracking-tight text-neutral-900 transition-colors group-hover:text-amber-700 leading-tight whitespace-nowrap">
-              TruPaintz &amp; Interiors
-            </span>
-            <span className="hidden xs:block text-[9px] uppercase tracking-widest text-amber-800 font-semibold leading-none">
-              Interior Architecture
-            </span>
-          </div>
-        </Link>
-
-        {/* Desktop Navigation Links:
-            Home, About Us, Projects, Contact Us + Dropdown for remaining */}
-        <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-xs xl:text-sm font-medium tracking-wide text-neutral-600">
+        {/* Left Section: Company Name (2 Lines) + Navigation Links Right Beside It */}
+        <div className="flex items-center gap-5 sm:gap-7 xl:gap-8">
           
-          {/* 1. Home */}
-          <NavLink
+          {/* Brand Logo with 2-Line Company Name */}
+          <Link
             to="/"
-            end
-            className={({ isActive }) =>
-              `nav-link-animated py-1 transition-colors whitespace-nowrap ${
-                isActive ? 'text-amber-800 font-bold active' : 'hover:text-neutral-950 text-neutral-700'
-              }`
-            }
+            className="group flex items-center gap-2.5 sm:gap-3 text-left focus:outline-none shrink-0"
+            aria-label="TruPaintz and Interiors Home"
           >
-            Home
-          </NavLink>
-
-          {/* 2. About Us */}
-          <NavLink
-            to="/about"
-            className={({ isActive }) =>
-              `nav-link-animated py-1 transition-colors whitespace-nowrap ${
-                isActive ? 'text-amber-800 font-bold active' : 'hover:text-neutral-950 text-neutral-700'
-              }`
-            }
-          >
-            About Us
-          </NavLink>
-
-          {/* 3. Projects */}
-          <NavLink
-            to="/projects"
-            className={({ isActive }) =>
-              `nav-link-animated py-1 transition-colors whitespace-nowrap ${
-                isActive ? 'text-amber-800 font-bold active' : 'hover:text-neutral-950 text-neutral-700'
-              }`
-            }
-          >
-            Projects
-          </NavLink>
-
-          {/* 4. Dropdown Menu for All Remaining Items */}
-          <div className="relative" ref={dropdownRef}>
-            <button
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              onMouseEnter={() => setIsDropdownOpen(true)}
-              className={`nav-link-animated flex items-center gap-1.5 py-1 font-medium transition-colors cursor-pointer ${
-                isDropdownActive || isDropdownOpen
-                  ? 'text-amber-800 font-bold'
-                  : 'text-neutral-700 hover:text-neutral-950'
-              }`}
-              aria-expanded={isDropdownOpen}
-            >
-              <span>Explore More</span>
-              <ChevronDown
-                className={`h-3.5 w-3.5 transition-transform duration-200 ${
-                  isDropdownOpen ? 'rotate-180 text-amber-700' : 'text-neutral-500'
-                }`}
+            {/* Logo Badge */}
+            <div className="flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-2xl bg-white shadow-md border border-neutral-200/90 p-1.5 shrink-0 transition-transform duration-300 group-hover:scale-105">
+              <img 
+                src="/logo.png" 
+                alt="TruPaintz & Interiors" 
+                className="h-full w-full object-contain" 
               />
-            </button>
+            </div>
 
-            {/* Dropdown Card */}
-            {isDropdownOpen && (
+            {/* 2-Lines Split Company Name */}
+            <div className="flex flex-col leading-tight">
+              <span className="font-display text-base sm:text-lg font-bold tracking-tight text-neutral-950 transition-colors group-hover:text-amber-700 leading-tight whitespace-nowrap">
+                TruPaintz
+              </span>
+              <span className="font-display text-xs sm:text-sm font-semibold tracking-tight text-amber-800 transition-colors group-hover:text-amber-700 leading-tight whitespace-nowrap">
+                &amp; Interiors
+              </span>
+            </div>
+          </Link>
+
+          {/* Desktop Navigation Links positioned right after the company name */}
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-7 text-xs xl:text-sm font-medium tracking-wide text-neutral-600">
+            
+            {/* 1. Home */}
+            <NavLink
+              to="/"
+              end
+              className={({ isActive }) =>
+                `nav-link-animated py-1 transition-colors whitespace-nowrap ${
+                  isActive ? 'text-amber-800 font-bold active' : 'hover:text-neutral-950 text-neutral-700'
+                }`
+              }
+            >
+              Home
+            </NavLink>
+
+            {/* 2. About Us */}
+            <NavLink
+              to="/about"
+              className={({ isActive }) =>
+                `nav-link-animated py-1 transition-colors whitespace-nowrap ${
+                  isActive ? 'text-amber-800 font-bold active' : 'hover:text-neutral-950 text-neutral-700'
+                }`
+              }
+            >
+              About Us
+            </NavLink>
+
+            {/* 3. Our Services (Moved to where Projects was + 10 Services Dropdown) */}
+            <div className="relative" ref={servicesDropdownRef}>
               <div
-                onMouseLeave={() => setIsDropdownOpen(false)}
-                className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-80 rounded-2xl border border-amber-900/15 bg-white/98 p-3 shadow-2xl backdrop-blur-xl z-50 animate-scale-in"
+                className="flex items-center"
+                onMouseEnter={() => setIsServicesDropdownOpen(true)}
               >
-                <div className="space-y-1">
-                  {DROPDOWN_ITEMS.map((item) => {
-                    const Icon = item.icon;
-                    const isActive = location.pathname === item.to;
-                    return (
+                <NavLink
+                  to="/services"
+                  className={({ isActive }) =>
+                    `nav-link-animated flex items-center gap-1 py-1 font-medium transition-colors whitespace-nowrap ${
+                      isActive || isServicesDropdownOpen
+                        ? 'text-amber-800 font-bold'
+                        : 'text-neutral-700 hover:text-neutral-950'
+                    }`
+                  }
+                >
+                  <span>Our Services</span>
+                </NavLink>
+                <button
+                  type="button"
+                  onClick={() => setIsServicesDropdownOpen(!isServicesDropdownOpen)}
+                  className="p-1 text-neutral-500 hover:text-amber-800 focus:outline-none cursor-pointer"
+                  aria-label="Toggle Our Services menu"
+                >
+                  <ChevronDown
+                    className={`h-3.5 w-3.5 transition-transform duration-200 ${
+                      isServicesDropdownOpen ? 'rotate-180 text-amber-700' : 'text-neutral-500'
+                    }`}
+                  />
+                </button>
+              </div>
+
+              {/* 10 Services Mega Dropdown Card */}
+              {isServicesDropdownOpen && (
+                <div
+                  onMouseLeave={() => setIsServicesDropdownOpen(false)}
+                  className="absolute left-0 top-full mt-2 w-[540px] xl:w-[580px] rounded-2xl border border-amber-900/15 bg-white/98 p-4 shadow-2xl backdrop-blur-xl z-50 animate-scale-in"
+                >
+                  <div className="flex items-center justify-between pb-2.5 mb-2.5 border-b border-neutral-100">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-amber-800">
+                      Our Complete 10 Services &amp; Products
+                    </span>
+                    <Link
+                      to="/services"
+                      onClick={() => setIsServicesDropdownOpen(false)}
+                      className="text-xs font-semibold text-amber-700 hover:text-amber-800 flex items-center gap-1"
+                    >
+                      <span>Catalogue Overview</span>
+                      <ArrowRight className="h-3 w-3" />
+                    </Link>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-1.5">
+                    {CATALOGUE_CATEGORIES.map((cat) => (
                       <Link
-                        key={item.to}
-                        to={item.to}
-                        onClick={() => setIsDropdownOpen(false)}
-                        className={`flex items-start gap-3 p-2.5 rounded-xl transition-colors text-left group ${
-                          isActive
-                            ? 'bg-amber-50 text-amber-900 font-semibold'
-                            : 'hover:bg-amber-50/70 text-neutral-800'
-                        }`}
+                        key={cat.id}
+                        to={`/services#${cat.id}`}
+                        onClick={() => {
+                          setIsServicesDropdownOpen(false);
+                          if (location.pathname === '/services') {
+                            const el = document.getElementById(cat.id);
+                            if (el) {
+                              const y = el.getBoundingClientRect().top + window.scrollY - 100;
+                              window.scrollTo({ top: y, behavior: 'smooth' });
+                            }
+                          }
+                        }}
+                        className="flex items-center gap-2 p-2 rounded-xl transition-all text-left hover:bg-amber-50/80 group border border-transparent hover:border-amber-200/60"
                       >
-                        <div className="h-8 w-8 rounded-lg bg-amber-500/15 flex items-center justify-center text-amber-800 shrink-0 group-hover:bg-amber-600 group-hover:text-white transition-colors">
-                          <Icon className="h-4 w-4" />
+                        <div className="h-6 w-6 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-800 shrink-0 group-hover:bg-amber-600 group-hover:text-white transition-colors text-[10px] font-bold">
+                          ✓
                         </div>
-                        <div>
-                          <p className="text-xs font-bold text-neutral-950 group-hover:text-amber-700">
-                            {item.label}
+                        <div className="min-w-0 flex-1">
+                          <p className="text-xs font-bold text-neutral-900 group-hover:text-amber-800 truncate">
+                            {cat.title}
                           </p>
-                          <p className="text-[11px] text-neutral-500 leading-snug">
-                            {item.desc}
+                          <p className="text-[10px] text-neutral-500 truncate">
+                            {cat.badge}
                           </p>
                         </div>
                       </Link>
-                    );
-                  })}
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
+              )}
+            </div>
 
-          {/* 5. Contact Us */}
-          <NavLink
-            to="/contact"
-            className={({ isActive }) =>
-              `nav-link-animated py-1 transition-colors whitespace-nowrap ${
-                isActive ? 'text-amber-800 font-bold active' : 'hover:text-neutral-950 text-neutral-700'
-              }`
-            }
-          >
-            Contact Us
-          </NavLink>
+            {/* 4. Explore More Dropdown (Includes Projects, Estimator, Visualizer, Reviews) */}
+            <div className="relative" ref={exploreDropdownRef}>
+              <button
+                onClick={() => setIsExploreDropdownOpen(!isExploreDropdownOpen)}
+                onMouseEnter={() => setIsExploreDropdownOpen(true)}
+                className={`nav-link-animated flex items-center gap-1.5 py-1 font-medium transition-colors cursor-pointer ${
+                  isExploreActive || isExploreDropdownOpen
+                    ? 'text-amber-800 font-bold'
+                    : 'text-neutral-700 hover:text-neutral-950'
+                }`}
+                aria-expanded={isExploreDropdownOpen}
+              >
+                <span>Explore More</span>
+                <ChevronDown
+                  className={`h-3.5 w-3.5 transition-transform duration-200 ${
+                    isExploreDropdownOpen ? 'rotate-180 text-amber-700' : 'text-neutral-500'
+                  }`}
+                />
+              </button>
 
-        </nav>
+              {/* Explore More Dropdown Card */}
+              {isExploreDropdownOpen && (
+                <div
+                  onMouseLeave={() => setIsExploreDropdownOpen(false)}
+                  className="absolute left-0 top-full mt-2 w-80 rounded-2xl border border-amber-900/15 bg-white/98 p-3 shadow-2xl backdrop-blur-xl z-50 animate-scale-in"
+                >
+                  <div className="space-y-1">
+                    {EXPLORE_ITEMS.map((item) => {
+                      const Icon = item.icon;
+                      const isActive = location.pathname === item.to;
+                      return (
+                        <Link
+                          key={item.to}
+                          to={item.to}
+                          onClick={() => setIsExploreDropdownOpen(false)}
+                          className={`flex items-start gap-3 p-2.5 rounded-xl transition-colors text-left group ${
+                            isActive
+                              ? 'bg-amber-50 text-amber-900 font-semibold'
+                              : 'hover:bg-amber-50/70 text-neutral-800'
+                          }`}
+                        >
+                          <div className="h-8 w-8 rounded-lg bg-amber-500/15 flex items-center justify-center text-amber-800 shrink-0 group-hover:bg-amber-600 group-hover:text-white transition-colors">
+                            <Icon className="h-4 w-4" />
+                          </div>
+                          <div>
+                            <p className="text-xs font-bold text-neutral-950 group-hover:text-amber-700">
+                              {item.label}
+                            </p>
+                            <p className="text-[11px] text-neutral-500 leading-snug">
+                              {item.desc}
+                            </p>
+                          </div>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
 
-        {/* Right Actions: Primary CTA (No Notification Bell) */}
+            {/* 5. Contact Us */}
+            <NavLink
+              to="/contact"
+              className={({ isActive }) =>
+                `nav-link-animated py-1 transition-colors whitespace-nowrap ${
+                  isActive ? 'text-amber-800 font-bold active' : 'hover:text-neutral-950 text-neutral-700'
+                }`
+              }
+            >
+              Contact Us
+            </NavLink>
+
+          </nav>
+        </div>
+
+        {/* Right Actions: Primary CTA */}
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           
           {/* Primary CTA: Calculate Estimate */}
@@ -242,39 +326,82 @@ export const Header: React.FC = () => {
       {isMobileMenuOpen && (
         <div className="lg:hidden border-t border-amber-900/10 bg-[#FAF7F2] p-4 sm:p-6 space-y-4 animate-fade-in-up">
           <nav className="flex flex-col space-y-2">
-            {DIRECT_NAV_LINKS.map((item) => (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                end={item.to === '/'}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className={({ isActive }) =>
-                  `px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${
-                    isActive
-                      ? 'bg-amber-600 text-white font-semibold shadow-sm'
-                      : 'text-neutral-700 hover:bg-amber-50'
-                  }`
-                }
-              >
-                {item.label}
-              </NavLink>
-            ))}
+            
+            <NavLink
+              to="/"
+              end
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={({ isActive }) =>
+                `px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${
+                  isActive ? 'bg-amber-600 text-white font-semibold shadow-sm' : 'text-neutral-700 hover:bg-amber-50'
+                }`
+              }
+            >
+              Home
+            </NavLink>
 
-            {/* Mobile Dropdown Section */}
-            <div className="pt-2 border-t border-neutral-200">
+            <NavLink
+              to="/about"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={({ isActive }) =>
+                `px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${
+                  isActive ? 'bg-amber-600 text-white font-semibold shadow-sm' : 'text-neutral-700 hover:bg-amber-50'
+                }`
+              }
+            >
+              About Us
+            </NavLink>
+
+            {/* Mobile Our Services (10 Services Accordion) */}
+            <div className="border-t border-neutral-200/80 pt-1">
               <button
-                onClick={() => setIsMobileDropdownOpen(!isMobileDropdownOpen)}
+                onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                className="w-full flex items-center justify-between px-3 py-2.5 text-sm font-semibold text-neutral-800 rounded-xl hover:bg-amber-50 cursor-pointer"
+              >
+                <span>Our Services (10)</span>
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform ${isMobileServicesOpen ? 'rotate-180' : ''}`}
+                />
+              </button>
+
+              {isMobileServicesOpen && (
+                <div className="pl-3 pt-1 space-y-1">
+                  <Link
+                    to="/services"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block px-3 py-2 text-xs font-bold text-amber-700 hover:underline"
+                  >
+                    View All Services Overview →
+                  </Link>
+                  {CATALOGUE_CATEGORIES.map((cat) => (
+                    <Link
+                      key={cat.id}
+                      to={`/services#${cat.id}`}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="block px-3 py-1.5 text-xs text-neutral-700 hover:text-amber-800 rounded-lg hover:bg-amber-50"
+                    >
+                      {cat.title}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Mobile Explore More Accordion (Projects, Estimator, Visualizer, Reviews) */}
+            <div className="border-t border-neutral-200/80 pt-1">
+              <button
+                onClick={() => setIsMobileExploreOpen(!isMobileExploreOpen)}
                 className="w-full flex items-center justify-between px-3 py-2.5 text-sm font-semibold text-neutral-800 rounded-xl hover:bg-amber-50 cursor-pointer"
               >
                 <span>Explore More</span>
                 <ChevronDown
-                  className={`h-4 w-4 transition-transform ${isMobileDropdownOpen ? 'rotate-180' : ''}`}
+                  className={`h-4 w-4 transition-transform ${isMobileExploreOpen ? 'rotate-180' : ''}`}
                 />
               </button>
 
-              {isMobileDropdownOpen && (
+              {isMobileExploreOpen && (
                 <div className="pl-3 pt-1 space-y-1">
-                  {DROPDOWN_ITEMS.map((item) => {
+                  {EXPLORE_ITEMS.map((item) => {
                     const Icon = item.icon;
                     return (
                       <Link
@@ -291,6 +418,19 @@ export const Header: React.FC = () => {
                 </div>
               )}
             </div>
+
+            <NavLink
+              to="/contact"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={({ isActive }) =>
+                `px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${
+                  isActive ? 'bg-amber-600 text-white font-semibold shadow-sm' : 'text-neutral-700 hover:bg-amber-50'
+                }`
+              }
+            >
+              Contact Us
+            </NavLink>
+
           </nav>
 
           <div className="pt-2 border-t border-neutral-200 flex flex-col gap-2">

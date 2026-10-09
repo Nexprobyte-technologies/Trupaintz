@@ -16,74 +16,82 @@ import { BRAND_INFO, BLOG_POSTS } from '../data/mockData';
 
 export const AboutPage: React.FC = () => {
   return (
-    <div className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12 pt-6 sm:pt-8 lg:pt-9 pb-10 sm:pb-12 space-y-6 sm:space-y-8">
+    <div className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12 pt-10 sm:pt-14 lg:pt-16 pb-24 sm:pb-32 space-y-16 sm:space-y-20 lg:space-y-24">
       
-      {/* Page Header */}
-      <div className="max-w-3xl space-y-2">
-        <div className="inline-flex items-center gap-2 rounded-full bg-amber-500/15 px-3 py-1 text-xs font-semibold text-amber-800 border border-amber-500/30">
-          <Award className="h-3.5 w-3.5" />
-          <span>About TruPaintz &amp; Interiors</span>
+      {/* 1. Page Header & Brand Story - Merged with snug spacing */}
+      <div className="space-y-6 sm:space-y-8">
+        <div className="max-w-3xl space-y-2.5">
+          <div className="inline-flex items-center gap-2 rounded-full bg-amber-500/15 px-3 py-1 text-xs font-semibold text-amber-800 border border-amber-500/30">
+            <Award className="h-3.5 w-3.5" />
+            <span>About TruPaintz &amp; Interiors</span>
+          </div>
+          <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-950 leading-tight">
+            Crafting Living Spaces with Enduring Integrity
+          </h1>
+          <p className="text-sm sm:text-base text-neutral-600 leading-relaxed">
+            We founded TruPaintz &amp; Interiors to bring architectural rigor, imported Italian plaster craftsmanship, and completely dustless execution to Indian homes.
+          </p>
         </div>
-        <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-950 leading-tight">
-          Crafting Living Spaces with Enduring Integrity
-        </h1>
-        <p className="text-sm sm:text-base text-neutral-600 leading-relaxed">
-          We founded TruPaintz &amp; Interiors to bring architectural rigor, imported Italian plaster craftsmanship, and completely dustless execution to Indian homes.
-        </p>
-      </div>
 
-      {/* Brand Story Split Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
-        <div className="lg:col-span-7 space-y-3.5 text-neutral-700 leading-relaxed text-sm sm:text-base">
-          <h2 className="font-display text-2xl sm:text-3xl font-bold text-neutral-950">
-            Why We Reject Ordinary Paint Practices
-          </h2>
-          <p>
-            Standard residential painting often involves manual dry sanding that coats every surface in hazardous chalk dust, paints applied over wet walls without moisture checks, and finishes that peel within 18 months.
-          </p>
-          <p>
-            At <strong>TruPaintz &amp; Interiors</strong>, we transformed the workflow into an architectural discipline. We utilize German Festool HEPA extractors for 100% dust-free wall preparation, check every square meter with digital pinless moisture meters, and specialize in authentic Italian Venetian plasters sourced directly from Novacolor in Italy.
-          </p>
+        {/* Brand Story Split Grid - items-stretch aligns top and bottom perfectly with right image */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+          <div className="lg:col-span-7 flex flex-col justify-between h-full py-1 max-w-[490px] sm:max-w-[515px] xl:max-w-[535px]">
+            <div className="space-y-4">
+              <h2 className="font-display text-xl sm:text-[23px] xl:text-[26px] font-bold tracking-tight text-neutral-950 whitespace-nowrap">
+                Why We Reject Ordinary Paint Practices
+              </h2>
+              <p className="text-justify text-pretty hyphens-auto leading-relaxed text-xs sm:text-sm text-neutral-700">
+                Standard residential painting often involves manual dry sanding that coats every surface in hazardous chalk dust, paints applied over wet walls without moisture checks, and finishes that peel within 18 months.
+              </p>
+              <p className="text-justify text-pretty hyphens-auto leading-relaxed text-xs sm:text-sm text-neutral-700">
+                At <strong>TruPaintz &amp; Interiors</strong>, we transformed the workflow into an architectural discipline. We utilize German Festool HEPA extractors for 100% dust-free wall preparation, check every square meter with digital pinless moisture meters, and specialize in authentic Italian Venetian plasters sourced directly from Novacolor in Italy.
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
-            {[
-              '10-Year Adhesion & Anti-Peel Warranty',
-              'Mechanized Zero-Dust HEPA Sanding',
-              'Imported Italian Lime & Carrara Marble',
-              'Non-Destructive Digital Moisture Testing',
-            ].map((pt, i) => (
-              <div key={i} className="flex items-center gap-2 text-xs font-semibold text-neutral-900">
-                <CheckCircle2 className="h-4 w-4 text-amber-600 shrink-0" />
-                <span>{pt}</span>
+            {/* 4 Architectural Standards Cards - sits flush with bottom of right image */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-6">
+              {[
+                { title: '10-Year Adhesion Warranty', desc: 'Zero peeling or flaking assurance' },
+                { title: 'Mechanized Dustless Sanding', desc: '100% Festool HEPA chalk extraction' },
+                { title: 'Imported Italian Materials', desc: 'Authentic Novacolor Carrara lime' },
+                { title: 'Digital Moisture Inspection', desc: 'Non-destructive electronic scans' },
+              ].map((pt, i) => (
+                <div key={i} className="flex items-start gap-2.5 p-3 rounded-xl bg-amber-500/10 border border-amber-900/10 shadow-xs">
+                  <CheckCircle2 className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
+                  <div>
+                    <h5 className="font-bold text-xs text-neutral-950">{pt.title}</h5>
+                    <p className="text-[11px] text-neutral-600 leading-snug">{pt.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="lg:col-span-5 flex flex-col justify-between">
+            <div className="rounded-3xl border border-amber-900/15 bg-white p-3 shadow-xl h-full flex flex-col justify-between">
+              <div className="aspect-[4/3] rounded-2xl overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80"
+                  alt="TruPaintz Artisans at Work"
+                  className="w-full h-full object-cover"
+                />
               </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="lg:col-span-5">
-          <div className="rounded-3xl border border-amber-900/15 bg-white p-3 shadow-xl">
-            <div className="aspect-[4/3] rounded-2xl overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80"
-                alt="TruPaintz Artisans at Work"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="p-3 text-center">
-              <p className="font-display text-base font-bold text-neutral-950">
-                ArtisanMohammed &amp; Team
-              </p>
-              <p className="text-xs text-neutral-500">
-                Master Venetian Plaster Artisans · 14+ Years Trowel Experience
-              </p>
+              <div className="p-3 text-center">
+                <p className="font-display text-base font-bold text-neutral-950">
+                  ArtisanMohammed &amp; Team
+                </p>
+                <p className="text-xs text-neutral-500">
+                  Master Venetian Plaster Artisans · 14+ Years Trowel Experience
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* The 4-Step Execution Workflow */}
-      <div className="space-y-5">
-        <div className="text-center max-w-xl mx-auto space-y-1.5">
+      {/* 2. The 4-Step Execution Workflow */}
+      <div className="space-y-8">
+        <div className="text-center max-w-xl mx-auto space-y-2">
           <span className="text-xs font-bold text-amber-700 uppercase tracking-wider">
             Our Standard Operating Protocol
           </span>
@@ -124,9 +132,8 @@ export const AboutPage: React.FC = () => {
               className="card-advanced-hover rounded-2xl border border-neutral-200/90 bg-white p-6 shadow-sm flex flex-col justify-between"
             >
               <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="h-2.5 w-2.5 rounded-full bg-amber-500"></div>
-                  <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-700">
+                <div className="mb-4">
+                  <div className="inline-flex p-2.5 rounded-xl bg-amber-500/10 text-amber-700">
                     <item.icon className="h-5 w-5" />
                   </div>
                 </div>
@@ -143,8 +150,8 @@ export const AboutPage: React.FC = () => {
       </div>
 
       {/* Design Journal Articles (Clean Preview) */}
-      <div className="space-y-5">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-neutral-200">
+      <div className="space-y-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-neutral-200">
           <div>
             <span className="text-xs font-bold text-amber-700 uppercase tracking-wider">
               From Our Architectural Desk
@@ -194,7 +201,7 @@ export const AboutPage: React.FC = () => {
       </div>
 
       {/* Studio Location & Consultation CTA */}
-      <div className="rounded-3xl border border-amber-900/10 bg-amber-50/60 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div className="rounded-3xl border border-amber-900/10 bg-amber-50/60 p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
         <div className="space-y-2 max-w-xl">
           <div className="flex items-center gap-2 text-xs font-bold text-amber-800 uppercase tracking-wider">
             <MapPin className="h-4 w-4" />

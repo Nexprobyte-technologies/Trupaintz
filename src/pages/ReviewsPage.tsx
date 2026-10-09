@@ -59,7 +59,7 @@ export const ReviewsPage: React.FC = () => {
   };
 
   return (
-    <div className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12 pt-6 sm:pt-8 lg:pt-9 pb-12 sm:pb-16 space-y-10 sm:space-y-12">
+    <div className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12 pt-10 sm:pt-14 lg:pt-16 pb-24 sm:pb-32 space-y-20 sm:space-y-28 lg:space-y-32">
       
       {/* Page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-neutral-200">
@@ -127,11 +127,11 @@ export const ReviewsPage: React.FC = () => {
       </div>
 
       {/* Reviews Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
         {filteredReviews.map((rev) => (
           <div
             key={rev.id}
-            className="rounded-3xl border border-neutral-200/90 bg-white p-6 sm:p-7 shadow-sm flex flex-col justify-between"
+            className="rounded-3xl border border-neutral-200/90 bg-white p-6 sm:p-8 shadow-sm flex flex-col justify-between"
           >
             <div>
               <div className="flex items-center justify-between gap-2 pb-3 border-b border-neutral-100">
@@ -174,7 +174,7 @@ export const ReviewsPage: React.FC = () => {
       </div>
 
       {/* 10-Year Warranty Guarantee Card */}
-      <div className="rounded-3xl border border-amber-900/10 bg-amber-50/60 p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div className="rounded-3xl border border-amber-900/10 bg-amber-50/60 p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
         <div className="space-y-2 max-w-xl">
           <div className="flex items-center gap-2 text-xs font-bold text-amber-800 uppercase tracking-wider">
             <ShieldCheck className="h-4 w-4" />

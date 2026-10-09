@@ -101,7 +101,7 @@ export const ContactPage: React.FC = () => {
   ];
 
   return (
-    <div className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12 pt-6 sm:pt-8 lg:pt-9 pb-12 sm:pb-16 space-y-12 sm:space-y-16">
+    <div className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12 pt-10 sm:pt-14 lg:pt-16 pb-24 sm:pb-32 space-y-20 sm:space-y-28 lg:space-y-32">
       
       {/* Page Header */}
       <div className="max-w-3xl space-y-3">
@@ -118,12 +118,12 @@ export const ContactPage: React.FC = () => {
       </div>
 
       {/* Main Grid: Details on Left, Form on Right */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
         
         {/* Left Column: Contact Cards & Studio Info */}
         <div className="lg:col-span-5 space-y-6">
           
-          <div className="rounded-3xl border border-neutral-200/90 bg-white p-6 sm:p-7 shadow-sm space-y-5">
+          <div className="rounded-3xl border border-neutral-200/90 bg-white p-6 sm:p-8 shadow-sm space-y-6">
             <h2 className="font-display text-xl font-bold text-neutral-950">
               Studio Coordinates
             </h2>
@@ -194,7 +194,7 @@ export const ContactPage: React.FC = () => {
           </div>
 
           {/* Quick FAQ Box */}
-          <div className="rounded-3xl border border-neutral-200/90 bg-white p-6 sm:p-7 shadow-sm space-y-4">
+          <div className="rounded-3xl border border-neutral-200/90 bg-white p-6 sm:p-8 shadow-sm space-y-5">
             <h3 className="font-display text-lg font-bold text-neutral-950 flex items-center gap-2">
               <HelpCircle className="h-4 w-4 text-amber-600" />
               <span>Frequently Asked Questions</span>
@@ -227,7 +227,7 @@ export const ContactPage: React.FC = () => {
         </div>
 
         {/* Right Column: Inquiry Form */}
-        <div className="lg:col-span-7 rounded-3xl border border-neutral-200/90 bg-white p-6 sm:p-8 shadow-sm">
+        <div className="lg:col-span-7 rounded-3xl border border-neutral-200/90 bg-white p-6 sm:p-10 shadow-sm">
           <div className="pb-4 border-b border-neutral-100">
             <span className="text-xs font-bold text-amber-700 uppercase tracking-wider">
               Send an Inquiry
