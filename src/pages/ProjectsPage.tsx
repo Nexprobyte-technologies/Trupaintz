@@ -91,7 +91,7 @@ export const ProjectsPage: React.FC = () => {
 
         {/* Featured Project: Before & After Visual Slider */}
         {featured.beforeImage && activeCategory === 'all' && (
-          <div className="rounded-3xl border border-amber-900/15 bg-white p-6 sm:p-8 shadow-md">
+          <div className="scroll-reveal rounded-3xl border border-amber-900/15 bg-white p-6 sm:p-8 shadow-md">
             <div className="flex items-center justify-between mb-4">
               <span className="text-xs font-bold text-amber-700 uppercase tracking-wider">
                 Featured Transformation · Interactive Before &amp; After
@@ -164,11 +164,11 @@ export const ProjectsPage: React.FC = () => {
       </div>
 
       {/* Projects Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6 lg:gap-8 stagger-grid">
         {filteredProjects.map((project) => (
           <div
             key={project.id}
-            className="card-advanced-hover rounded-3xl border border-neutral-200/90 bg-white overflow-hidden shadow-sm flex flex-col justify-between group"
+            className="card-advanced-hover scroll-reveal rounded-3xl border border-neutral-200/90 bg-white overflow-hidden shadow-sm flex flex-col justify-between group"
           >
             <div>
               {/* Direct clickable Image leading to matching service */}

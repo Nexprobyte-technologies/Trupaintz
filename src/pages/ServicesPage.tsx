@@ -760,7 +760,7 @@ export const ServicesPage: React.FC = () => {
       {/* 3. DETAILED 10 STANDARDIZED SERVICE SECTIONS */}
       <div className="space-y-28 sm:space-y-36 lg:space-y-40">
         {ALL_SERVICES_DATA.map((service) => (
-          <section key={service.id} id={service.id} className="scroll-mt-28 space-y-8">
+          <section key={service.id} id={service.id} className="scroll-reveal scroll-mt-28 space-y-8">
             
             {/* Standard Section Header */}
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-neutral-200/80 pb-6">
@@ -822,8 +822,8 @@ export const ServicesPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Standard 4-Card Offering Grid with Identical Box Sizes */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+            {/* Standard 4-Card Offering Grid with Identical Box Sizes and Stagger Reveal */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 stagger-grid">
               {service.cards.map((card, cIdx) => (
                 <div
                   key={cIdx}

@@ -18,7 +18,16 @@ import { ReviewsPage } from './pages/ReviewsPage';
 import { AboutPage } from './pages/AboutPage';
 import { ContactPage } from './pages/ContactPage';
 
+import { ScrollProgressBar } from './components/ScrollProgressBar';
+import { BackToTop } from './components/BackToTop';
+import { useScrollReveal } from './hooks/useScrollReveal';
+
 const WA_URL = `https://wa.me/919677708535?text=${encodeURIComponent('Hi TruPaintz and Interiors! I would like to schedule a consultation.')}`;
+
+function ScrollRevealManager() {
+  useScrollReveal();
+  return null;
+}
 
 function WhatsAppFloat() {
   return (
@@ -43,6 +52,8 @@ export default function App() {
         <ReviewsProvider>
           <BrowserRouter>
             <ScrollToTop />
+            <ScrollProgressBar />
+            <ScrollRevealManager />
             <div className="min-h-screen flex flex-col interior-plaster-bg interior-stucco-texture text-neutral-900 bg-[#F8F5EE] w-full">
               {/* Dynamic Global Header (Fixed & Stable on Scroll) */}
               <Header />
@@ -69,6 +80,9 @@ export default function App() {
 
               {/* Dynamic Global Footer */}
               <Footer />
+
+              {/* Dribbble Floating Back to Top Widget */}
+              <BackToTop />
 
               {/* Global WhatsApp Float */}
               <WhatsAppFloat />

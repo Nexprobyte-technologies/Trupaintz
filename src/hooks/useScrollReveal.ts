@@ -1,11 +1,14 @@
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 /**
- * High-performance, lightweight hook to trigger smooth scroll reveal animations
+ * High-performance hook to trigger smooth Dribbble-style scroll reveal animations
  * on elements with .scroll-reveal, .reveal-left, .reveal-right, .reveal-scale,
  * and .reveal-stagger as they enter the viewport.
  */
 export function useScrollReveal() {
+  const location = useLocation();
+
   useEffect(() => {
     const selector = '.scroll-reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-stagger';
 
@@ -17,8 +20,8 @@ export function useScrollReveal() {
       return;
     }
 
-    // Immediately reveal elements near or within initial viewport (prevent mobile first-swipe delay)
-    const initialCutoff = (window.innerHeight || 800) + 350;
+    // Immediately reveal elements already near or within initial viewport
+    const initialCutoff = (window.innerHeight || 800) + 150;
     document.querySelectorAll(`${selector}:not(.is-revealed)`).forEach((el) => {
       const rect = el.getBoundingClientRect();
       if (rect.top <= initialCutoff) {
@@ -37,9 +40,8 @@ export function useScrollReveal() {
         }
       },
       {
-        threshold: 0,
-        // Trigger 250px before entering viewport so animations are already running smoothly
-        rootMargin: '250px 0px 250px 0px',
+        threshold: 0.06,
+        rootMargin: '60px 0px -30px 0px',
       }
     );
 
@@ -52,12 +54,12 @@ export function useScrollReveal() {
 
     observeAll();
 
-    // Secondary scan for any dynamically mounted elements
-    const timer = setTimeout(observeAll, 300);
+    // Secondary scan for any dynamically rendered content or tab changes
+    const timer = setTimeout(observeAll, 250);
 
     return () => {
       clearTimeout(timer);
       observer.disconnect();
     };
-  }, []);
+  }, [location.pathname]);
 }

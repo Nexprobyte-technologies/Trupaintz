@@ -425,7 +425,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* 2. Architectural Pillars: "Discover the Beauty of Modern Architecture" */}
-      <section className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
+      <section className="scroll-reveal mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
         <div className="text-center max-w-3xl mx-auto pb-8 sm:pb-12">
           <div className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-amber-700 mb-2">
             <Compass className="h-3.5 w-3.5" />
@@ -439,7 +439,7 @@ export const HomePage: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 stagger-grid">
           
           {/* Pillar 01 */}
           <div className="ethos-card rounded-2xl border border-neutral-200/90 bg-white p-6 shadow-xs flex flex-col justify-between group">
@@ -537,7 +537,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* 4. Global Ethos Pillars of Craftsmanship ("Where Ideas Take Shape, and Design Tells a Story") */}
-      <section className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
+      <section className="scroll-reveal mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
         <div className="rounded-3xl border border-neutral-200/90 bg-white p-6 sm:p-10 lg:p-12 shadow-sm">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
@@ -645,7 +645,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* 5. Core Architectural & Interior Solutions (5 Key Flagship Services) */}
-      <section className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
+      <section className="scroll-reveal mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 sm:pb-8 border-b border-neutral-200/80">
           <div>
             <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-amber-700">
@@ -677,7 +677,7 @@ export const HomePage: React.FC = () => {
         </div>
 
         {/* 5 Core Services Interactive Responsive Grid (4, 5, 8, 9, 10 removed as requested) */}
-        <div className="mt-8 sm:mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <div className="mt-8 sm:mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 stagger-grid">
           {SERVICES_DATA.filter((s) => ['srv-1', 'srv-2', 'srv-3', 'srv-6', 'srv-7'].includes(s.id)).map((service) => (
             <div
               key={service.id}
@@ -727,7 +727,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* 5.5 Interactive 3D Visualizer Studio with Morning, Day & Light (Warm Cove) Modes */}
-      <section className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
+      <section className="scroll-reveal mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
         <div className="rounded-3xl border border-amber-900/15 bg-white p-5 sm:p-8 lg:p-10 shadow-xl overflow-hidden relative">
           {/* Subtle Ambient Decorative Glow */}
           <div
@@ -1032,7 +1032,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* 6. Featured Living Space Transformations */}
-      <section className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
+      <section className="scroll-reveal mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 sm:pb-8 border-b border-neutral-200/80">
           <div>
             <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-amber-700">
@@ -1052,7 +1052,7 @@ export const HomePage: React.FC = () => {
           </Link>
         </div>
 
-        <div className="mt-8 sm:mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="mt-8 sm:mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 stagger-grid">
           {PROJECTS_DATA.slice(0, 3).map((proj) => (
             <div
               key={proj.id}
@@ -1097,7 +1097,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* 7. Interactive Quick Estimator & Complimentary On-Site Inspection Desk */}
-      <section className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
+      <section className="scroll-reveal mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
           
           {/* Left Column: Quick Estimator Card */}
@@ -1278,7 +1278,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* 8. Testimonials Highlight */}
-      <section className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
+      <section className="scroll-reveal mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 sm:pb-8 border-b border-neutral-200/80">
           <div>
             <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-amber-700">
@@ -1298,11 +1298,11 @@ export const HomePage: React.FC = () => {
           </Link>
         </div>
 
-        <div className="mt-8 sm:mt-10 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        <div className="mt-8 sm:mt-10 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 stagger-grid">
           {reviews.slice(0, 2).map((rev) => (
             <div
               key={rev.id}
-              className="rounded-2xl border border-neutral-200/90 bg-white p-6 shadow-sm flex flex-col justify-between"
+              className="card-advanced-hover rounded-2xl border border-neutral-200/90 bg-white p-6 shadow-sm flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
@@ -1333,7 +1333,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* 9. Bottom Call to Action Banner */}
-      <section className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
+      <section className="scroll-reveal mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12">
         <div className="rounded-3xl border border-amber-900/15 bg-gradient-to-br from-amber-600 via-amber-700 to-amber-800 text-white p-8 sm:p-12 shadow-xl flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
           <div className="space-y-3 max-w-2xl">
             <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-white">
