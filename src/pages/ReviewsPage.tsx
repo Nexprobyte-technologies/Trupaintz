@@ -59,9 +59,9 @@ export const ReviewsPage: React.FC = () => {
   };
 
   return (
-    <div className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12 pt-10 sm:pt-14 lg:pt-16 pb-24 sm:pb-32 space-y-20 sm:space-y-28 lg:space-y-32">
+    <div className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-10 xl:px-12 pt-8 sm:pt-10 lg:pt-12 pb-20 sm:pb-28">
       
-      {/* Page Header */}
+      {/* 1. Page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-neutral-200">
         <div className="max-w-2xl space-y-3">
           <div className="inline-flex items-center gap-2 rounded-full bg-amber-500/15 px-3 py-1 text-xs font-semibold text-amber-800 border border-amber-500/30">
@@ -94,8 +94,8 @@ export const ReviewsPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Filter Tabs & Add Review Trigger */}
-      <div className="flex flex-wrap items-center justify-between gap-4">
+      {/* 2. Filter Tabs & Add Review Trigger */}
+      <div className="mt-6 sm:mt-8 flex flex-wrap items-center justify-between gap-4">
         <div className="flex flex-wrap items-center gap-2 p-1 bg-white rounded-2xl border border-neutral-200/90 shadow-sm">
           {[
             { id: 'all', label: 'All Inspections' },
@@ -126,8 +126,8 @@ export const ReviewsPage: React.FC = () => {
         </button>
       </div>
 
-      {/* Reviews Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+      {/* 3. Reviews Grid */}
+      <div className="mt-6 sm:mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
         {filteredReviews.map((rev) => (
           <div
             key={rev.id}
@@ -174,7 +174,7 @@ export const ReviewsPage: React.FC = () => {
       </div>
 
       {/* 10-Year Warranty Guarantee Card */}
-      <div className="rounded-3xl border border-amber-900/10 bg-amber-50/60 p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
+      <div className="mt-12 sm:mt-16 lg:mt-20 rounded-3xl border border-amber-900/10 bg-amber-50/60 p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
         <div className="space-y-2 max-w-xl">
           <div className="flex items-center gap-2 text-xs font-bold text-amber-800 uppercase tracking-wider">
             <ShieldCheck className="h-4 w-4" />
