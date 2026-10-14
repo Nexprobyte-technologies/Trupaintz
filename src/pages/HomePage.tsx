@@ -231,18 +231,27 @@ export const HomePage: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [animProgressKey, setAnimProgressKey] = useState(0);
 
-  // Quick Estimator State on Home Page
-  const [homeSqft, setHomeSqft] = useState(1500);
-  const [homeService, setHomeService] = useState('Home Painting');
-
-  // Interactive 3D Visualizer Studio State (Day, Evening, Night)
-  const [visLighting, setVisLighting] = useState<'day' | 'evening' | 'night'>('evening');
+  // 3D Visualizer State
+  const [visLighting, setVisLighting] = useState<'day' | 'evening' | 'night'>('day');
   const [visRoom, setVisRoom] = useState<'living' | 'bedroom' | 'balcony'>('living');
   const [visTexture, setVisTexture] = useState<'travertine' | 'venetian' | 'fluted' | 'hardwood'>('travertine');
-  const [is3dPerspective, setIs3dPerspective] = useState(true);
+  const [is3dPerspective, setIs3dPerspective] = useState<boolean>(false);
 
-  const estimatedMin = Math.round(homeSqft * (homeService === 'Home Painting' ? 28 : homeService === 'Wooden Flooring' ? 150 : 360));
-  const estimatedMax = Math.round(estimatedMin * 1.25);
+  // Quick Estimator State on Home Page (Decorpot BHK Style)
+  const [homeBhk, setHomeBhk] = useState('2bhk');
+  const [homeSqft, setHomeSqft] = useState(1100);
+
+  const bhkRates: Record<string, { sqft: number; min: number; max: number }> = {
+    '1bhk': { sqft: 650, min: 385000, max: 490000 },
+    '2bhk': { sqft: 1100, min: 645000, max: 810000 },
+    '3bhk': { sqft: 1550, min: 960000, max: 1220000 },
+    '4bhk': { sqft: 2250, min: 1450000, max: 1840000 },
+    'villa': { sqft: 3400, min: 2250000, max: 2890000 },
+  };
+
+  const currentBhkEstimate = bhkRates[homeBhk] || bhkRates['2bhk'];
+  const estimatedMin = Math.round((currentBhkEstimate.min / currentBhkEstimate.sqft) * homeSqft);
+  const estimatedMax = Math.round((currentBhkEstimate.max / currentBhkEstimate.sqft) * homeSqft);
 
   // 5-Second Auto Timer
   useEffect(() => {
@@ -676,53 +685,68 @@ export const HomePage: React.FC = () => {
           </div>
         </div>
 
-        {/* 5 Core Services Interactive Responsive Grid (4, 5, 8, 9, 10 removed as requested) */}
+        {/* 10 Core Services Interactive Responsive Grid */}
         <div className="mt-8 sm:mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 stagger-grid">
-          {SERVICES_DATA.filter((s) => ['srv-1', 'srv-2', 'srv-3', 'srv-6', 'srv-7'].includes(s.id)).map((service) => (
-            <div
-              key={service.id}
-              className="card-advanced-hover rounded-2xl border border-neutral-200/90 bg-white p-4 shadow-sm flex flex-col justify-between group overflow-hidden"
-            >
-              <div>
-                <div className="relative aspect-[16/11] rounded-xl overflow-hidden mb-3 bg-neutral-100">
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="w-full h-full object-cover img-hover-zoom"
-                    loading="lazy"
-                  />
+          {SERVICES_DATA.map((service) => {
+            const anchorMap: Record<string, string> = {
+              'srv-1': 'upvc',
+              'srv-2': 'painting',
+              'srv-3': 'curtains',
+              'srv-4': 'blinds',
+              'srv-5': 'wallpapers',
+              'srv-6': 'wooden-flooring',
+              'srv-7': 'false-ceiling',
+              'srv-8': 'mosquito-nets',
+              'srv-9': 'louvers',
+              'srv-10': 'artificial-grass',
+            };
+            const targetAnchor = anchorMap[service.id] || 'upvc';
+            return (
+              <div
+                key={service.id}
+                className="card-advanced-hover rounded-2xl border border-neutral-200/90 bg-white p-4 shadow-sm flex flex-col justify-between group overflow-hidden"
+              >
+                <div>
+                  <div className="relative aspect-[16/11] rounded-xl overflow-hidden mb-3 bg-neutral-100">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover img-hover-zoom"
+                      loading="lazy"
+                    />
+                  </div>
+                  
+                  <span className="text-[10px] font-bold text-amber-700 uppercase tracking-wider block truncate">
+                    {service.highlightTag}
+                  </span>
+
+                  <h3 className="font-display text-base font-bold text-neutral-950 group-hover:text-amber-700 transition-colors mt-0.5">
+                    {service.title}
+                  </h3>
+
+                  <p className="mt-1.5 text-[11px] text-neutral-600 line-clamp-2 leading-relaxed">
+                    {service.shortDesc}
+                  </p>
                 </div>
-                
-                <span className="text-[10px] font-bold text-amber-700 uppercase tracking-wider block">
-                  {service.highlightTag}
-                </span>
 
-                <h3 className="font-display text-base font-bold text-neutral-950 group-hover:text-amber-700 transition-colors mt-0.5">
-                  {service.title}
-                </h3>
-
-                <p className="mt-1.5 text-[11px] text-neutral-600 line-clamp-2 leading-relaxed">
-                  {service.shortDesc}
-                </p>
+                <div className="mt-4 pt-3 border-t border-neutral-100 flex items-center justify-between text-xs">
+                  <Link
+                    to={`/services#${targetAnchor}`}
+                    className="font-semibold text-amber-700 hover:text-amber-600 flex items-center gap-1"
+                  >
+                    <span>Explore</span>
+                    <ChevronRight className="h-3 w-3" />
+                  </Link>
+                  <Link
+                    to={`/services#${targetAnchor}`}
+                    className="text-[10px] text-neutral-500 hover:text-neutral-800"
+                  >
+                    Details →
+                  </Link>
+                </div>
               </div>
-
-              <div className="mt-4 pt-3 border-t border-neutral-100 flex items-center justify-between text-xs">
-                <Link
-                  to="/services"
-                  className="font-semibold text-amber-700 hover:text-amber-600 flex items-center gap-1"
-                >
-                  <span>Explore</span>
-                  <ChevronRight className="h-3 w-3" />
-                </Link>
-                <Link
-                  to="/services"
-                  className="text-[10px] text-neutral-500 hover:text-neutral-800"
-                >
-                  Details →
-                </Link>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
@@ -1139,21 +1163,30 @@ export const HomePage: React.FC = () => {
 
                 <div>
                   <label className="block text-xs font-semibold text-neutral-800 mb-1.5">
-                    Finish Scope:
+                    Property Configuration / Floor Plan:
                   </label>
-                  <div className="grid grid-cols-3 gap-2">
-                    {['Home Painting', 'UPVC Windows', 'Wooden Flooring'].map((type) => (
+                  <div className="grid grid-cols-5 gap-1.5 sm:gap-2">
+                    {[
+                      { id: '1bhk', label: '1 BHK' },
+                      { id: '2bhk', label: '2 BHK' },
+                      { id: '3bhk', label: '3 BHK' },
+                      { id: '4bhk', label: '4 BHK' },
+                      { id: 'villa', label: 'Villa' },
+                    ].map((bhk) => (
                       <button
-                        key={type}
+                        key={bhk.id}
                         type="button"
-                        onClick={() => setHomeService(type)}
-                        className={`py-2 px-2 rounded-xl border text-xs font-medium transition-all text-center ${
-                          homeService === type
-                            ? 'border-amber-600 bg-amber-500/15 text-amber-800 font-semibold shadow-sm'
-                            : 'border-neutral-200 text-neutral-600 hover:bg-neutral-50'
+                        onClick={() => {
+                          setHomeBhk(bhk.id);
+                          setHomeSqft(bhkRates[bhk.id]?.sqft || 1100);
+                        }}
+                        className={`py-2 px-1 sm:px-2 rounded-xl border text-xs font-medium transition-all text-center ${
+                          homeBhk === bhk.id
+                            ? 'border-amber-600 bg-amber-500/15 text-amber-800 font-bold shadow-sm ring-1 ring-amber-600/30'
+                            : 'border-neutral-200 text-neutral-600 hover:bg-neutral-50 hover:border-neutral-300'
                         }`}
                       >
-                        {type}
+                        {bhk.label}
                       </button>
                     ))}
                   </div>
@@ -1164,20 +1197,20 @@ export const HomePage: React.FC = () => {
               <div className="mt-6 p-4 sm:p-5 rounded-2xl bg-amber-50/80 border border-amber-200/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
                   <span className="text-[11px] uppercase tracking-wider text-neutral-500 block">
-                    Estimated Investment Range
+                    Estimated Turnkey Range ({homeBhk.toUpperCase()})
                   </span>
                   <span className="font-display text-2xl sm:text-3xl font-bold text-neutral-950">
                     ₹{estimatedMin.toLocaleString()} – ₹{estimatedMax.toLocaleString()}
                   </span>
                   <span className="text-[10px] sm:text-xs text-neutral-500 block mt-0.5">
-                    Includes material, mechanized sanding &amp; artisan application
+                    Includes modular woodwork, false ceilings, UPVC, flooring &amp; dustless painting
                   </span>
                 </div>
                 <Link
-                  to={`/estimator?sqft=${homeSqft}&service=${encodeURIComponent(homeService)}`}
+                  to={`/estimator?bhk=${homeBhk}&sqft=${homeSqft}`}
                   className="btn-shimmer-advanced rounded-xl bg-amber-600 hover:bg-amber-500 px-4 py-2.5 text-xs font-semibold text-white transition-colors shrink-0 shadow-sm whitespace-nowrap"
                 >
-                  Full Breakdown →
+                  Full Breakdown &amp; Book →
                 </Link>
               </div>
             </div>

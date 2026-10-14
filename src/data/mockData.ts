@@ -209,8 +209,8 @@ export const SERVICES_DATA: ServiceItem[] = [
       '15–20 Years Warranty & Premium Hardware',
     ],
     priceRange: 'From ₹290 / sq.ft.',
-    image: 'https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=1000&q=80',
-    highlightTag: '15–20 Yr Warranty',
+    image: '/services/upvc-windows-doors.png',
+    highlightTag: 'EITI & BADYEE Certified',
   },
   {
     id: 'srv-2',
@@ -226,8 +226,8 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Anti-Fungal, Washable & Weatherproof Protective Barrier',
     ],
     priceRange: 'From ₹22 / sq.ft.',
-    image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=85',
-    highlightTag: 'Asian & Birla Paints',
+    image: '/services/painting.png',
+    highlightTag: 'Asian Paints & Birla Paints',
   },
   {
     id: 'srv-3',
@@ -243,8 +243,8 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Custom Tailoring, Stitching & Free Site Measurement',
     ],
     priceRange: 'Designer Fabric Rolls',
-    image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1000&q=80',
-    highlightTag: 'Bespoke Drapery',
+    image: '/services/curtains.png',
+    highlightTag: 'Curtains Avenue · MBF · BD Balaji',
   },
   {
     id: 'srv-4',
@@ -260,8 +260,8 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Safe Transport & On-Site Installation Protocol',
     ],
     priceRange: 'Multiple Styles',
-    image: 'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=1000&q=80',
-    highlightTag: 'Roller & Zebra',
+    image: '/services/blinds.png',
+    highlightTag: 'Roller · Zebra · Bamboo · PVC',
   },
   {
     id: 'srv-5',
@@ -277,8 +277,8 @@ export const SERVICES_DATA: ServiceItem[] = [
       '10-Year Information & Anti-Fungal Moisture Backing',
     ],
     priceRange: '57 sq.ft / Roll',
-    image: 'https://images.unsplash.com/photo-1615529182904-14819c35db37?auto=format&fit=crop&w=1000&q=80',
-    highlightTag: 'Vinyl Coated',
+    image: '/services/wallpapers.png',
+    highlightTag: '57 sq.ft / Roll · Vinyl Coated',
   },
   {
     id: 'srv-6',
@@ -294,8 +294,8 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Substrate Acclimation & Moisture Testing Protocol',
     ],
     priceRange: 'From ₹140 / sq.ft.',
-    image: 'https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?auto=format&fit=crop&w=1000&q=80',
-    highlightTag: 'Action Tesa & Surya',
+    image: '/services/wooden-flooring.png',
+    highlightTag: 'Action Tesa · Surya · VOX',
   },
   {
     id: 'srv-7',
@@ -311,7 +311,7 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Concealed Wiring, AC Vents & Magnetic Track Integration',
     ],
     priceRange: 'From ₹75 / sq.ft.',
-    image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1000&q=80',
+    image: '/services/false-ceiling.png',
     highlightTag: 'Saint-Gobain & USG Boral',
   },
   {
@@ -328,8 +328,8 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Easy Operation, Clean Finish & Tailored for Windows & Doors',
     ],
     priceRange: 'From ₹45 / sq.ft.',
-    image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1000&q=80',
-    highlightTag: 'Saint-Gobain Mesh',
+    image: '/services/netlon-mosquito-nets.png',
+    highlightTag: 'Saint-Gobain Certified Mesh',
   },
   {
     id: 'srv-9',
@@ -345,8 +345,8 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Surface: High-Pressure Scratch & Moisture Resistant Lamination',
     ],
     priceRange: 'From ₹850 / piece',
-    image: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1000&q=80',
-    highlightTag: '16mm Plywood Core',
+    image: '/services/louvers.png',
+    highlightTag: '16mm Commercial Plywood',
   },
   {
     id: 'srv-10',
@@ -362,8 +362,8 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Low Maintenance, Pet-Safe & Anti-Slip Base',
     ],
     priceRange: 'From ₹55 / sq.ft.',
-    image: 'https://images.unsplash.com/photo-1584467541268-b040f83be3fd?auto=format&fit=crop&w=1000&q=80',
-    highlightTag: '25mm–50mm Turf',
+    image: '/services/artificial-grass.png',
+    highlightTag: '25mm to 50mm Pile Height',
   },
 ];
 

@@ -54,7 +54,7 @@ const ALL_SERVICES_DATA: ServiceSectionItem[] = [
     description: 'Certified EITI 2.5mm and BADYEE 2mm heavy-gauge profile systems engineered for 42dB acoustic insulation, dustproofing, thermal barrier, and 15–20 year written warranty.',
     quoteUrl: '/estimator?service=UPVC%20Windows%20%26%20Doors',
     quoteBtnText: 'Get a Quote (From ₹290 / sq.ft)',
-    heroImage: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1600&q=85',
+    heroImage: '/services/upvc-windows-doors.png',
     heroAlt: 'Luxury UPVC Windows & Doors Installation',
     heroBadges: [
       '15–20 Years Warranty',
@@ -118,7 +118,7 @@ const ALL_SERVICES_DATA: ServiceSectionItem[] = [
     description: 'Certified paint application systems with Asian Paints and Birla Paints. Dust-free vacuum HEPA sanding (99% dust free), non-destructive moisture scans, and written warranty certificates.',
     quoteUrl: '/estimator?service=Painting',
     quoteBtnText: 'Get a Quote (From ₹22 / sq.ft)',
-    heroImage: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=85',
+    heroImage: '/services/painting.png',
     heroAlt: 'Interior Luxury Home Painting Architecture',
     heroBadges: [
       '3, 7 & 10 Year Warranties',
@@ -182,7 +182,7 @@ const ALL_SERVICES_DATA: ServiceSectionItem[] = [
     description: 'Curated designer fabric collections crafted with wave-fold silent tracks, sheer day filtration, thermal blackout velvets, precision hardware, and custom stitching.',
     quoteUrl: '/estimator?service=Curtains',
     quoteBtnText: 'Get a Quote (From ₹250 / m)',
-    heroImage: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=85',
+    heroImage: '/services/curtains.png',
     heroAlt: 'Elegant Draped Curtains in Luxury Interior',
     heroBadges: [
       'Designer Fabric Collections',
@@ -246,7 +246,7 @@ const ALL_SERVICES_DATA: ServiceSectionItem[] = [
     description: 'Motorized remote and manual roller screens, day-and-night Zebra dual layers, natural timber louvers, and commercial PVC blinds engineered for exact fit.',
     quoteUrl: '/estimator?service=Blinds',
     quoteBtnText: 'Get a Quote (From ₹75 / sq.ft)',
-    heroImage: 'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=1600&q=85',
+    heroImage: '/services/blinds.png',
     heroAlt: 'Modern Architectural Window Blinds and Sun Shading',
     heroBadges: [
       'Motorized & Manual Control',
@@ -310,7 +310,7 @@ const ALL_SERVICES_DATA: ServiceSectionItem[] = [
     description: 'Heavy-grade vinyl coated rolls engineered for 10-year durability, seamless geometric alignments, and tailored 3D panoramic murals.',
     quoteUrl: '/estimator?service=Wallpapers',
     quoteBtnText: 'Get a Quote (From ₹950 / roll)',
-    heroImage: 'https://images.unsplash.com/photo-1615529182904-14819c35db37?auto=format&fit=crop&w=1600&q=85',
+    heroImage: '/services/wallpapers.png',
     heroAlt: 'Designer Textured Wallpaper Elevation Accent Wall',
     heroBadges: [
       '10-Year Peel Resistance',
@@ -374,7 +374,7 @@ const ALL_SERVICES_DATA: ServiceSectionItem[] = [
     description: 'Certified Action Tesa and Surya laminate flooring systems with multi-year warranties, plus high-performance 100% waterproof SPC vinyl and VOX European planks.',
     quoteUrl: '/estimator?service=Wooden%20Flooring',
     quoteBtnText: 'Get a Quote (From ₹140 / sq.ft)',
-    heroImage: 'https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?auto=format&fit=crop&w=1600&q=85',
+    heroImage: '/services/wooden-flooring.png',
     heroAlt: 'Rich Oak Wooden Flooring Installation with Clean Finish',
     heroBadges: [
       'Up to 20-Yr Manufacturer Warranty',
@@ -438,7 +438,7 @@ const ALL_SERVICES_DATA: ServiceSectionItem[] = [
     description: 'Monolithic Gypsum, acoustic Grid, waterproof PVC, European VOX, and solid Wooden ceilings built with certified Saint-Gobain & USG Boral channels.',
     quoteUrl: '/estimator?service=False%20Ceiling',
     quoteBtnText: 'Get a Quote (From ₹75 / sq.ft)',
-    heroImage: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1600&q=85',
+    heroImage: '/services/false-ceiling.png',
     heroAlt: 'Architectural False Ceiling with Recessed LED Cove Lighting',
     heroBadges: [
       'Saint-Gobain Gyproc Certified',
@@ -502,7 +502,7 @@ const ALL_SERVICES_DATA: ServiceSectionItem[] = [
     description: '100% insect and dengue mosquito defense for windows and doors using genuine Saint-Gobain high-tensile fiberglass mesh and heavy-gauge aluminium profiles.',
     quoteUrl: '/estimator?service=Netlon%20%2F%20Mosquito%20Nets',
     quoteBtnText: 'Get a Quote (From ₹45 / sq.ft)',
-    heroImage: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1600&q=85',
+    heroImage: '/services/netlon-mosquito-nets.png',
     heroAlt: 'High-Tensile Clean Mosquito Screening Systems for Windows and Doors',
     heroBadges: [
       '100% Insect & Pest Defense',
@@ -566,7 +566,7 @@ const ALL_SERVICES_DATA: ServiceSectionItem[] = [
     description: 'Shore Louvers and Charcoal Louvers fabricated on 16mm commercial plywood core with scratch-resistant premium lamination for media elevations & bed backdrops.',
     quoteUrl: '/estimator?service=Louvers',
     quoteBtnText: 'Get a Quote (From ₹850 / pc)',
-    heroImage: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1600&q=85',
+    heroImage: '/services/louvers.png',
     heroAlt: 'Fluted Wall Louvers Accent Elevation with Backlight',
     heroBadges: [
       '16mm Commercial Plywood Core',
@@ -630,7 +630,7 @@ const ALL_SERVICES_DATA: ServiceSectionItem[] = [
     description: 'Lush, realistic all-weather green turf for balconies, terrace gardens, villas, and commercial outdoor spaces with zero mowing, UV resistance, and pet-safe materials.',
     quoteUrl: '/estimator?service=Artificial%20Grass',
     quoteBtnText: 'Get a Quote (From ₹55 / sq.ft)',
-    heroImage: 'https://images.unsplash.com/photo-1584467541268-b040f83be3fd?auto=format&fit=crop&w=1600&q=85',
+    heroImage: '/services/artificial-grass.png',
     heroAlt: 'Lush Green Balcony Turf and Landscaping Installation',
     heroBadges: [
       'UV Shielded 8+ Year Color Fast',
@@ -757,6 +757,42 @@ export const ServicesPage: React.FC = () => {
         </div>
       </div>
 
+      {/* 2.5 VISUAL 10 SERVICES OVERVIEW GRID (Matching Official Card Design) */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-5">
+        {CATALOGUE_CATEGORIES.map((cat) => (
+          <button
+            key={cat.id}
+            onClick={() => scrollToSection(cat.id)}
+            className={`card-advanced-hover text-left p-3.5 rounded-2xl bg-white border transition-all cursor-pointer flex flex-col justify-between group overflow-hidden ${
+              activeCategory === cat.id
+                ? 'border-amber-600 ring-2 ring-amber-500/30 shadow-md'
+                : 'border-neutral-200/90 hover:border-amber-500/50 shadow-xs'
+            }`}
+          >
+            <div>
+              <div className="relative aspect-square rounded-xl overflow-hidden mb-3 bg-neutral-100">
+                <img
+                  src={cat.heroImage}
+                  alt={cat.title}
+                  className="w-full h-full object-cover img-hover-zoom"
+                  loading="lazy"
+                />
+              </div>
+              <h3 className="font-display text-sm font-bold text-neutral-950 group-hover:text-amber-700 transition-colors">
+                {cat.title}
+              </h3>
+              <p className="mt-1 text-[11px] text-amber-900/70 font-medium truncate">
+                {cat.badge}
+              </p>
+            </div>
+            <div className="mt-3 pt-2 border-t border-neutral-100 flex items-center justify-between text-[11px]">
+              <span className="font-mono font-semibold text-neutral-500">{cat.priceStarting}</span>
+              <span className="font-bold text-amber-700 group-hover:translate-x-0.5 transition-transform">Explore →</span>
+            </div>
+          </button>
+        ))}
+      </div>
+
       {/* 3. DETAILED 10 STANDARDIZED SERVICE SECTIONS */}
       <div className="space-y-28 sm:space-y-36 lg:space-y-40">
         {ALL_SERVICES_DATA.map((service) => (
@@ -795,29 +831,47 @@ export const ServicesPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Standard Hero Image Card with Matching Badges */}
-            <div className="relative rounded-3xl overflow-hidden border border-neutral-200/90 bg-neutral-950 shadow-md group">
-              <div className="aspect-[16/8] sm:aspect-[21/9] w-full overflow-hidden">
-                <img
-                  src={service.heroImage}
-                  alt={service.heroAlt}
-                  className="w-full h-full object-cover img-hover-zoom brightness-90 group-hover:brightness-95 transition-all duration-700"
-                  loading="lazy"
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/90 via-neutral-950/30 to-transparent flex flex-col justify-end p-6 sm:p-8 lg:p-10">
-                <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
-                  <span className="px-3 py-1 rounded-full bg-amber-500/90 backdrop-blur-md text-neutral-950 text-xs font-bold uppercase tracking-wider">
+            {/* Compact Luxury Feature Highlight Card (Crisp & High-Res, Not Blurry) */}
+            <div className="rounded-2xl border border-neutral-200/90 bg-gradient-to-r from-neutral-950 via-neutral-900 to-neutral-950 p-4 sm:p-6 shadow-md text-white flex flex-col sm:flex-row items-center justify-between gap-5 overflow-hidden relative">
+              {/* Subtle Ambient Glow */}
+              <div
+                className="pointer-events-none absolute -top-12 -left-12 h-44 w-44 rounded-full blur-2xl opacity-20"
+                style={{ background: 'radial-gradient(circle, #f59e0b 0%, transparent 70%)' }}
+              />
+
+              {/* Left: Key Badges & Warranty Assurance */}
+              <div className="space-y-3 z-10 flex-1">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="px-3 py-1 rounded-full bg-amber-500 text-neutral-950 text-xs font-bold uppercase tracking-wider shadow-xs">
                     {service.heroBadges[0]}
                   </span>
                   {service.heroBadges.slice(1).map((badge, bIdx) => (
                     <span
                       key={bIdx}
-                      className="px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-neutral-900 text-xs font-semibold"
+                      className="px-2.5 py-1 rounded-full bg-white/10 backdrop-blur-md text-neutral-200 text-xs font-medium border border-white/10"
                     >
                       {badge}
                     </span>
                   ))}
+                </div>
+                <p className="text-xs text-neutral-300 max-w-xl leading-relaxed">
+                  Certified installation with verified manufacturer warranties, transparent itemized pricing, and uncompromised execution standards across Bangalore.
+                </p>
+              </div>
+
+              {/* Right: Sharp, Crisp Framed Service Image (No Blur!) */}
+              <div className="shrink-0 z-10">
+                <div className="relative w-36 h-36 sm:w-44 sm:h-44 rounded-xl overflow-hidden border-2 border-white/20 shadow-xl bg-neutral-900 group">
+                  <img
+                    src={service.heroImage}
+                    alt={service.heroAlt}
+                    className="w-full h-full object-cover img-hover-zoom"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/60 via-transparent to-transparent pointer-events-none" />
+                  <span className="absolute bottom-2 left-2 text-[10px] font-bold uppercase tracking-wider bg-neutral-900/80 backdrop-blur px-2 py-0.5 rounded text-amber-400 border border-white/10">
+                    Official Spec
+                  </span>
                 </div>
               </div>
             </div>
